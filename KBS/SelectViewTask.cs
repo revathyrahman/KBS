@@ -31,7 +31,7 @@ namespace KBS
 
                     UM.MyLCI_Login(data[i][0], data[i][1]);
 
-                    UM.Verify_MyTask("Authorization");
+                    UM.VerifyMyTask("Authorization");
 
                     Boolean status = UM.Verify_AddClub("hlAddClub");
 

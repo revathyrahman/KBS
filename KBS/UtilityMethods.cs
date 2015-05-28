@@ -525,7 +525,7 @@ namespace KBS
 
             er.FlushWorkbook(testCaseName + "-Run");
         }
-        public void Verify_MyTask(String taskname)
+        public void VerifyMyTask(String taskname)
         {
             try
             {
