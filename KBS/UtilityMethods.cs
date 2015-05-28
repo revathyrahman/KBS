@@ -225,7 +225,7 @@ namespace KBS
             try
             {
                 Screenshot ss = ((ITakesScreenshot)driver).GetScreenshot();
-                ss.SaveAsFile(Directory.GetDirectoryRoot(Directory.GetCurrentDirectory()) + "\\Screenshots\\" + "Snap-" + i + ".png", System.Drawing.Imaging.ImageFormat.Png);
+                ss.SaveAsFile(AppDomain.CurrentDomain.BaseDirectory + "\\..\\..\\Screenshots\\" + "Snap-" + i + ".png", System.Drawing.Imaging.ImageFormat.Png);
                 i++;
             }
             catch (IOException ioe)
@@ -403,6 +403,8 @@ namespace KBS
 
                 //Click on Save
                 ClickById("btnSave");
+
+                driver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(2));
             }
             catch (WebDriverException exe)
             {
@@ -532,14 +534,14 @@ namespace KBS
 
                 // List of Tasks
                 
-                IList<IWebElement> tasks = driver.FindElements(By.XPath(PageObject.home_viewtask));
+                IList<IWebElement> tasks = driver.FindElements(By.XPath("//div[@id='Tab265']/div/ul/li/div/div/a"));
                 
-                String[] listvalue=new String[tasks.Count];
+                //string[] listvalue=new string[tasks.Count];
                 int val=0;
                 foreach (IWebElement tlist in tasks)
                 {
-                    listvalue[i] = tlist.Text;
-                    if(listvalue[i].Contains(taskname)
+                    string listvalue = tlist.Text;
+                    if(listvalue.Contains(taskname))
                     {
                         tlist.Click(); 
                         er.ReportStep("Pending Authorization task is clicked successfully", "SUCCESS");

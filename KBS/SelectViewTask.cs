@@ -31,19 +31,9 @@ namespace KBS
 
                     UM.MyLCI_Login(data[i][0], data[i][1]);
 
+                    //UM.AddClubFormEntry();
+
                     UM.VerifyMyTask("Authorization");
-
-                    Boolean status = UM.Verify_AddClub("hlAddClub");
-
-                    if (status.Equals(true))
-                    {
-                        er.ReportStep("User is Authorized User", "SUCCESS");
-                    }
-                    else
-                    {
-                        er.ReportStep("User is not Authorized User", "FAILURE");
-
-                    }
 
                     UM.MyLCI_Logout();
                 }
@@ -56,7 +46,8 @@ namespace KBS
 
             }
             // close app
-            UM.CloseAllapp();
+            UM.CloseApplication();
+
         }
 
 

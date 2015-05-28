@@ -35,7 +35,7 @@ namespace KBS
         {
             try
             {
-                FileStream sw = File.Create(Directory.GetDirectoryRoot(Directory.GetCurrentDirectory()) + "\\report\\" + TestCaseName + ".xlsx");
+                FileStream sw = File.Create(AppDomain.CurrentDomain.BaseDirectory + "\\..\\..\\report\\" + TestCaseName + ".xlsx");
                 workbook.Write(sw);
                 sw.Close();
             }
