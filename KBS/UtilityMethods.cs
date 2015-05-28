@@ -12,6 +12,7 @@ using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.IE;
 
+
 namespace KBS
 {
     public class UtilityMethods
@@ -21,7 +22,7 @@ namespace KBS
         private String testCaseName;
         private int dataSet;
         ExcelReporter er = new ExcelReporter();
-
+   
         public UtilityMethods(String testCaseName, int dataSet)
         {
             this.testCaseName = testCaseName;
@@ -356,10 +357,10 @@ namespace KBS
                 //Create a random Number to append to ClubName for unique
            
                 Random rdmNo = new Random();
-                rdmNo.Next(1000);
+                int randnum=rdmNo.Next(1000);
 
                 //Enter ClubName - Unique
-                EnterValueById("txtClubName", "Club_"+rdmNo);
+                EnterValueById("txtClubName", "Club_" + randnum);
 
                 //Select Club Type
                 SelectDropdownValueByVisibleText("ddlClubType", "Lions Club");
@@ -422,6 +423,139 @@ namespace KBS
             catch (NoSuchElementException e)
             {
                 er.ReportStep("Element with Link Logout could not be found", "FAILURE");
+            }
+            finally
+            {
+                TakeSnapshot();
+            }
+        }
+
+        public Boolean Verify_AddClub(String addclub)
+        {
+            Boolean blnFlag = false;
+            try
+            {
+
+                if (driver.FindElement(By.Id(addclub)).Displayed)
+                {
+                    blnFlag = true;
+                    er.ReportStep("Add club button is present", "SUCCESS");
+                }
+                else
+                {
+                    blnFlag = false;
+                    er.ReportStep("Add club button is not present", "FAILURE");
+                }
+            }
+            catch (NoSuchElementException e)
+            {
+                er.ReportStep("Element with Link Logout could not be found", "FAILURE");
+            }
+            finally
+            {
+                TakeSnapshot();
+            }
+            return blnFlag;
+        }
+        public void MyLCI_Logout()
+        {
+            try
+            {
+
+                // click logout button
+                ClickById("hylLogout");
+
+                er.ReportStep("Verify Logout is successfull", "SUCCESS");
+            }
+            catch (NoSuchElementException e)
+            {
+                er.ReportStep("Element with id could not found..", "FAILURE");
+            }
+            catch (WebDriverException ex)
+            {
+                er.ReportStep("Driver could not found !!!", "FAILURE");
+            }
+            finally
+            {
+                TakeSnapshot();
+            }
+        }
+        public void MyLCI_Login(String usename, String pwd)
+        {
+            try
+            {
+                // enter user name
+
+                EnterValueById("PageContent_Login1_txtUsername", usename);
+
+                // enter password
+
+                EnterValueById("PageContent_Login1_txtPassword", pwd);
+
+                // click submit button
+                ClickById("PageContent_Login1_btnSubmit");
+
+                er.ReportStep("Verify Login is successfull", "SUCCESS");
+            }
+            catch (NoSuchElementException e)
+            {
+                er.ReportStep("Element with id :" + usename + "&" + pwd + "could not found..", "FAILURE");
+            }
+            catch (WebDriverException ex)
+            {
+                er.ReportStep("Driver could not found !!!", "FAILURE");
+            }
+            finally
+            {
+                TakeSnapshot();
+            }
+        }
+
+        public void CloseAllapp()
+        {
+            try
+            {
+                driver.Quit();
+                er.ReportStep("The application is closed successfully..", "SUCCESS");
+            }
+            catch (WebDriverException exe)
+            {
+                er.ReportStep("Driver could not be closed for unknown reason !!!", "FAILURE");
+            }
+
+            er.FlushWorkbook(testCaseName + "-Run");
+        }
+        public void Verify_MyTask(String taskname)
+        {
+            try
+            {
+
+                // List of Tasks
+                
+                IList<IWebElement> tasks = driver.FindElements(By.XPath(PageObject.home_viewtask));
+                
+                String[] listvalue=new String[tasks.Count];
+                int val=0;
+                foreach (IWebElement tlist in tasks)
+                {
+                    listvalue[i] = tlist.Text;
+                    if(listvalue[i].Contains(taskname)
+                    {
+                        tlist.Click(); 
+                        er.ReportStep("Pending Authorization task is clicked successfully", "SUCCESS");
+                        break;
+                    }
+                    val++;
+                }
+
+            }
+            catch (NoSuchElementException e)
+            {
+                er.ReportStep("Element with id could not found..", "FAILURE");
+            }
+            catch (WebDriverException ex)
+            {
+                er.ReportStep("Driver could not found !!!", "FAILURE");
             }
             finally
             {
