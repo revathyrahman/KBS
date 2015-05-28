@@ -564,5 +564,84 @@ namespace KBS
                 TakeSnapshot();
             }
         }
+
+        public void ViewApplication(String clubname)
+        {
+            try
+            {
+
+                //IList<IWebElement> clublist = driver.FindElements(By.XPath("//div[@class='gridData']/div/div/div/div"));
+                IList<IWebElement> clublist = driver.FindElements(By.XPath("//div[@class='gridHeader']/div/div/div[1]"));
+                IList<IWebElement> viewApplist = driver.FindElements(By.XPath("//a[.='View Application']"));
+                       
+                int val = 0;
+                foreach (IWebElement clnames in clublist)
+                {
+                    string clvalue = clnames.Text;
+                   
+                    if (clvalue.Contains(clubname))
+                    {
+                        viewApplist[val].Click();
+                        er.ReportStep("View Application is clicked successfully", "SUCCESS");
+                        break;
+                    }
+                    val++;
+                }
+
+            }
+            catch (NoSuchElementException e)
+            {
+                er.ReportStep("Element with id could not found..", "FAILURE");
+            }
+            catch (WebDriverException ex)
+            {
+                er.ReportStep("Driver could not found !!!", "FAILURE");
+            }
+            finally
+            {
+                TakeSnapshot();
+            }
+        }
+
+        public void FindDesiredClub(String Filtername)
+        {
+            try
+            {
+
+                ClickById("lblSearchOptionTitle");
+                 IList<IWebElement> findlist = driver.FindElements(By.XPath("//*[@id='pnlQuickViews']/li/a"));
+                
+                int val = 0;
+                foreach (IWebElement findnames in findlist)
+                {
+                    string findvalue = findnames.Text;
+
+                    if (findvalue.Contains(Filtername))
+                    {
+                        findnames.Click();
+                        er.ReportStep(findvalue+" is clicked successfully", "SUCCESS");
+                        break;
+                    }
+                    val++;
+                }
+
+            }
+            catch (NoSuchElementException e)
+            {
+                er.ReportStep("Element with id could not found..", "FAILURE");
+            }
+            catch (WebDriverException ex)
+            {
+                er.ReportStep("Driver could not found !!!", "FAILURE");
+            }
+            finally
+            {
+                TakeSnapshot();
+            }
+        }
+
+        
+
+        
     }
 }

@@ -8,7 +8,7 @@ using OpenQA.Selenium.Support.UI;
 namespace KBS
 {
     [TestClass]
-    public class UnitTest2
+    public class DesiredClub
     {
         [TestMethod]
         public void TestMethod1()
@@ -23,7 +23,11 @@ namespace KBS
                 {
                     UM.LoginMyLCI(data[i][0], data[i][1], data[i][2]);
 
-                    UM.VerifyMyTask("Authorization");
+                    UM.ClickById("a_3_1_28");
+
+                    UM.ClickById("a_3_2_40");
+
+                    UM.FindDesiredClub("LCI Authorization");
 
                     UM.ViewApplication("Club123");
 

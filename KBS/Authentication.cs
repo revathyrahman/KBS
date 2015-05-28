@@ -29,7 +29,7 @@ namespace KBS
                 {
                     // enter user name
 
-                    UM.MyLCI_Login(data[i][0], data[i][1]);
+                    UM.MyLCI_Login(data[i][1], data[i][2]);
 
                     UM.ClickById("a_3_1_28");
 
