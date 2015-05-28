@@ -99,6 +99,9 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Authentication.cs" />
+    <Compile Include="PageObject.cs" />
+    <Compile Include="SelectViewTask.cs" />
     <Compile Include="NewClubCreation.cs" />
     <Compile Include="AddClub.cs" />
     <Compile Include="UtilityMethods.cs" />
