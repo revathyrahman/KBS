@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Express 2012 for Windows Desktop
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KBS", "KBS\KBS.csproj", "{F2C46756-D5D0-4FCE-BC89-4966751B7F36}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyLCISprint1-5Automation", "KBS\MyLCISprint1-5Automation.csproj", "{F2C46756-D5D0-4FCE-BC89-4966751B7F36}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

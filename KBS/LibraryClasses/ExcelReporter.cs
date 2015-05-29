@@ -14,14 +14,14 @@ using NPOI.POIFS.FileSystem;
 using NPOI.XSSF.UserModel;
 using NPOI.SS.Util;
 
-namespace KBS
+namespace MyLCIAutomation
 {
    public class ExcelReporter
     {
        private static IWorkbook workbook ;
        private static IRow row;
        private static ISheet sheet;
-        public void createReportHeader()
+        public void CreateReportHeader()
         {
             workbook = new XSSFWorkbook();
             sheet = workbook.CreateSheet("Report");

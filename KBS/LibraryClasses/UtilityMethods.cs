@@ -13,21 +13,33 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.IE;
 
 
-namespace KBS
+namespace MyLCIAutomation
 {
     public class UtilityMethods
     {
-        IWebDriver driver;
-        int i = 1;
+        IWebDriver browserDriver;
+        int snapShotCount = 1;
         private String testCaseName;
-        private int dataSet;
-        ExcelReporter er = new ExcelReporter();
+        ExcelReporter excelReporter = new ExcelReporter();
+        private int dataSet
+        {
+            get;
+            set;
+        }
    
         public UtilityMethods(String testCaseName, int dataSet)
         {
             this.testCaseName = testCaseName;
             this.dataSet = dataSet;
         }
+
+        ///<summary>
+        ///This method is created to Login to MyLCI Application
+        ///</summary>
+        ///<remarks>
+        ///Takes three arguments and returns true if the login is successful and false if its is not
+        ///</remarks>
+
         public Boolean LoginMyLCI(String Role, String UserId, String Password)
         {
             Boolean flag = false;
@@ -43,21 +55,21 @@ namespace KBS
                 // Click login button
                 ClickById("PageContent_Login1_btnSubmit");
 
-                if (driver.FindElement(By.LinkText("Home")).Displayed)
+                if (browserDriver.FindElement(By.LinkText("Home")).Displayed)
                 {
-                    er.ReportStep("Login is Successful for Userid: " + UserId, "Pass");
+                    excelReporter.ReportStep("Login is Successful for Userid: " + UserId, "Pass");
                     flag = true;
                 }
                 else
                 {
-                    er.ReportStep("Login is not Successful for UserID: " + UserId, "Fail");
+                    excelReporter.ReportStep("Login is not Successful for UserID: " + UserId, "Fail");
                     flag = false;
                    
                 }
             }
             catch (WebDriverException e)
             {
-                er.ReportStep("Driver could not be found", "FAILURE");
+                excelReporter.ReportStep("Driver could not be found", "FAILURE");
             }
             finally
             {
@@ -65,28 +77,35 @@ namespace KBS
             }
              return flag;
         }
+
+        ///<summary>
+        ///This method is created to Check if Add Club Link Exists for a logged in user
+        ///</summary>
+        ///<remarks>
+        ///Takes one argument and returns true if the Link exists and false if link does not exist 
+        ///</remarks>
         public Boolean VerifyAddClubLinkExists(String LinkText)
         {
             Boolean flag = false;
             try
             {
-                driver.FindElement(By.Id("a_3_1_28")).Click();
-                driver.FindElement(By.Id("a_3_2_40")).Click();
+                browserDriver.FindElement(By.Id("a_3_1_28")).Click();
+                browserDriver.FindElement(By.Id("a_3_2_40")).Click();
 
-                if (driver.FindElement(By.LinkText("Add Club")).Enabled)
+                if (browserDriver.FindElement(By.LinkText("Add Club")).Enabled)
                 {
                     flag = true;
-                    er.ReportStep("Add Club Link exists", "Pass");
+                    excelReporter.ReportStep("Add Club Link exists", "Pass");
                 }
                 else
                 {
                     flag = false;
-                    er.ReportStep("Add Club Link exists", "Pass");
+                    excelReporter.ReportStep("Add Club Link does not exist", "Pass");
                 }
             }
             catch (NoSuchElementException e)
             {
-                er.ReportStep("Element AddClub does not Exist", "FAILURE");
+                excelReporter.ReportStep("Element AddClub does not Exist", "FAILURE");
             }
             finally
             {
@@ -95,55 +114,49 @@ namespace KBS
             return flag;
       }
        
-        public IWebDriver InvokeApplication(String browser, String url)
-        {
-            er.createReportHeader();
-            try
-            {
-                if (browser.ToLower().Equals("ie"))
-                {
-                    //driver = new InternetExplorerDriver(Directory.GetDirectoryRoot(Directory.GetCurrentDirectory()) + "\\drivers\\" + "IEDriverServer");
-                    driver = new InternetExplorerDriver(@"D:\\drivers\\IEDriverServer.exe");
-                    // System.Environment.SetEnvironmentVariable("webdriver.IE.driver", @"D:\\drivers\\IEDriverServer.exe");
-                    // driver = new InternetExplorerDriver();
-                }
-                else if (browser.ToLower().Equals("chrome"))
-                {
-                    System.Environment.SetEnvironmentVariable("webdriver.chrome.driver", @"D:\\chromedriver.exe");
-                    driver = new ChromeDriver();
-                }
-                else
-                {
-                    driver = new FirefoxDriver();
-                }
-                driver.Navigate().GoToUrl(url);
-                driver.Manage().Window.Maximize();
-                WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
-                er.ReportStep("Application invoked successfully", "SUCCESS");
-
-            }
-            catch (WebDriverException exception)
-            {
-                er.ReportStep("Driver could not be found", "FAILURE");
-            }
-
-            return driver;
+      public IWebDriver InvokeApplication(String browser, String url)
+      {
+          excelReporter.CreateReportHeader();
+          try
+          {
+             if (browser.ToLower().Equals("ie"))
+             {
+                //Code to invoke IE Browser
+             }
+             else if (browser.ToLower().Equals("chrome"))
+             {
+                //Code to invoke Chrome browser    
+             }
+             else
+             {
+                 browserDriver = new FirefoxDriver();
+             }
+             browserDriver.Navigate().GoToUrl(url);
+             browserDriver.Manage().Window.Maximize();
+             WebDriverWait wait = new WebDriverWait(browserDriver, TimeSpan.FromSeconds(10));
+             excelReporter.ReportStep("Application invoked successfully", "SUCCESS");
+             }
+             catch (WebDriverException exception)
+             {
+                excelReporter.ReportStep("Driver could not be found", "FAILURE");
+             }
+             return browserDriver;
         }
 
         public void EnterValueById(String id, String value)
         {
             try
             {
-                driver.FindElement(By.Id(id)).SendKeys(value);
-                er.ReportStep("Element with id :" + id + " is found and value :" + value + " entered successfully..", "SUCCESS");
+                browserDriver.FindElement(By.Id(id)).SendKeys(value);
+                excelReporter.ReportStep("Element with id :" + id + " is found and value :" + value + " entered successfully..", "SUCCESS");
             }
             catch (NoSuchElementException exc)
             {
-                er.ReportStep("Element with id :" + id + "could not be found..", "FAILURE");
+                excelReporter.ReportStep("Element with id :" + id + "could not be found..", "FAILURE");
             }
             catch (WebDriverException e)
             {
-                er.ReportStep("Driver could not be found", "FAILURE");
+                excelReporter.ReportStep("Driver could not be found", "FAILURE");
             }
             finally
             {
@@ -154,17 +167,17 @@ namespace KBS
         {
             try
             {
-                driver.FindElement(By.Name(name)).Clear();
-                driver.FindElement(By.Name(name)).SendKeys(value);
-                er.ReportStep("Element with name :" + name + " is found and value :" + value + " entered successfully..", "SUCCESS");
+                browserDriver.FindElement(By.Name(name)).Clear();
+                browserDriver.FindElement(By.Name(name)).SendKeys(value);
+                excelReporter.ReportStep("Element with name :" + name + " is found and value :" + value + " entered successfully..", "SUCCESS");
             }
             catch (NoSuchElementException exc)
             {
-                er.ReportStep("Element with name :" + name + "could not be found..", "FAILURE");
+                excelReporter.ReportStep("Element with name :" + name + "could not be found..", "FAILURE");
             }
             catch (WebDriverException exception)
             {
-                er.ReportStep("Driver could not be found", "FAILURE");
+                excelReporter.ReportStep("Driver could not be found", "FAILURE");
             }
             finally
             {
@@ -176,18 +189,18 @@ namespace KBS
         {
             try
             {
-                IWebElement ele = driver.FindElement(By.Id(id));
+                IWebElement ele = browserDriver.FindElement(By.Id(id));
                 SelectElement dropDownElement = new SelectElement(ele);
                 dropDownElement.SelectByIndex(index);
-                er.ReportStep("Element with id :" + id + " is found and index :" + index + " selected successfully..", "SUCCESS");
+                excelReporter.ReportStep("Element with id :" + id + " is found and index :" + index + " selected successfully..", "SUCCESS");
             }
             catch (NoSuchElementException exception)
             {
-                er.ReportStep("Element with id :" + id + "could not be found..", "FAILURE");
+                excelReporter.ReportStep("Element with id :" + id + "could not be found..", "FAILURE");
             }
             catch (WebDriverException e)
             {
-                er.ReportStep("Driver could not be found", "FAILURE");
+                excelReporter.ReportStep("Driver could not be found", "FAILURE");
             }
             finally
             {
@@ -199,18 +212,18 @@ namespace KBS
         {
             try
             {
-                IWebElement ele = driver.FindElement(By.Id(id));
+                IWebElement ele = browserDriver.FindElement(By.Id(id));
                 SelectElement dropDownElement = new SelectElement(ele);
                 dropDownElement.SelectByText(VisibleText);
-                er.ReportStep("Element with id :" + id + " is found and Visible Text :" + VisibleText + " selected successfully..", "SUCCESS");
+                excelReporter.ReportStep("Element with id :" + id + " is found and Visible Text :" + VisibleText + " selected successfully..", "SUCCESS");
             }
             catch (NoSuchElementException exception)
             {
-                er.ReportStep("Element with id :" + id + "could not be found..", "FAILURE");
+                excelReporter.ReportStep("Element with id :" + id + "could not be found..", "FAILURE");
             }
             catch (WebDriverException e)
             {
-                er.ReportStep("Driver could not be found", "FAILURE");
+                excelReporter.ReportStep("Driver could not be found", "FAILURE");
             }
             finally
             {
@@ -222,14 +235,14 @@ namespace KBS
         {
             try
             {
-                Screenshot ss = ((ITakesScreenshot)driver).GetScreenshot();
-                ss.SaveAsFile(AppDomain.CurrentDomain.BaseDirectory + "\\..\\..\\Screenshots\\" + "Snap-" + i + ".png", System.Drawing.Imaging.ImageFormat.Png);
-                i++;
+                Screenshot ss = ((ITakesScreenshot)browserDriver).GetScreenshot();
+                ss.SaveAsFile(AppDomain.CurrentDomain.BaseDirectory + "\\..\\..\\Screenshots\\" + "Snap-" + snapShotCount + ".png", System.Drawing.Imaging.ImageFormat.Png);
+                snapShotCount++;
             }
             catch (IOException ioe)
             {
                 // TODO Auto-generated catch block
-                er.ReportStep("Unable to copy the file", "FAILURE");
+                excelReporter.ReportStep("Unable to copy the file", "FAILURE");
             }
         }
 
@@ -237,30 +250,30 @@ namespace KBS
         {
             try
             {
-                driver.Quit();
-                er.ReportStep("The application is closed successfully..", "SUCCESS");
+                browserDriver.Quit();
+                excelReporter.ReportStep("The application is closed successfully..", "SUCCESS");
             }
             catch (WebDriverException exe)
             {
-                er.ReportStep("Driver could not be closed for unknown reason !!!", "FAILURE");
+                excelReporter.ReportStep("Driver could not be closed for unknown reason !!!", "FAILURE");
             }
 
-            er.FlushWorkbook(testCaseName + "-Run" + dataSet);
+            excelReporter.FlushWorkbook(testCaseName + "-Run" + dataSet);
         }
         public void LinkClickByText(String text)
         {
             try
             {
-                driver.FindElement(By.LinkText(text)).Click();
-                er.ReportStep("Element with text :" + text + " is found and clicked successfully..", "SUCCESS");
+                browserDriver.FindElement(By.LinkText(text)).Click();
+                excelReporter.ReportStep("Element with text :" + text + " is found and clicked successfully..", "SUCCESS");
             }
             catch (NoSuchElementException e)
             {
-                er.ReportStep("Element with text :" + text + "could not be found..", "FAILURE");
+                excelReporter.ReportStep("Element with text :" + text + "could not be found..", "FAILURE");
             }
             catch (WebDriverException exe)
             {
-                er.ReportStep("Driver could not be found", "FAILURE");
+                excelReporter.ReportStep("Driver could not be found", "FAILURE");
             }
             finally
             {
@@ -272,16 +285,16 @@ namespace KBS
         {
             try
             {
-                driver.FindElement(By.CssSelector(css)).Click();
-                er.ReportStep("Element with css :" + css + " is found and clicked successfully..", "SUCCESS");
+                browserDriver.FindElement(By.CssSelector(css)).Click();
+                excelReporter.ReportStep("Element with css :" + css + " is found and clicked successfully..", "SUCCESS");
             }
             catch (NoSuchElementException e)
             {
-                er.ReportStep("Element with css :" + css + "could not be found..", "FAILURE");
+                excelReporter.ReportStep("Element with css :" + css + "could not be found..", "FAILURE");
             }
             catch (WebDriverException exe)
             {
-                er.ReportStep("Driver could not be found", "FAILURE");
+                excelReporter.ReportStep("Driver could not be found", "FAILURE");
             }
             finally
             {
@@ -293,7 +306,7 @@ namespace KBS
             Boolean flag = false;
             try
             {
-                if (driver.FindElement(By.XPath(XPath)).Displayed)
+                if (browserDriver.FindElement(By.XPath(XPath)).Displayed)
                     flag = true;
                 else
                     flag = false;
@@ -301,7 +314,7 @@ namespace KBS
             }
             catch (NoSuchElementException e)
             {
-                er.ReportStep("Element with XPath :" + XPath + "could not be found..", "FAILURE");
+                excelReporter.ReportStep("Element with XPath :" + XPath + "could not be found..", "FAILURE");
             }
 
             return flag;
@@ -311,16 +324,16 @@ namespace KBS
         {
             try
             {
-                driver.FindElement(By.XPath(XPath)).Click();
-                er.ReportStep("Element with XPath :" + XPath + " is found and clicked successfully..", "SUCCESS");
+                browserDriver.FindElement(By.XPath(XPath)).Click();
+                excelReporter.ReportStep("Element with XPath :" + XPath + " is found and clicked successfully..", "SUCCESS");
             }
             catch (NoSuchElementException e)
             {
-                er.ReportStep("Element with XPath :" + XPath + "could not be found..", "FAILURE");
+                excelReporter.ReportStep("Element with XPath :" + XPath + "could not be found..", "FAILURE");
             }
             catch (WebDriverException exe)
             {
-                er.ReportStep("Driver could not be found", "FAILURE");
+                excelReporter.ReportStep("Driver could not be found", "FAILURE");
             }
             finally
             {
@@ -331,16 +344,16 @@ namespace KBS
         {
             try
             {
-                driver.FindElement(By.Id(Id)).Click();
-                er.ReportStep("Element with ID :" + Id + " is found and clicked successfully..", "SUCCESS");
+                browserDriver.FindElement(By.Id(Id)).Click();
+                excelReporter.ReportStep("Element with ID :" + Id + " is found and clicked successfully..", "SUCCESS");
             }
             catch (NoSuchElementException e)
             {
-                er.ReportStep("Element with ID :" + Id + "could not be found..", "FAILURE");
+                excelReporter.ReportStep("Element with ID :" + Id + "could not be found..", "FAILURE");
             }
             catch (WebDriverException exe)
             {
-                er.ReportStep("Driver could not be found !!!", "FAILURE");
+                excelReporter.ReportStep("Driver could not be found !!!", "FAILURE");
             }
             finally
             {
@@ -372,8 +385,10 @@ namespace KBS
 
                 //Click for a sponsoring club
                 ClickById("btnSelectSponsoringClub");
-                ClickByCSS("div.span2.availableDistrictClub");
-
+                browserDriver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(5));
+                ClickByXPath("//div[@class='DistrictClubResults']/div/div/div[1]");
+                browserDriver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(3));
+                               
                 //Enter New Club President creation details
                 ClickByXPath("//*[@id='pnlNewClubPresidentHeader']/div/b");
                 EnterValueById("txtPresidentFirstName", "PresidentFirstname");
@@ -383,7 +398,7 @@ namespace KBS
                 EnterValueById("txtPresidentEmailAddress", "president@test.com");
 
                 //Enter New Club Secretary Creation details
-                ClickByCSS("p.controls > b.caret");
+                ClickByXPath("//*[@id='pnlNewClubSecretaryHeader']/p/b");
                 EnterValueById("txtSecretaryFirstName", "SecretaryFirstName");
                 EnterValueById("txtSecretaryLastName", "SecretaryLastName");
                 EnterValueById("txtSecretaryYearOfBirth", "1980");
@@ -403,16 +418,12 @@ namespace KBS
 
                 //Click on Save
                 ClickById("btnSave");
-<<<<<<< HEAD
-                
-=======
+                browserDriver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(2));
 
-                driver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(2));
->>>>>>> ccd28713b69c6da8790ee10d48767be591c52ad4
             }
             catch (WebDriverException exe)
             {
-                er.ReportStep("Driver could not be found", "FAILURE");
+                excelReporter.ReportStep("Driver could not be found", "FAILURE");
             }
             finally
             {
@@ -423,13 +434,13 @@ namespace KBS
 
         public void LogoutMyLCI()
         {
-            try
+            try 
             {
                 LinkClickByText("Logout");
             }
             catch (NoSuchElementException e)
             {
-                er.ReportStep("Element with Link Logout could not be found", "FAILURE");
+                excelReporter.ReportStep("Element with Link Logout could not be found", "FAILURE");
             }
             finally
             {
@@ -437,33 +448,7 @@ namespace KBS
             }
         }
 
-        public Boolean Verify_AddClub(String addclub)
-        {
-            Boolean blnFlag = false;
-            try
-            {
-
-                if (driver.FindElement(By.Id(addclub)).Displayed)
-                {
-                    blnFlag = true;
-                    er.ReportStep("Add club button is present", "SUCCESS");
-                }
-                else
-                {
-                    blnFlag = false;
-                    er.ReportStep("Add club button is not present", "FAILURE");
-                }
-            }
-            catch (NoSuchElementException e)
-            {
-                er.ReportStep("Element with Link Logout could not be found", "FAILURE");
-            }
-            finally
-            {
-                TakeSnapshot();
-            }
-            return blnFlag;
-        }
+        
         public void MyLCI_Logout()
         {
             try
@@ -472,66 +457,22 @@ namespace KBS
                 // click logout button
                 ClickById("hylLogout");
 
-                er.ReportStep("Verify Logout is successfull", "SUCCESS");
+                excelReporter.ReportStep("Verify Logout is successfull", "SUCCESS");
             }
             catch (NoSuchElementException e)
             {
-                er.ReportStep("Element with id could not found..", "FAILURE");
+                excelReporter.ReportStep("Element with id could not found..", "FAILURE");
             }
             catch (WebDriverException ex)
             {
-                er.ReportStep("Driver could not found !!!", "FAILURE");
+                excelReporter.ReportStep("Driver could not found !!!", "FAILURE");
             }
             finally
             {
                 TakeSnapshot();
             }
         }
-        public void MyLCI_Login(String usename, String pwd)
-        {
-            try
-            {
-                // enter user name
-
-                EnterValueById("PageContent_Login1_txtUsername", usename);
-
-                // enter password
-
-                EnterValueById("PageContent_Login1_txtPassword", pwd);
-
-                // click submit button
-                ClickById("PageContent_Login1_btnSubmit");
-
-                er.ReportStep("Verify Login is successfull", "SUCCESS");
-            }
-            catch (NoSuchElementException e)
-            {
-                er.ReportStep("Element with id :" + usename + "&" + pwd + "could not found..", "FAILURE");
-            }
-            catch (WebDriverException ex)
-            {
-                er.ReportStep("Driver could not found !!!", "FAILURE");
-            }
-            finally
-            {
-                TakeSnapshot();
-            }
-        }
-
-        public void CloseAllapp()
-        {
-            try
-            {
-                driver.Quit();
-                er.ReportStep("The application is closed successfully..", "SUCCESS");
-            }
-            catch (WebDriverException exe)
-            {
-                er.ReportStep("Driver could not be closed for unknown reason !!!", "FAILURE");
-            }
-
-            er.FlushWorkbook(testCaseName + "-Run");
-        }
+        
         public void VerifyMyTask(String taskname)
         {
             try
@@ -539,22 +480,22 @@ namespace KBS
 
                 // List of Tasks
                 
-                IList<IWebElement> tasks = driver.FindElements(By.XPath("//div[@id='Tab265']/div/ul/li/div/div/a"));
+                IList<IWebElement> tasks = browserDriver.FindElements(By.XPath("//div[@id='Tab265']/div/ul/li/div/div/a"));
                 
                 //string[] listvalue=new string[tasks.Count];
                 int val=0;
                 foreach (IWebElement tlist in tasks)
                 {
-<<<<<<< HEAD
-                    listvalue[i] = tlist.Text;
-                    if(listvalue[i].Contains(taskname))
-=======
+
+                    //listvalue[i] = tlist.Text;
+                    //if(listvalue[i].Contains(taskname))
+
                     string listvalue = tlist.Text;
                     if(listvalue.Contains(taskname))
->>>>>>> ccd28713b69c6da8790ee10d48767be591c52ad4
+
                     {
                         tlist.Click(); 
-                        er.ReportStep("Pending Authorization task is clicked successfully", "SUCCESS");
+                        excelReporter.ReportStep("Pending Authorization task is clicked successfully", "SUCCESS");
                         break;
                     }
                     val++;
@@ -563,18 +504,18 @@ namespace KBS
             }
             catch (NoSuchElementException e)
             {
-                er.ReportStep("Element with id could not found..", "FAILURE");
+                excelReporter.ReportStep("Element with id could not found..", "FAILURE");
             }
             catch (WebDriverException ex)
             {
-                er.ReportStep("Driver could not found !!!", "FAILURE");
+                excelReporter.ReportStep("Driver could not found !!!", "FAILURE");
             }
             finally
             {
                 TakeSnapshot();
             }
         }
-<<<<<<< HEAD
+
         public void DiscontinueClub(string ClubName)
         {
             try
@@ -582,22 +523,23 @@ namespace KBS
                 ClickById("cbStatusAction_Discontinue");
                 EnterValueById("txtDiscontinueNote", "Test Comment");
                 ClickById("btnSave");
-                string ConfirmationMessage = driver.FindElement(By.XPath("//div[@class='confirmationMessages']/table/tbody/tr/td")).Text;
+                string ConfirmationMessage = browserDriver.FindElement(By.XPath("//div[@class='confirmationMessages']/table/tbody/tr/td")).Text;
 
                 if (ConfirmationMessage.Contains("Discontinued"))
                 {
-                    er.ReportStep("The club Name" + ClubName + "is Discontinued", "Pass");
+                    excelReporter.ReportStep("The club Name" + ClubName + "is Discontinued", "Pass");
                 }
                 else
                 {
-                    er.ReportStep("The club Name" + ClubName + "is not Discontinued", "Fail");
+                    excelReporter.ReportStep("The club Name" + ClubName + "is not Discontinued", "Fail");
                 }
                 LinkClickByText("Go to Application");
             }
             catch (Exception e)
             {
                 e.StackTrace.ToString();
-=======
+            }
+        }
 
         public void ViewApplication(String clubname)
         {
@@ -605,8 +547,8 @@ namespace KBS
             {
 
                 //IList<IWebElement> clublist = driver.FindElements(By.XPath("//div[@class='gridData']/div/div/div/div"));
-                IList<IWebElement> clublist = driver.FindElements(By.XPath("//div[@class='gridHeader']/div/div/div[1]"));
-                IList<IWebElement> viewApplist = driver.FindElements(By.XPath("//a[.='View Application']"));
+                IList<IWebElement> clublist = browserDriver.FindElements(By.XPath("//div[@class='gridHeader']/div/div/div[1]"));
+                IList<IWebElement> viewApplist = browserDriver.FindElements(By.XPath("//a[.='View Application']"));
                        
                 int val = 0;
                 foreach (IWebElement clnames in clublist)
@@ -616,7 +558,7 @@ namespace KBS
                     if (clvalue.Contains(clubname))
                     {
                         viewApplist[val].Click();
-                        er.ReportStep("View Application is clicked successfully", "SUCCESS");
+                        excelReporter.ReportStep("View Application is clicked successfully", "SUCCESS");
                         break;
                     }
                     val++;
@@ -625,19 +567,19 @@ namespace KBS
             }
             catch (NoSuchElementException e)
             {
-                er.ReportStep("Element with id could not found..", "FAILURE");
+                excelReporter.ReportStep("Element with id could not found..", "FAILURE");
             }
             catch (WebDriverException ex)
             {
-                er.ReportStep("Driver could not found !!!", "FAILURE");
->>>>>>> ccd28713b69c6da8790ee10d48767be591c52ad4
+                excelReporter.ReportStep("Driver could not found !!!", "FAILURE");
+
             }
             finally
             {
                 TakeSnapshot();
             }
         }
-<<<<<<< HEAD
+
         public void ContinueClub(string ClubName)
         {
             try
@@ -645,15 +587,15 @@ namespace KBS
                 ClickById("cbStatusAction_Continue");
                 EnterValueById("txtDiscontinueNote", "Test Comment");
                 ClickById("btnSave");
-                string ConfirmationMessage = driver.FindElement(By.XPath("//div[@class='confirmationMessages']/table/tbody/tr/td")).Text;
+                string ConfirmationMessage = browserDriver.FindElement(By.XPath("//div[@class='confirmationMessages']/table/tbody/tr/td")).Text;
 
                 if (ConfirmationMessage.Contains("removed from Discontinued"))
                 {
-                    er.ReportStep("The club Name" + ClubName + "is removed from Discontinued", "Pass");
+                    excelReporter.ReportStep("The club Name" + ClubName + "is removed from Discontinued", "Pass");
                 }
                 else
                 {
-                    er.ReportStep("The club Name" + ClubName + "is not removed from Discontinued", "Fail");
+                    excelReporter.ReportStep("The club Name" + ClubName + "is not removed from Discontinued", "Fail");
                 }
                 LinkClickByText("Go to Application");
             }
@@ -670,23 +612,30 @@ namespace KBS
         {
             try
             {
+                ClickById("cbReadNewClubCriteria");
                 ClickById("cbStatusAction_Submit");
                 ClickById("btnSave");
-                string confirmationMessage = driver.FindElement(By.XPath("//div[@class='confirmationMessages']/table/tbody/tr/td")).Text;
-                if(confirmationMessage.Contains("District Governor authorization"))
-                
-                    er.ReportStep("Club application moved to DG Authorization status","Pass");
-                
+                string confirmationMessage = browserDriver.FindElement(By.XPath("//div[@class='confirmationMessages']/table/tbody/tr/td")).Text;
+                if (confirmationMessage.Contains("District Governor authorization"))
+
+                    excelReporter.ReportStep("Club application moved to DG Authorization status", "Pass");
+
                 else
-                    er.ReportStep("Club application not moved to DG Authorization status","Pass");
-               
+                    excelReporter.ReportStep("Club application not moved to DG Authorization status", "Pass");
+
                 LinkClickByText("Go to Application");
             }
-          
+
             catch (NoSuchElementException e)
             {
                 e.StackTrace.ToString();
-=======
+            }
+            finally
+            {
+                TakeSnapshot();
+            }
+        }
+
 
         public void FindDesiredClub(String Filtername)
         {
@@ -694,7 +643,7 @@ namespace KBS
             {
 
                 ClickById("lblSearchOptionTitle");
-                 IList<IWebElement> findlist = driver.FindElements(By.XPath("//*[@id='pnlQuickViews']/li/a"));
+                 IList<IWebElement> findlist = browserDriver.FindElements(By.XPath("//*[@id='pnlQuickViews']/li/a"));
                 
                 int val = 0;
                 foreach (IWebElement findnames in findlist)
@@ -704,7 +653,7 @@ namespace KBS
                     if (findvalue.Contains(Filtername))
                     {
                         findnames.Click();
-                        er.ReportStep(findvalue+" is clicked successfully", "SUCCESS");
+                        excelReporter.ReportStep(findvalue+" is clicked successfully", "SUCCESS");
                         break;
                     }
                     val++;
@@ -713,29 +662,23 @@ namespace KBS
             }
             catch (NoSuchElementException e)
             {
-                er.ReportStep("Element with id could not found..", "FAILURE");
+                excelReporter.ReportStep("Element with id could not found..", "FAILURE");
             }
             catch (WebDriverException ex)
             {
-                er.ReportStep("Driver could not found !!!", "FAILURE");
->>>>>>> ccd28713b69c6da8790ee10d48767be591c52ad4
+                excelReporter.ReportStep("Driver could not found !!!", "FAILURE");
+
             }
             finally
             {
                 TakeSnapshot();
             }
-<<<<<<< HEAD
+
                 
             }
            
         }
-=======
-        }
 
-        
-
-        
->>>>>>> ccd28713b69c6da8790ee10d48767be591c52ad4
     }
-   
+     
 

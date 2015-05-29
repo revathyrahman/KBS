@@ -6,7 +6,7 @@
     <ProjectGuid>{F2C46756-D5D0-4FCE-BC89-4966751B7F36}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>KBS</RootNamespace>
+    <RootNamespace>MyLCIAutomation</RootNamespace>
     <AssemblyName>KBS</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -99,15 +99,13 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Authentication.cs" />
-    <Compile Include="DesiredClub.cs" />
-    <Compile Include="SelectViewTask.cs" />
-    <Compile Include="AddClub.cs" />
-    <Compile Include="UtilityMethods.cs" />
-    <Compile Include="DataInputProvider.cs" />
-    <Compile Include="ExcelReporter.cs" />
+    <Compile Include="Scripts\DesiredClub.cs" />
+    <Compile Include="Scripts\AddClubLinkUsersCheck.cs" />
+    <Compile Include="LibraryClasses\UtilityMethods.cs" />
+    <Compile Include="LibraryClasses\DataInputProvider.cs" />
+    <Compile Include="LibraryClasses\ExcelReporter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UnitTest2.cs" />
+    <Compile Include="Scripts\DiscontinueClub.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

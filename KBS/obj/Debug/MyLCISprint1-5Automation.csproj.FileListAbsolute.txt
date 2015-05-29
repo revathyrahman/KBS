@@ -21,6 +21,6 @@ D:\KBSGIT_REPO\KBS\KBS\bin\Debug\WebDriver.pdb
 D:\KBSGIT_REPO\KBS\KBS\bin\Debug\WebDriver.xml
 D:\KBSGIT_REPO\KBS\KBS\bin\Debug\WebDriver.Support.pdb
 D:\KBSGIT_REPO\KBS\KBS\bin\Debug\WebDriver.Support.xml
+D:\KBSGIT_REPO\KBS\KBS\obj\Debug\MyLCISprint1-5Automation.csprojResolveAssemblyReference.cache
 D:\KBSGIT_REPO\KBS\KBS\obj\Debug\KBS.dll
 D:\KBSGIT_REPO\KBS\KBS\obj\Debug\KBS.pdb
-D:\KBSGIT_REPO\KBS\KBS\obj\Debug\KBS.csprojResolveAssemblyReference.cache
