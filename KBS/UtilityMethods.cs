@@ -32,8 +32,6 @@ namespace KBS
         {
             Boolean flag = false;
 
-            //Invoke a new browser and load the MyLCI application URL
-            InvokeApplication("Firefox", "https://mylcibeta.lionsclubs.org/");
             try
             {
                 // Enter user name
@@ -350,17 +348,18 @@ namespace KBS
             }
         }
       
-        public void AddClubFormEntry()
+        public string AddClubFormEntry()
         {
+            //Create a random Number to append to ClubName for unique
+            Random rdmNo = new Random();
+            int randnum = rdmNo.Next(1000);
+            
+            string ClubName = "Club_" + randnum;
             try
             {
-                //Create a random Number to append to ClubName for unique
-           
-                Random rdmNo = new Random();
-                int randnum=rdmNo.Next(1000);
-
+                
                 //Enter ClubName - Unique
-                EnterValueById("txtClubName", "Club_" + randnum);
+                EnterValueById("txtClubName", ClubName);
 
                 //Select Club Type
                 SelectDropdownValueByVisibleText("ddlClubType", "Lions Club");
@@ -397,12 +396,14 @@ namespace KBS
                 EnterValueById("txtStudentCount", "0");
                 EnterValueById("txtLeoLionCount", "0");
 
+                //Check New Club Criteria checkbox
+                ClickById("cbReadNewClubCriteria");
                 //Enter Comment
-                EnterValueById("cbReadNewClubCriteria", "txtNewClubAppComment");
                 EnterValueById("txtNewClubAppComment", "test comment");
 
                 //Click on Save
                 ClickById("btnSave");
+                
             }
             catch (WebDriverException exe)
             {
@@ -412,6 +413,7 @@ namespace KBS
             {
                 TakeSnapshot();
             }
+            return ClubName;
         }
 
         public void LogoutMyLCI()
@@ -539,7 +541,7 @@ namespace KBS
                 foreach (IWebElement tlist in tasks)
                 {
                     listvalue[i] = tlist.Text;
-                    if(listvalue[i].Contains(taskname)
+                    if(listvalue[i].Contains(taskname))
                     {
                         tlist.Click(); 
                         er.ReportStep("Pending Authorization task is clicked successfully", "SUCCESS");
@@ -562,5 +564,91 @@ namespace KBS
                 TakeSnapshot();
             }
         }
+        public void DiscontinueClub(string ClubName)
+        {
+            try
+            {
+                ClickById("cbStatusAction_Discontinue");
+                EnterValueById("txtDiscontinueNote", "Test Comment");
+                ClickById("btnSave");
+                string ConfirmationMessage = driver.FindElement(By.XPath("//div[@class='confirmationMessages']/table/tbody/tr/td")).Text;
+
+                if (ConfirmationMessage.Contains("Discontinued"))
+                {
+                    er.ReportStep("The club Name" + ClubName + "is Discontinued", "Pass");
+                }
+                else
+                {
+                    er.ReportStep("The club Name" + ClubName + "is not Discontinued", "Fail");
+                }
+                LinkClickByText("Go to Application");
+            }
+            catch (Exception e)
+            {
+                e.StackTrace.ToString();
+            }
+            finally
+            {
+                TakeSnapshot();
+            }
+        }
+        public void ContinueClub(string ClubName)
+        {
+            try
+            {
+                ClickById("cbStatusAction_Continue");
+                EnterValueById("txtDiscontinueNote", "Test Comment");
+                ClickById("btnSave");
+                string ConfirmationMessage = driver.FindElement(By.XPath("//div[@class='confirmationMessages']/table/tbody/tr/td")).Text;
+
+                if (ConfirmationMessage.Contains("removed from Discontinued"))
+                {
+                    er.ReportStep("The club Name" + ClubName + "is removed from Discontinued", "Pass");
+                }
+                else
+                {
+                    er.ReportStep("The club Name" + ClubName + "is not removed from Discontinued", "Fail");
+                }
+                LinkClickByText("Go to Application");
+            }
+            catch (Exception e)
+            {
+                e.StackTrace.ToString();
+            }
+            finally
+            {
+                TakeSnapshot();
+            }
+        }
+        public void MoveClubtoNextStatus(String CurrentStatus)
+        {
+            try
+            {
+                ClickById("cbStatusAction_Submit");
+                ClickById("btnSave");
+                string confirmationMessage = driver.FindElement(By.XPath("//div[@class='confirmationMessages']/table/tbody/tr/td")).Text;
+                if(confirmationMessage.Contains("District Governor authorization"))
+                
+                    er.ReportStep("Club application moved to DG Authorization status","Pass");
+                
+                else
+                    er.ReportStep("Club application not moved to DG Authorization status","Pass");
+               
+                LinkClickByText("Go to Application");
+            }
+          
+            catch (NoSuchElementException e)
+            {
+                e.StackTrace.ToString();
+            }
+            finally
+            {
+                TakeSnapshot();
+            }
+                
+            }
+           
+        }
     }
-}
+   
+
