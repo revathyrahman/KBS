@@ -22,7 +22,10 @@ namespace KBS
         {
 
             List<List<String>> data = new List<List<String>>();
-            FileStream fis = new FileStream(Directory.GetDirectoryRoot(Directory.GetCurrentDirectory()) + "\\data\\" + DataSheetName + ".xlsx", FileMode.Open, FileAccess.Read);
+            //FileStream fis = new FileStream(Directory.GetDirectoryRoot(Directory.GetCurrentDirectory()) + "\\data\\" + DataSheetName + ".xlsx", FileMode.Open, FileAccess.Read);
+
+            string theDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            FileStream fis = new FileStream(theDirectory + "\\..\\..\\data\\" + DataSheetName + ".xlsx", FileMode.Open, FileAccess.Read);
             IWorkbook workbook = new XSSFWorkbook(fis);
             ISheet sheet = new XSSFSheet();
             sheet = workbook.GetSheet("Login");

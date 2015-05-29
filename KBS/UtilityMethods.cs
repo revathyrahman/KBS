@@ -223,7 +223,7 @@ namespace KBS
             try
             {
                 Screenshot ss = ((ITakesScreenshot)driver).GetScreenshot();
-                ss.SaveAsFile(Directory.GetDirectoryRoot(Directory.GetCurrentDirectory()) + "\\Screenshots\\" + "Snap-" + i + ".png", System.Drawing.Imaging.ImageFormat.Png);
+                ss.SaveAsFile(AppDomain.CurrentDomain.BaseDirectory + "\\..\\..\\Screenshots\\" + "Snap-" + i + ".png", System.Drawing.Imaging.ImageFormat.Png);
                 i++;
             }
             catch (IOException ioe)
@@ -403,7 +403,12 @@ namespace KBS
 
                 //Click on Save
                 ClickById("btnSave");
+<<<<<<< HEAD
                 
+=======
+
+                driver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(2));
+>>>>>>> ccd28713b69c6da8790ee10d48767be591c52ad4
             }
             catch (WebDriverException exe)
             {
@@ -534,14 +539,19 @@ namespace KBS
 
                 // List of Tasks
                 
-                IList<IWebElement> tasks = driver.FindElements(By.XPath(PageObject.home_viewtask));
+                IList<IWebElement> tasks = driver.FindElements(By.XPath("//div[@id='Tab265']/div/ul/li/div/div/a"));
                 
-                String[] listvalue=new String[tasks.Count];
+                //string[] listvalue=new string[tasks.Count];
                 int val=0;
                 foreach (IWebElement tlist in tasks)
                 {
+<<<<<<< HEAD
                     listvalue[i] = tlist.Text;
                     if(listvalue[i].Contains(taskname))
+=======
+                    string listvalue = tlist.Text;
+                    if(listvalue.Contains(taskname))
+>>>>>>> ccd28713b69c6da8790ee10d48767be591c52ad4
                     {
                         tlist.Click(); 
                         er.ReportStep("Pending Authorization task is clicked successfully", "SUCCESS");
@@ -564,6 +574,7 @@ namespace KBS
                 TakeSnapshot();
             }
         }
+<<<<<<< HEAD
         public void DiscontinueClub(string ClubName)
         {
             try
@@ -586,12 +597,47 @@ namespace KBS
             catch (Exception e)
             {
                 e.StackTrace.ToString();
+=======
+
+        public void ViewApplication(String clubname)
+        {
+            try
+            {
+
+                //IList<IWebElement> clublist = driver.FindElements(By.XPath("//div[@class='gridData']/div/div/div/div"));
+                IList<IWebElement> clublist = driver.FindElements(By.XPath("//div[@class='gridHeader']/div/div/div[1]"));
+                IList<IWebElement> viewApplist = driver.FindElements(By.XPath("//a[.='View Application']"));
+                       
+                int val = 0;
+                foreach (IWebElement clnames in clublist)
+                {
+                    string clvalue = clnames.Text;
+                   
+                    if (clvalue.Contains(clubname))
+                    {
+                        viewApplist[val].Click();
+                        er.ReportStep("View Application is clicked successfully", "SUCCESS");
+                        break;
+                    }
+                    val++;
+                }
+
+            }
+            catch (NoSuchElementException e)
+            {
+                er.ReportStep("Element with id could not found..", "FAILURE");
+            }
+            catch (WebDriverException ex)
+            {
+                er.ReportStep("Driver could not found !!!", "FAILURE");
+>>>>>>> ccd28713b69c6da8790ee10d48767be591c52ad4
             }
             finally
             {
                 TakeSnapshot();
             }
         }
+<<<<<<< HEAD
         public void ContinueClub(string ClubName)
         {
             try
@@ -640,15 +686,56 @@ namespace KBS
             catch (NoSuchElementException e)
             {
                 e.StackTrace.ToString();
+=======
+
+        public void FindDesiredClub(String Filtername)
+        {
+            try
+            {
+
+                ClickById("lblSearchOptionTitle");
+                 IList<IWebElement> findlist = driver.FindElements(By.XPath("//*[@id='pnlQuickViews']/li/a"));
+                
+                int val = 0;
+                foreach (IWebElement findnames in findlist)
+                {
+                    string findvalue = findnames.Text;
+
+                    if (findvalue.Contains(Filtername))
+                    {
+                        findnames.Click();
+                        er.ReportStep(findvalue+" is clicked successfully", "SUCCESS");
+                        break;
+                    }
+                    val++;
+                }
+
+            }
+            catch (NoSuchElementException e)
+            {
+                er.ReportStep("Element with id could not found..", "FAILURE");
+            }
+            catch (WebDriverException ex)
+            {
+                er.ReportStep("Driver could not found !!!", "FAILURE");
+>>>>>>> ccd28713b69c6da8790ee10d48767be591c52ad4
             }
             finally
             {
                 TakeSnapshot();
             }
+<<<<<<< HEAD
                 
             }
            
         }
+=======
+        }
+
+        
+
+        
+>>>>>>> ccd28713b69c6da8790ee10d48767be591c52ad4
     }
    
 

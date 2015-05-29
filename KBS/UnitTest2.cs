@@ -16,16 +16,22 @@ namespace KBS
             DataInputProvider DIP = new DataInputProvider();
             ExcelReporter er = new ExcelReporter();
             List<List<String>> data = DIP.GetInputData("Login");
+            
             for (int i = 0; i < data.Count; i++)
             {
+<<<<<<< HEAD
                 UtilityMethods UM = new UtilityMethods("AddClubFormEntry", i);
                 UM.InvokeApplication("Firefox", "http://mylcibeta.lionsclubs.org/");
 
                 try
+=======
+                if (data[i][0].Equals("LCI"))
+>>>>>>> ccd28713b69c6da8790ee10d48767be591c52ad4
                 {
                     //Call the login method and to verify the home page is displayed
                     UM.LoginMyLCI(data[i][0], data[i][1], data[i][2]);
 
+<<<<<<< HEAD
                     //Click on My Districts Link in the home page
                     UM.ClickById("a_3_1_28");
 
@@ -72,6 +78,22 @@ namespace KBS
                 {
                     e.StackTrace.ToString();
                 }
+=======
+                    UM.VerifyMyTask("Authorization");
+
+                    UM.ViewApplication("Club123");
+
+                    UM.LinkClickByText("Logout");
+
+                    UM.CloseApplication();
+                }
+                else
+                {
+                    // click logout
+                    UM.CloseApplication();
+                }
+                
+>>>>>>> ccd28713b69c6da8790ee10d48767be591c52ad4
             }
         }
     }

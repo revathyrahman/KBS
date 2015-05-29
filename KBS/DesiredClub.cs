@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading;
-
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
@@ -10,46 +8,40 @@ using OpenQA.Selenium.Support.UI;
 namespace KBS
 {
     [TestClass]
-    public class SelectViewTask
+    public class DesiredClub
     {
-
         [TestMethod]
         public void TestMethod1()
         {
             UtilityMethods UM = new UtilityMethods("Login",1);
             DataInputProvider DIP = new DataInputProvider();
-            ExcelReporter er = new ExcelReporter();
             List<List<String>> data = DIP.GetInputData("Login");
-            UM.InvokeApplication("Firefox", "http://mylcibeta.lionsclubs.org/");
+            
             for (int i = 0; i < data.Count; i++)
             {
-
-
-                try
+                if (data[i][0].Equals("LCI"))
                 {
-                    // enter user name
+                    UM.LoginMyLCI(data[i][0], data[i][1], data[i][2]);
 
-                    UM.MyLCI_Login(data[i][0], data[i][1]);
+                    UM.ClickById("a_3_1_28");
 
-                    //UM.AddClubFormEntry();
+                    UM.ClickById("a_3_2_40");
 
-                    UM.VerifyMyTask("Authorization");
+                    UM.FindDesiredClub("LCI Authorization");
 
-                    UM.MyLCI_Logout();
+                    UM.ViewApplication("Club123");
+
+                    UM.LinkClickByText("Logout");
+
+                    UM.CloseApplication();
                 }
-                catch (WebDriverException e)
+                else
                 {
-                    e.StackTrace.ToString();
+                    // click logout
+                    UM.CloseApplication();
                 }
-
-
-
+                
             }
-            // close app
-            UM.CloseApplication();
-
         }
-
-
     }
 }
