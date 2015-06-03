@@ -437,42 +437,24 @@ namespace MyLCIAutomation
             try 
             {
                 LinkClickByText("Logout");
-            }
-            catch (NoSuchElementException e)
-            {
-                excelReporter.ReportStep("Element with Link Logout could not be found", "FAILURE");
-            }
-            finally
-            {
-                TakeSnapshot();
-            }
-        }
-
-        
-        public void MyLCI_Logout()
-        {
-            try
-            {
-
-                // click logout button
-                ClickById("hylLogout");
-
                 excelReporter.ReportStep("Verify Logout is successfull", "SUCCESS");
             }
             catch (NoSuchElementException e)
             {
-                excelReporter.ReportStep("Element with id could not found..", "FAILURE");
+                excelReporter.ReportStep("Element with id could not be found..", "FAILURE");
             }
             catch (WebDriverException ex)
             {
-                excelReporter.ReportStep("Driver could not found !!!", "FAILURE");
+                excelReporter.ReportStep("Driver could not be found !!!", "FAILURE");
             }
             finally
             {
                 TakeSnapshot();
             }
+            
+            
         }
-        
+       
         public void VerifyMyTask(String taskname)
         {
             try
