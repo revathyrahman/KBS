@@ -24,3 +24,15 @@ D:\KBSGIT_REPO\KBS\KBS\bin\Debug\WebDriver.Support.xml
 D:\KBSGIT_REPO\KBS\KBS\obj\Debug\MyLCISprint1-5Automation.csprojResolveAssemblyReference.cache
 D:\KBSGIT_REPO\KBS\KBS\obj\Debug\KBS.dll
 D:\KBSGIT_REPO\KBS\KBS\obj\Debug\KBS.pdb
+D:\Project_KBS\ProjectFromGit\KBS\KBS\bin\Debug\NPOI.OOXML.xml
+D:\Project_KBS\ProjectFromGit\KBS\KBS\obj\Debug\MyLCISprint1-5Automation.csprojResolveAssemblyReference.cache
+D:\Project_KBS\ProjectFromGit\KBS\KBS\bin\Debug\KBS.dll.config
+D:\Project_KBS\ProjectFromGit\KBS\KBS\bin\Debug\KBS.dll
+D:\Project_KBS\ProjectFromGit\KBS\KBS\bin\Debug\KBS.pdb
+D:\Project_KBS\ProjectFromGit\KBS\KBS\bin\Debug\nunit.framework.dll
+D:\Project_KBS\ProjectFromGit\KBS\KBS\bin\Debug\nunit.mocks.dll
+D:\Project_KBS\ProjectFromGit\KBS\KBS\bin\Debug\WebDriver.dll
+D:\Project_KBS\ProjectFromGit\KBS\KBS\bin\Debug\nunit.framework.xml
+D:\Project_KBS\ProjectFromGit\KBS\KBS\bin\Debug\WebDriver.xml
+D:\Project_KBS\ProjectFromGit\KBS\KBS\obj\Debug\KBS.dll
+D:\Project_KBS\ProjectFromGit\KBS\KBS\obj\Debug\KBS.pdb

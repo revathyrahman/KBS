@@ -11,55 +11,52 @@ namespace MyLCIAutomation
     public class AddClubLinkUsersCheck
     {
         //This method enters all the field values and saves a New Club Application
+        
         [TestMethod]
         public void AddClubLinkCheck()
         {
             DataInputProvider dataInputProvider = new DataInputProvider();
-            ExcelReporter excelReporter = new ExcelReporter();
-            List<List<String>> data = dataInputProvider.GetInputData("Login");
-            UtilityMethods utilityMethods;
+            ExcelReporterAuthorization authorizationReport = new ExcelReporterAuthorization();
+            List<List<String>> data = dataInputProvider.GetInputData("Authorization");
+            UtilityMethodsAuthorization utilityMethodsAuth = new UtilityMethodsAuthorization("AddClubLinkUsersCheck");
+            utilityMethodsAuth.InvokeApplication("Firefox", "http://mylcibeta.lionsclubs.org/");
             for (int i = 0; i < data.Count; i++)
             {
-                utilityMethods= new UtilityMethods("AddClubLinkUsersCheck", i);
-                utilityMethods.InvokeApplication("Firefox", "http://mylcibeta.lionsclubs.org/");
-                        
+                
                 try
                 {
                     //Call the login method and to verify the home page is displayed
-                    utilityMethods.LoginMyLCI(data[i][0],data[i][1],data[i][2]);
-
-                    //Click on My Districts Link in the home page
-                    utilityMethods.ClickById("a_3_1_28");
-
-                    //Click on Clubs Link under My Districts Menu List
-                    utilityMethods.ClickById("a_3_2_40");
-
+                    utilityMethodsAuth.LoginMyLCI(data[i][0], data[i][1], data[i][2]);
+                   
                     //Verify "Add Club" link exists for this user
-                    Boolean status=utilityMethods.VerifyAddClubLinkExists("hlAddClub");
+                    Boolean status = utilityMethodsAuth.VerifyAddClubLinkExists("hlAddClub");
 
                     if (status.Equals(true))
                     {
-                        excelReporter.ReportStep("User is Authorized User", "SUCCESS");
+                        authorizationReport.ReportStep("User is Authorized User", "SUCCESS");
+                        //Click Add Club link
+                        utilityMethodsAuth.ClickById("hlAddClub");
                     }
                     else
                     {
-                        excelReporter.ReportStep("User is not Authorized User", "FAILURE");
+                        authorizationReport.ReportStep("User is not Authorized User", "SUCCESS");
                     }
 
-                    //Click Add Club link
-                    utilityMethods.ClickById("hlAddClub");
+                    
                                         
                     //Logout from the application
-                    utilityMethods.LogoutMyLCI();
+                    utilityMethodsAuth.LogoutMyLCI();
                 }
                 catch (WebDriverException e)
                 {
                     e.StackTrace.ToString();
                 }
 
-                // Close the browser and write the report into Excelsheet
-                utilityMethods.CloseApplication();
+                
             }
+            // Close the browser and write the report into Excelsheet
+            utilityMethodsAuth.CloseApplicationForAuthorizationUsers();
         }
+        
     }
 }

@@ -21,6 +21,7 @@ namespace MyLCIAutomation
         int snapShotCount = 1;
         private String testCaseName;
         ExcelReporter excelReporter = new ExcelReporter();
+        ExcelReporter excelReporterforAuthorization = new ExcelReporter();
         private int dataSet
         {
             get;
@@ -122,10 +123,12 @@ namespace MyLCIAutomation
              if (browser.ToLower().Equals("ie"))
              {
                 //Code to invoke IE Browser
+                 browserDriver = new InternetExplorerDriver();
              }
              else if (browser.ToLower().Equals("chrome"))
              {
-                //Code to invoke Chrome browser    
+                //Code to invoke Chrome browser 
+                 browserDriver = new ChromeDriver();
              }
              else
              {
@@ -259,6 +262,21 @@ namespace MyLCIAutomation
             }
 
             excelReporter.FlushWorkbook(testCaseName + "-Run" + dataSet);
+        }
+
+        public void CloseApplicationForAuthorizationUsers()
+        {
+            try
+            {
+                browserDriver.Quit();
+                excelReporter.ReportStep("The application is closed successfully..", "SUCCESS");
+            }
+            catch (WebDriverException exe)
+            {
+                excelReporter.ReportStep("Driver could not be closed for unknown reason !!!", "FAILURE");
+            }
+
+            excelReporterforAuthorization.FlushWorkbook(testCaseName + "-Run");
         }
         public void LinkClickByText(String text)
         {
