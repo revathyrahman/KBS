@@ -21,6 +21,7 @@ namespace MyLCIAutomation
         int snapShotCount = 1;
         private String testCaseName;
         ExcelReporter excelReporter = new ExcelReporter();
+        ExcelReporter excelReporterforAuthorization = new ExcelReporter();
         private int dataSet
         {
             get;
@@ -122,10 +123,12 @@ namespace MyLCIAutomation
              if (browser.ToLower().Equals("ie"))
              {
                 //Code to invoke IE Browser
+                 browserDriver = new InternetExplorerDriver();
              }
              else if (browser.ToLower().Equals("chrome"))
              {
-                //Code to invoke Chrome browser    
+                //Code to invoke Chrome browser 
+                 browserDriver = new ChromeDriver();
              }
              else
              {
@@ -259,6 +262,21 @@ namespace MyLCIAutomation
             }
 
             excelReporter.FlushWorkbook(testCaseName + "-Run" + dataSet);
+        }
+
+        public void CloseApplicationForAuthorizationUsers()
+        {
+            try
+            {
+                browserDriver.Quit();
+                excelReporter.ReportStep("The application is closed successfully..", "SUCCESS");
+            }
+            catch (WebDriverException exe)
+            {
+                excelReporter.ReportStep("Driver could not be closed for unknown reason !!!", "FAILURE");
+            }
+
+            excelReporterforAuthorization.FlushWorkbook(testCaseName + "-Run");
         }
         public void LinkClickByText(String text)
         {
@@ -677,6 +695,379 @@ namespace MyLCIAutomation
                 
             }
            
+        public void VerifyFieldEdit(string Fieldname,string Xpath )
+        {
+             Boolean flag = false;
+            try
+            {
+                 if( browserDriver.FindElement(By.XPath(Xpath)).Enabled)
+                {
+                flag=true;
+                 excelReporter.ReportStep( "The"+Fieldname+ "is Editable", "Pass");
+                }
+                else
+                {
+                flag=false;
+                 excelReporter.ReportStep( "The"+Fieldname+ "is  not Editable", "Fail");
+                }
+
+            }
+            catch (NoSuchElementException e)
+            {
+                excelReporter.ReportStep("Element with Fieldname could not found..", "FAILURE");
+            }
+            catch (WebDriverException ex)
+            {
+                excelReporter.ReportStep("Driver could not found !!!", "FAILURE");
+
+            }
+            finally
+            {
+                TakeSnapshot();
+            }
+
+
+        }
+
+       public void VerifyDropdownEdit(string Fieldname, string id)
+        {
+            Boolean flag = false;
+            try
+            {
+                IWebElement element = browserDriver.FindElement(By.Id(id));
+                IList<IWebElement> opts = element.FindElements(By.XPath(".//option"));
+                foreach (IWebElement opt in opts)
+                {
+                    if (opt.Enabled)
+                    {
+                        flag = true;
+                        excelReporter.ReportStep("The" + Fieldname + "is Editable", "Pass");
+                    }
+                    else
+                    {
+                        flag = false;
+                        excelReporter.ReportStep("The" + Fieldname + "is  not Editable", "Fail");
+                    }
+
+                }
+            }
+            catch (NoSuchElementException e)
+            {
+                excelReporter.ReportStep("Element with Fieldname could not found..", "FAILURE");
+            }
+            catch (WebDriverException ex)
+            {
+                excelReporter.ReportStep("Driver could not found !!!", "FAILURE");
+
+            }
+            finally
+            {
+                TakeSnapshot();
+            }
+
+
+        }
+
+     public void VerifyButtonExists(string Fieldname, string id)
+        {
+            Boolean flag = false;
+            try
+            {
+                IWebElement button = browserDriver.FindElement(By.Id(id));
+                
+                    if (button.Enabled)
+                    {
+                        flag = true;
+                        excelReporter.ReportStep("The" + Fieldname + "is Enabled", "Pass");
+                    }
+                    else
+                    {
+                        flag = false;
+                        excelReporter.ReportStep("The" + Fieldname + "is  not Enabled", "Fail");
+                    }
+
+                }
+            catch (NoSuchElementException e)
+            {
+                excelReporter.ReportStep("Element with Fieldname could not found..", "FAILURE");
+            }
+            catch (WebDriverException ex)
+            {
+                excelReporter.ReportStep("Driver could not found !!!", "FAILURE");
+
+            }
+            finally
+            {
+                TakeSnapshot();
+            }
+
+
+        }
+
+        public void NewClubOfficersChk()
+        {
+            try{
+                //President fieldlevel chk
+
+                ClickByXPath(".//*[@id='pnlNewClubPresidentHeader']/div/b");
+                VerifyFieldEdit("First Name",".//*[@id='txtPresidentFirstName']");
+                VerifyFieldEdit("Last Name",".//*[@id='txtPresidentLastName']");
+                VerifyFieldEdit("Year Of Birth",".//*[@id='txtPresidentYearOfBirth']");
+                 VerifyDropdownEdit("Gender","ddlPresidentGender");
+                VerifyFieldEdit("Email Address",".//*[@id='txtPresidentEmailAddress']");
+                VerifyButtonExists("Clear","btnClearPresident");
+
+                //Secretary Fieldlevel chk
+
+                ClickByXPath(".//*[@id='pnlNewClubSecretaryHeader']/p/b");
+                VerifyFieldEdit("First Name",".//*[@id='txtSecretaryFirstName']");
+                VerifyFieldEdit("Last Name",".//*[@id='txtSecretaryLastName']");
+                VerifyFieldEdit("Year Of Birth",".//*[@id='txtSecretaryYearOfBirth']");
+                 VerifyDropdownEdit("Gender","ddlSecretaryGender");
+                VerifyFieldEdit("Email Address",".//*[@id='txtSecretaryEmailAddress']");
+                VerifyButtonExists("Clear","btnClearSecretary");
+            }
+            catch (NoSuchElementException e)
+            {
+                excelReporter.ReportStep("Element with Fieldname could not found..", "FAILURE");
+            }
+            catch (WebDriverException ex)
+            {
+                excelReporter.ReportStep("Driver could not found !!!", "FAILURE");
+
+            }
+            finally
+            {
+                TakeSnapshot();
+            }
+
+
+        }
+
+         public void ECMforLionsClub()
+        {
+            try
+            {
+                VerifyFieldEdit("New Members",".//*[@id='txtNewMemberCount']");
+                VerifyFieldEdit("Transfer Members",".//*[@id='txtTransferMemberCount']");
+                VerifyFieldEdit("Student Members",".//*[@id='txtStudentCount']");
+                VerifyFieldEdit("Leo Lions",".//*[@id='txtLeoLionCount']");
+            }
+            catch (NoSuchElementException e)
+            {
+                excelReporter.ReportStep("Element with Fieldname could not found..", "FAILURE");
+            }
+            catch (WebDriverException ex)
+            {
+                excelReporter.ReportStep("Driver could not found !!!", "FAILURE");
+
+            }
+            finally
+            {
+                TakeSnapshot();
+            }
+
+
+        }
+
+       public void ECMForUniversityClub()
+        {
+            try
+            {
+                VerifyFieldEdit("New Members", ".//*[@id='txtNewMemberCount']");
+                VerifyFieldEdit("Transfer Members", ".//*[@id='txtTransferMemberCount']");
+                VerifyFieldEdit("Students Over 30 Years", ".//*[@id='txtStudentOver30YrsCount']");
+                VerifyFieldEdit("Students 30 Years or younger"," .//*[@id='txtStudentUnder30YrsCount']");
+                VerifyFieldEdit("Leo Lions", ".//*[@id='txtLeoLionCount']");
+            }
+            catch (NoSuchElementException e)
+            {
+                excelReporter.ReportStep("Element with Fieldname could not found..", "FAILURE");
+            }
+            catch (WebDriverException ex)
+            {
+                excelReporter.ReportStep("Driver could not found !!!", "FAILURE");
+
+            }
+            finally
+            {
+                TakeSnapshot();
+            }
+
+        }
+        public void ECMForLeoLionsClub()
+        {
+            try
+            {
+                VerifyFieldEdit("New Members", ".//*[@id='txtNewMemberCount']");
+                VerifyFieldEdit("Transfer Members", ".//*[@id='txtTransferMemberCount']");
+                VerifyFieldEdit("Student Members", ".//*[@id='txtStudentCount']");
+                VerifyFieldEdit("Young Adults", " .//*[@id='txtYoungAdultMemberCount']");
+                VerifyFieldEdit("Leo Lions", ".//*[@id='txtLeoLionCount']");
+            }
+            catch (NoSuchElementException e)
+            {
+                excelReporter.ReportStep("Element with Fieldname could not found..", "FAILURE");
+            }
+            catch (WebDriverException ex)
+            {
+                excelReporter.ReportStep("Driver could not found !!!", "FAILURE");
+
+            }
+            finally
+            {
+                TakeSnapshot();
+            }
+
+
+        }
+
+          public  void VerifyCheckboxExists( String label,string Xpath )
+              {
+                  try{
+                        IWebElement Chkbox=browserDriver.FindElement(By.XPath(Xpath));
+                      if(Chkbox.Enabled)
+                          excelReporter.ReportStep("Check box for"+label+"Is present","Pass");
+                      else
+                          excelReporter.ReportStep("Check box for"+label+"Is  not present","Fail");
+                  }
+
+                  catch (NoSuchElementException e)
+                  {
+                      excelReporter.ReportStep("Element with Fieldname could not found..", "FAILURE");
+                  }
+                  catch (WebDriverException ex)
+                  {
+                      excelReporter.ReportStep("Driver could not found !!!", "FAILURE");
+
+                  }
+                  finally
+                  {
+                      TakeSnapshot();
+                  }
+
+
+              }
+
+
+          public void VerifyTextDisplay(String Xpath, string text)
+          {
+              try
+              {
+                  IWebElement Element = browserDriver.FindElement(By.XPath(Xpath));
+                  string Label = Element.Text;
+
+                  if (Label == text)
+                      excelReporter.ReportStep(text + " is Displayed Successfully", "Pass");
+                  else
+                      excelReporter.ReportStep(text + " is  not Displayed", "Fail");
+              }
+              catch (NoSuchElementException e)
+              {
+                  excelReporter.ReportStep("Element with Fieldname could not found..", "FAILURE");
+              }
+              catch (WebDriverException ex)
+              {
+                  excelReporter.ReportStep("Driver could not found !!!", "FAILURE");
+
+              }
+              finally
+              {
+                  TakeSnapshot();
+              }
+
+
+          }
+
+          public void VerifyDeleteApplication(String clubname)
+          {
+              try
+              {
+
+                  //IList<IWebElement> clublist = driver.FindElements(By.XPath("//div[@class='gridData']/div/div/div/div"));
+                  IList<IWebElement> clublist = browserDriver.FindElements(By.XPath("//div[@class='gridHeader']/div/div/div[1]"));
+                  IList<IWebElement> viewApplist = browserDriver.FindElements(By.XPath("//a[.='View Application']"));
+
+                  int val = 0;
+                  foreach (IWebElement clnames in clublist)
+                  {
+                      string clvalue = clnames.Text;
+
+                      if (clvalue != (clubname))
+                      {
+                          excelReporter.ReportStep("Clubname is Deleted Successfully.", "SUCCESS");
+                          break;
+                      }
+                      val++;
+                  }
+
+              }
+              catch (NoSuchElementException e)
+              {
+                  excelReporter.ReportStep("Element with id could not found..", "FAILURE");
+              }
+              catch (WebDriverException ex)
+              {
+                  excelReporter.ReportStep("Driver could not found !!!", "FAILURE");
+              }
+
+              finally
+              {
+                  TakeSnapshot();
+              }
+          }
+
+
+          public void VerifyInvisibleButton(string Fieldname1, string id1, string Fieldname2, string id2)
+          {
+              Boolean flag = false;
+              try
+              {
+                  IWebElement button1 = browserDriver.FindElement(By.Id(id1));
+                  IWebElement button2 = browserDriver.FindElement(By.Id(id2));
+
+                  if (button1.Enabled && button2.Enabled)
+                  {
+                      flag = true;
+                      excelReporter.ReportStep("Delete Button is not Present", "Pass");
+                  }
+                  else
+                  {
+                      flag = false;
+                      excelReporter.ReportStep("Delete Button is Present ", "Fail");
+                  }
+
+              }
+              catch (NoSuchElementException e)
+              {
+                  excelReporter.ReportStep("Element with Fieldname could not found..", "FAILURE");
+              }
+              catch (WebDriverException ex)
+              {
+                  excelReporter.ReportStep("Driver could not found !!!", "FAILURE");
+
+              }
+              finally
+              {
+                  TakeSnapshot();
+              }
+
+
+          }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         }
 
     }

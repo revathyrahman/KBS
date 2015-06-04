@@ -13,16 +13,16 @@ namespace MyLCIAutomation
         [TestMethod]
         public void DesiredClubSelection()
         {
-            UtilityMethods utilityMethods;
             DataInputProvider dataInputProvider = new DataInputProvider();
             List<List<String>> data = dataInputProvider.GetInputData("Login");
             
+            
             for (int i = 0; i < data.Count; i++)
             {
-                utilityMethods = new UtilityMethods("DesiredClub",i);
+                UtilityMethods utilityMethods = new UtilityMethods("DesiredClub", i);
                 if (data[i][0].Equals("LCI"))
                 {
-                    utilityMethods.InvokeApplication("Firefox", "https://mylcibeta.lionsclubs.org/");
+                    utilityMethods.InvokeApplication("ie", "https://mylcibeta.lionsclubs.org/");
 
                     utilityMethods.LoginMyLCI(data[i][0], data[i][1], data[i][2]);
 

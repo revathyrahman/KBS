@@ -24,6 +24,7 @@ D:\KBSGIT_REPO\KBS\KBS\bin\Debug\WebDriver.Support.xml
 D:\KBSGIT_REPO\KBS\KBS\obj\Debug\MyLCISprint1-5Automation.csprojResolveAssemblyReference.cache
 D:\KBSGIT_REPO\KBS\KBS\obj\Debug\KBS.dll
 D:\KBSGIT_REPO\KBS\KBS\obj\Debug\KBS.pdb
+<<<<<<< HEAD
 F:\KBS_Git\KBS\KBS\bin\Debug\KBS.dll.config
 F:\KBS_Git\KBS\KBS\bin\Debug\KBS.dll
 F:\KBS_Git\KBS\KBS\bin\Debug\KBS.pdb
@@ -41,3 +42,16 @@ F:\KBS_Git\KBS\KBS\bin\Debug\WebDriver.Support.xml
 F:\KBS_Git\KBS\KBS\obj\Debug\MyLCISprint1-5Automation.csprojResolveAssemblyReference.cache
 F:\KBS_Git\KBS\KBS\obj\Debug\KBS.dll
 F:\KBS_Git\KBS\KBS\obj\Debug\KBS.pdb
+=======
+D:\Project_KBS\ProjectFromGit\KBS\KBS\obj\Debug\MyLCISprint1-5Automation.csprojResolveAssemblyReference.cache
+D:\Project_KBS\ProjectFromGit\KBS\KBS\bin\Debug\KBS.dll.config
+D:\Project_KBS\ProjectFromGit\KBS\KBS\bin\Debug\KBS.dll
+D:\Project_KBS\ProjectFromGit\KBS\KBS\bin\Debug\KBS.pdb
+D:\Project_KBS\ProjectFromGit\KBS\KBS\bin\Debug\nunit.framework.dll
+D:\Project_KBS\ProjectFromGit\KBS\KBS\bin\Debug\nunit.mocks.dll
+D:\Project_KBS\ProjectFromGit\KBS\KBS\bin\Debug\WebDriver.dll
+D:\Project_KBS\ProjectFromGit\KBS\KBS\bin\Debug\nunit.framework.xml
+D:\Project_KBS\ProjectFromGit\KBS\KBS\bin\Debug\WebDriver.xml
+D:\Project_KBS\ProjectFromGit\KBS\KBS\obj\Debug\KBS.dll
+D:\Project_KBS\ProjectFromGit\KBS\KBS\obj\Debug\KBS.pdb
+>>>>>>> 5203f3bfde40c37e5d4e57c127d4b9829389aad5
