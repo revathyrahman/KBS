@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 using System.IO;
 using System.Drawing;
 using System.Collections.Concurrent;
@@ -88,17 +89,20 @@ namespace MyLCIAutomation
             try
             {
                 browserDriver.FindElement(By.Id("a_3_1_28")).Click();
+                Thread.Sleep(1000);
                 browserDriver.FindElement(By.Id("a_3_2_40")).Click();
-
+                Thread.Sleep(1000);
                 if (browserDriver.FindElement(By.Id(LinkText)).Enabled)
                 {
                     flag = true;
                     excelReporter.ReportStep("Add Club Link exists", "Pass");
+                    excelReporterAuth.ReportStep("Add Club Link exists", "Pass");
                 }
                 else
                 {
                     flag = false;
                     excelReporter.ReportStep("Add Club Link does not exist", "Pass");
+                    excelReporterAuth.ReportStep("Add Club Link does not exist", "Pass");
                 }
             }
             catch (NoSuchElementException e)
