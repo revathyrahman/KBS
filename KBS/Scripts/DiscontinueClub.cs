@@ -21,7 +21,7 @@ namespace MyLCIAutomation
             for (int i = 0; i < data.Count; i++)
             {
                 utilityMethods = new UtilityMethods("DiscontinueClub", i);
-                utilityMethods.InvokeApplication("Firefox", "http://mylcibeta.lionsclubs.org/");
+                utilityMethods.InvokeApplication("ie", "http://mylcibeta.lionsclubs.org/");
                 try
                 {
                     if (data[i][0].Equals("LCI"))

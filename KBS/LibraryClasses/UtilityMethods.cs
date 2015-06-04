@@ -147,6 +147,11 @@ namespace MyLCIAutomation
         }
       public void VerifyLanguageListAddClub()
       {
+        //  IWebElement ele = browserDriver.FindElement(By.Id("ddlClubLanguage"));
+        //  List<IWebElements> options= ele.FindElements(By.TagName(" langSelect = new SelectElement(ele);
+         // langSelect.
+
+
 
       }
         public void EnterValueById(String id, String value)
