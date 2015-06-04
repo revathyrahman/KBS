@@ -145,7 +145,10 @@ namespace MyLCIAutomation
              }
              return browserDriver;
         }
+      public void VerifyLanguageListAddClub()
+      {
 
+      }
         public void EnterValueById(String id, String value)
         {
             try
@@ -358,6 +361,7 @@ namespace MyLCIAutomation
                 TakeSnapshot();
             }
         }
+
         public void ClickById(String Id)
         {
             try
@@ -400,7 +404,7 @@ namespace MyLCIAutomation
 
                 //Select from Club Language
                 SelectDropdownValueByVisibleText("ddlClubLanguage", "English");
-
+                
                 //Click for a sponsoring club
                 ClickById("btnSelectSponsoringClub");
                 browserDriver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(5));

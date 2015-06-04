@@ -102,6 +102,7 @@
   <ItemGroup>
     <Compile Include="LibraryClasses\UtilityMethodsAuthorization.cs" />
     <Compile Include="LibraryClasses\ExcelReporterAuthorization.cs" />
+    <Compile Include="PageObjects.cs" />
     <Compile Include="Scripts\DesiredClub.cs" />
     <Compile Include="Scripts\AddClubLinkUsersCheck.cs" />
     <Compile Include="LibraryClasses\UtilityMethods.cs" />

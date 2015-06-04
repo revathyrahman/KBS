@@ -29,12 +29,6 @@ namespace MyLCIAutomation
                         //Call the login method and to verify the home page is displayed
                         utilityMethods.LoginMyLCI(data[i][0], data[i][1], data[i][2]);
 
-                        //Click on My Districts Link in the home page
-                        utilityMethods.ClickById("a_3_1_28");
-
-                        //Click on Clubs Link under My Districts Menu List
-                        utilityMethods.ClickById("a_3_2_40");
-
                         //Verify "Add Club" link exists for this user
                         Boolean status = utilityMethods.VerifyAddClubLinkExists("hlAddClub");
 
