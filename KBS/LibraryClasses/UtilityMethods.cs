@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 using System.IO;
 using System.Drawing;
 using System.Collections.Concurrent;
@@ -571,6 +572,7 @@ namespace MyLCIAutomation
                 int val = 0;
                 foreach (IWebElement clnames in clublist)
                 {
+                    Thread.Sleep(5000);
                     string clvalue = clnames.Text;
                    
                     if (clvalue.Contains(clubname))
@@ -695,12 +697,12 @@ namespace MyLCIAutomation
                 
             }
            
-        public void VerifyFieldEdit(string Fieldname,string Xpath )
+        public void VerifyFieldEdit(string Fieldname,string id )
         {
              Boolean flag = false;
             try
             {
-                 if( browserDriver.FindElement(By.XPath(Xpath)).Enabled)
+                 if( browserDriver.FindElement(By.Id(id)).Enabled)
                 {
                 flag=true;
                  excelReporter.ReportStep( "The"+Fieldname+ "is Editable", "Pass");
