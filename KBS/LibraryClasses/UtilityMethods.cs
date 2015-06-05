@@ -696,12 +696,12 @@ namespace MyLCIAutomation
                  if( browserDriver.FindElement(By.Id(id)).Enabled)
                 {
                 flag=true;
-                 excelReporter.ReportStep( "The"+Fieldname+ "is Editable", "Pass");
+                 excelReporter.ReportStep( "The " +Fieldname+ " is Editable", "Pass");
                 }
                 else
                 {
                 flag=false;
-                 excelReporter.ReportStep( "The"+Fieldname+ "is  not Editable", "Fail");
+                 excelReporter.ReportStep( "The " +Fieldname+ " is  not Editable", "Fail");
                 }
 
             }
@@ -731,15 +731,16 @@ namespace MyLCIAutomation
                 IList<IWebElement> opts = element.FindElements(By.XPath(".//option"));
                 foreach (IWebElement opt in opts)
                 {
-                    if (opt.Enabled)
+                     if (opt.Enabled)
                     {
                         flag = true;
-                        excelReporter.ReportStep("The" + Fieldname + "is Editable", "Pass");
+                        excelReporter.ReportStep("The " + Fieldname + " is Editable", "Pass");
+                        break;
                     }
                     else
                     {
                         flag = false;
-                        excelReporter.ReportStep("The" + Fieldname + "is  not Editable", "Fail");
+                        excelReporter.ReportStep("The " + Fieldname + " is  not Editable", "Fail");
                     }
 
                 }
@@ -771,12 +772,12 @@ namespace MyLCIAutomation
                     if (button.Enabled)
                     {
                         flag = true;
-                        excelReporter.ReportStep("The" + Fieldname + "is Enabled", "Pass");
+                        excelReporter.ReportStep("The " + Fieldname + " is Enabled", "Pass");
                     }
                     else
                     {
                         flag = false;
-                        excelReporter.ReportStep("The" + Fieldname + "is  not Enabled", "Fail");
+                        excelReporter.ReportStep("The " + Fieldname + " is  not Enabled", "Fail");
                     }
 
                 }
@@ -803,21 +804,22 @@ namespace MyLCIAutomation
                 //President fieldlevel chk
 
                 ClickByXPath(".//*[@id='pnlNewClubPresidentHeader']/div/b");
-                VerifyFieldEdit("First Name",".//*[@id='txtPresidentFirstName']");
-                VerifyFieldEdit("Last Name",".//*[@id='txtPresidentLastName']");
-                VerifyFieldEdit("Year Of Birth",".//*[@id='txtPresidentYearOfBirth']");
+               
+                VerifyFieldEdit("First Name","txtPresidentFirstName");
+                VerifyFieldEdit("Last Name","txtPresidentLastName");
+                VerifyFieldEdit("Year Of Birth","txtPresidentYearOfBirth");
                  VerifyDropdownEdit("Gender","ddlPresidentGender");
-                VerifyFieldEdit("Email Address",".//*[@id='txtPresidentEmailAddress']");
+                VerifyFieldEdit("Email Address","txtPresidentEmailAddress");
                 VerifyButtonExists("Clear","btnClearPresident");
 
                 //Secretary Fieldlevel chk
 
                 ClickByXPath(".//*[@id='pnlNewClubSecretaryHeader']/p/b");
-                VerifyFieldEdit("First Name",".//*[@id='txtSecretaryFirstName']");
-                VerifyFieldEdit("Last Name",".//*[@id='txtSecretaryLastName']");
-                VerifyFieldEdit("Year Of Birth",".//*[@id='txtSecretaryYearOfBirth']");
+                VerifyFieldEdit("First Name","txtSecretaryFirstName");
+                VerifyFieldEdit("Last Name","txtSecretaryLastName");
+                VerifyFieldEdit("Year Of Birth","txtSecretaryYearOfBirth");
                  VerifyDropdownEdit("Gender","ddlSecretaryGender");
-                VerifyFieldEdit("Email Address",".//*[@id='txtSecretaryEmailAddress']");
+                VerifyFieldEdit("Email Address","txtSecretaryEmailAddress");
                 VerifyButtonExists("Clear","btnClearSecretary");
             }
             catch (NoSuchElementException e)
@@ -841,10 +843,10 @@ namespace MyLCIAutomation
         {
             try
             {
-                VerifyFieldEdit("New Members",".//*[@id='txtNewMemberCount']");
-                VerifyFieldEdit("Transfer Members",".//*[@id='txtTransferMemberCount']");
-                VerifyFieldEdit("Student Members",".//*[@id='txtStudentCount']");
-                VerifyFieldEdit("Leo Lions",".//*[@id='txtLeoLionCount']");
+                VerifyFieldEdit("New Members","txtNewMemberCount");
+                VerifyFieldEdit("Transfer Members","txtTransferMemberCount");
+                VerifyFieldEdit("Student Members","txtStudentCount");
+                VerifyFieldEdit("Leo Lions","txtLeoLionCount");
             }
             catch (NoSuchElementException e)
             {
@@ -865,13 +867,13 @@ namespace MyLCIAutomation
 
        public void ECMForUniversityClub()
         {
-            try
+            try            
             {
-                VerifyFieldEdit("New Members", ".//*[@id='txtNewMemberCount']");
-                VerifyFieldEdit("Transfer Members", ".//*[@id='txtTransferMemberCount']");
-                VerifyFieldEdit("Students Over 30 Years", ".//*[@id='txtStudentOver30YrsCount']");
-                VerifyFieldEdit("Students 30 Years or younger"," .//*[@id='txtStudentUnder30YrsCount']");
-                VerifyFieldEdit("Leo Lions", ".//*[@id='txtLeoLionCount']");
+                VerifyFieldEdit("New Members", "txtNewMemberCount");
+                VerifyFieldEdit("Transfer Members", "txtTransferMemberCount");
+                VerifyFieldEdit("Students Over 30 Years", "txtStudentOver30YrsCount");
+                VerifyFieldEdit("Students 30 Years or younger","txtStudentUnder30YrsCount");
+                VerifyFieldEdit("Leo Lions", "txtLeoLionCount");
             }
             catch (NoSuchElementException e)
             {
@@ -892,11 +894,11 @@ namespace MyLCIAutomation
         {
             try
             {
-                VerifyFieldEdit("New Members", ".//*[@id='txtNewMemberCount']");
-                VerifyFieldEdit("Transfer Members", ".//*[@id='txtTransferMemberCount']");
-                VerifyFieldEdit("Student Members", ".//*[@id='txtStudentCount']");
-                VerifyFieldEdit("Young Adults", " .//*[@id='txtYoungAdultMemberCount']");
-                VerifyFieldEdit("Leo Lions", ".//*[@id='txtLeoLionCount']");
+                VerifyFieldEdit("New Members", "txtNewMemberCount");
+                VerifyFieldEdit("Transfer Members", "txtTransferMemberCount");
+                VerifyFieldEdit("Student Members", "txtStudentCount");
+                VerifyFieldEdit("Young Adults", "txtYoungAdultMemberCount");
+                VerifyFieldEdit("Leo Lions", "txtLeoLionCount");
             }
             catch (NoSuchElementException e)
             {
@@ -915,14 +917,15 @@ namespace MyLCIAutomation
 
         }
 
-          public  void VerifyCheckboxExists( String label,string Xpath )
+          public  void VerifyCheckboxExists( String label,string id )
               {
-                  try{
-                        IWebElement Chkbox=browserDriver.FindElement(By.XPath(Xpath));
+                  try
+                  {
+                        IWebElement Chkbox=browserDriver.FindElement(By.Id(id));
                       if(Chkbox.Enabled)
-                          excelReporter.ReportStep("Check box for"+label+"Is present","Pass");
+                          excelReporter.ReportStep("Check box for "+label+" is present","Pass");
                       else
-                          excelReporter.ReportStep("Check box for"+label+"Is  not present","Fail");
+                          excelReporter.ReportStep("Check box for "+label+" is  not present","Fail");
                   }
 
                   catch (NoSuchElementException e)
@@ -986,14 +989,16 @@ namespace MyLCIAutomation
                   {
                       string clvalue = clnames.Text;
 
-                      if (clvalue != (clubname))
+                      if (clvalue.Equals(clubname))
                       {
-                          excelReporter.ReportStep("Clubname is Deleted Successfully.", "SUCCESS");
+                          excelReporter.ReportStep("Clubname is  not Deleted Successfully.", "Fail");
                           break;
                       }
+                      else
+                          continue;
                       val++;
                   }
-
+                  excelReporter.ReportStep("Clubname is Deleted Successfully.", "SUCCESS");
               }
               catch (NoSuchElementException e)
               {

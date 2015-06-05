@@ -52,9 +52,8 @@ D:\Project_KBS\ProjectFromGit\KBS\KBS\bin\Debug\nunit.framework.xml
 D:\Project_KBS\ProjectFromGit\KBS\KBS\bin\Debug\WebDriver.xml
 D:\Project_KBS\ProjectFromGit\KBS\KBS\obj\Debug\KBS.dll
 D:\Project_KBS\ProjectFromGit\KBS\KBS\obj\Debug\KBS.pdb
-<<<<<<< HEAD
 >>>>>>> 5203f3bfde40c37e5d4e57c127d4b9829389aad5
 F:\KBS_Git\KBS\KBS\bin\Debug\WebDriver.dll
-=======
 D:\KBSGIT_REPO\KBS\KBS\bin\Debug\IEDriverServer.exe
 >>>>>>> 26e3aa9098b08cbb726f30dc0a59607afb9f9a43
+F:\KBS_Git\KBS\KBS\bin\Debug\IEDriverServer.exe

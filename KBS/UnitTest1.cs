@@ -10,7 +10,6 @@ namespace MyLCIAutomation
     [TestClass]
     public class UnitTest1
     {
-        IWebDriver driver;
         [TestMethod]
         public void FieldChk()
         {
@@ -20,7 +19,7 @@ namespace MyLCIAutomation
 
             for (int i = 0; i < data.Count; i++)
             {
-                utilityMethods = new UtilityMethods("Field Chk_469", i);
+                utilityMethods = new UtilityMethods("Cancel and  Delete and Field lvl chk", i);
                 if (data[i][0].Equals("LCI"))
                 {
                     utilityMethods.InvokeApplication("Firefox", "https://mylcibeta.lionsclubs.org/");
@@ -30,12 +29,57 @@ namespace MyLCIAutomation
                     utilityMethods.ClickById("a_3_1_28");
 
                     utilityMethods.ClickById("a_3_2_40");
+
+                    //Verify  Cancel Request
+
+                    utilityMethods.ClickById("hlAddClub");
+                   utilityMethods.ClickById("btnCancel");
+                   utilityMethods.VerifyTextDisplay(".//*[@id='lblCaption']", "District Clubs");
+
+                    // Verify Delete with Clubname
+
+                    utilityMethods.ClickById("hlAddClub");
+                   utilityMethods.EnterValueById("txtClubName", "Club-Jeynew");
+                   utilityMethods.ClickById("btnSave");
+                   utilityMethods.VerifyButtonExists("Save", "btnSave");
+                   utilityMethods.VerifyButtonExists("Delete", "btnDelete");
+                   utilityMethods.VerifyButtonExists("Cancel", "btnCancel");
+
+                   utilityMethods.ClickById("btnDelete");
+                   utilityMethods.VerifyTextDisplay(".//*[@id='form1x']/div[4]/div[1]/div[5]/div[1]/div[1]/div/div[6]/div[2]/div/div", "Club-Jeynew");
+                   utilityMethods.ClickById("btnSave");
+                   utilityMethods.VerifyTextDisplay(".//*[@id='lblCaption']", "District Clubs");
+                    utilityMethods.FindDesiredClub("All Pending");
+                    utilityMethods.VerifyDeleteApplication("Club-Jeynew");
+                    //New Club creation and deletion
+
+                    utilityMethods.ClickById("hlAddClub");
+                    utilityMethods.EnterValueById("txtClubName", "club-Jeynew");
+                    utilityMethods.ClickById("btnSave");
+                    utilityMethods.VerifyButtonExists("Save", "btnSave");
+                    utilityMethods.VerifyButtonExists("Delete", "btnDelete");
+                    utilityMethods.VerifyButtonExists("Cancel", "btnCancel");
+
+                    //Once again to delete the existing club
+                    utilityMethods.ClickById("btnDelete");
+                    utilityMethods.ClickById("btnSave");
+                    utilityMethods.VerifyTextDisplay(".//*[@id='lblCaption']", "District Clubs");
                     utilityMethods.FindDesiredClub("All Pending");
 
+
+                    // Verify Field level Edit
+
                     utilityMethods.ViewApplication("Alpha club");
-
-                    utilityMethods.VerifyFieldEdit("Club Name", "txtClubName']");
-
+                    utilityMethods.VerifyFieldEdit("Club Name","txtClubName");
+                    utilityMethods.VerifyDropdownEdit("Club Type", "ddlClubType");
+                    utilityMethods.VerifyFieldEdit("City", "txtCity");
+                    utilityMethods.VerifyDropdownEdit("Club Language", "ddlClubLanguage");
+                    utilityMethods.VerifyButtonExists("Sponsoring Club", "btnSelectSponsoringClub");
+                    utilityMethods.NewClubOfficersChk();
+                    utilityMethods.ECMforLionsClub();
+                    utilityMethods.VerifyCheckboxExists("Club Criteria", "cbReadNewClubCriteria");
+                    utilityMethods.VerifyFieldEdit("Comments", "txtNewClubAppComment");
+                                                                         
 
 
                     utilityMethods.LogoutMyLCI();
