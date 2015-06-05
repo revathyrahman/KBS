@@ -102,6 +102,7 @@
   <ItemGroup>
     <Compile Include="LibraryClasses\UtilityMethodsAuthorization.cs" />
     <Compile Include="LibraryClasses\ExcelReporterAuthorization.cs" />
+    <Compile Include="PageObjects.cs" />
     <Compile Include="Scripts\DesiredClub.cs" />
     <Compile Include="Scripts\AddClubLinkUsersCheck.cs" />
     <Compile Include="LibraryClasses\UtilityMethods.cs" />
@@ -135,6 +136,12 @@
   </Choose>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Content Include="..\packages\WebDriver.IEDriverServer.win32.2.44\content\IEDriverServer.exe">
+      <Link>IEDriverServer.exe</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

@@ -17,11 +17,9 @@ D:\KBSGIT_REPO\KBS\KBS\bin\Debug\NPOI.OpenXml4Net.xml
 D:\KBSGIT_REPO\KBS\KBS\bin\Debug\nunit.framework.xml
 D:\KBSGIT_REPO\KBS\KBS\bin\Debug\ThoughtWorks.Selenium.Core.pdb
 D:\KBSGIT_REPO\KBS\KBS\bin\Debug\ThoughtWorks.Selenium.Core.xml
-D:\KBSGIT_REPO\KBS\KBS\bin\Debug\WebDriver.pdb
 D:\KBSGIT_REPO\KBS\KBS\bin\Debug\WebDriver.xml
 D:\KBSGIT_REPO\KBS\KBS\bin\Debug\WebDriver.Support.pdb
 D:\KBSGIT_REPO\KBS\KBS\bin\Debug\WebDriver.Support.xml
-D:\KBSGIT_REPO\KBS\KBS\obj\Debug\MyLCISprint1-5Automation.csprojResolveAssemblyReference.cache
 D:\KBSGIT_REPO\KBS\KBS\obj\Debug\KBS.dll
 D:\KBSGIT_REPO\KBS\KBS\obj\Debug\KBS.pdb
 <<<<<<< HEAD
@@ -54,5 +52,9 @@ D:\Project_KBS\ProjectFromGit\KBS\KBS\bin\Debug\nunit.framework.xml
 D:\Project_KBS\ProjectFromGit\KBS\KBS\bin\Debug\WebDriver.xml
 D:\Project_KBS\ProjectFromGit\KBS\KBS\obj\Debug\KBS.dll
 D:\Project_KBS\ProjectFromGit\KBS\KBS\obj\Debug\KBS.pdb
+<<<<<<< HEAD
 >>>>>>> 5203f3bfde40c37e5d4e57c127d4b9829389aad5
 F:\KBS_Git\KBS\KBS\bin\Debug\WebDriver.dll
+=======
+D:\KBSGIT_REPO\KBS\KBS\bin\Debug\IEDriverServer.exe
+>>>>>>> 26e3aa9098b08cbb726f30dc0a59607afb9f9a43

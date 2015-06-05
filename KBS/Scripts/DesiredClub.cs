@@ -22,7 +22,7 @@ namespace MyLCIAutomation
                 UtilityMethods utilityMethods = new UtilityMethods("DesiredClub", i);
                 if (data[i][0].Equals("LCI"))
                 {
-                    utilityMethods.InvokeApplication("ie", "https://mylcibeta.lionsclubs.org/");
+                    utilityMethods.InvokeApplication("Firefox", "https://mylcibeta.lionsclubs.org/");
 
                     utilityMethods.LoginMyLCI(data[i][0], data[i][1], data[i][2]);
 
@@ -30,9 +30,10 @@ namespace MyLCIAutomation
 
                     utilityMethods.ClickById("a_3_2_40");
 
-                    utilityMethods.FindDesiredClub("LCI Authorization");
+                    utilityMethods.FindDesiredClub("All Pending");
 
-                    utilityMethods.ViewApplication("Club123");
+                    utilityMethods.ViewApplication("Alpha Club");
+                    utilityMethods.VerifyFieldEdit("Find Club", "txtClubName");
 
                     utilityMethods.LogoutMyLCI();
 

@@ -146,7 +146,15 @@ namespace MyLCIAutomation
              }
              return browserDriver;
         }
+      public void VerifyLanguageListAddClub()
+      {
+        //  IWebElement ele = browserDriver.FindElement(By.Id("ddlClubLanguage"));
+        //  List<IWebElements> options= ele.FindElements(By.TagName(" langSelect = new SelectElement(ele);
+         // langSelect.
 
+
+
+      }
         public void EnterValueById(String id, String value)
         {
             try
@@ -359,6 +367,7 @@ namespace MyLCIAutomation
                 TakeSnapshot();
             }
         }
+
         public void ClickById(String Id)
         {
             try
@@ -401,7 +410,7 @@ namespace MyLCIAutomation
 
                 //Select from Club Language
                 SelectDropdownValueByVisibleText("ddlClubLanguage", "English");
-
+                
                 //Click for a sponsoring club
                 ClickById("btnSelectSponsoringClub");
                 browserDriver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(5));
@@ -456,42 +465,24 @@ namespace MyLCIAutomation
             try 
             {
                 LinkClickByText("Logout");
-            }
-            catch (NoSuchElementException e)
-            {
-                excelReporter.ReportStep("Element with Link Logout could not be found", "FAILURE");
-            }
-            finally
-            {
-                TakeSnapshot();
-            }
-        }
-
-        
-        public void MyLCI_Logout()
-        {
-            try
-            {
-
-                // click logout button
-                ClickById("hylLogout");
-
                 excelReporter.ReportStep("Verify Logout is successfull", "SUCCESS");
             }
             catch (NoSuchElementException e)
             {
-                excelReporter.ReportStep("Element with id could not found..", "FAILURE");
+                excelReporter.ReportStep("Element with id could not be found..", "FAILURE");
             }
             catch (WebDriverException ex)
             {
-                excelReporter.ReportStep("Driver could not found !!!", "FAILURE");
+                excelReporter.ReportStep("Driver could not be found !!!", "FAILURE");
             }
             finally
             {
                 TakeSnapshot();
             }
+            
+            
         }
-        
+       
         public void VerifyMyTask(String taskname)
         {
             try
