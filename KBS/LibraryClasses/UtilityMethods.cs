@@ -147,11 +147,29 @@ namespace MyLCIAutomation
         }
       public void VerifyLanguageListAddClub()
       {
-        //  IWebElement ele = browserDriver.FindElement(By.Id("ddlClubLanguage"));
-        //  List<IWebElements> options= ele.FindElements(By.TagName(" langSelect = new SelectElement(ele);
-         // langSelect.
+          IWebElement ele = browserDriver.FindElement(By.Id("ddlClubLanguage"));
+          IList<IWebElement> options= ele.FindElements(By.TagName("option"));
+          if (options.Count() == 12)
+          {
+              excelReporter.ReportStep("12 languages are listed", "PASS");
+              int languageCount = 1;
+              foreach (IWebElement option in options)
+              {
+                   
+                  if(languageCount < 12)
+                  {
+                      string languages = option.Text;
+                      excelReporter.ReportStep("Language" + languageCount + "= " + languages.ToString(), "SUCCESS");
+                  
+                  }
+                      languageCount = languageCount + 1;
+               }
+          }
+          else
+          {
+              excelReporter.ReportStep("12 Languages are not listed", "FAILURE");
 
-
+          }
 
       }
         public void EnterValueById(String id, String value)
@@ -408,7 +426,8 @@ namespace MyLCIAutomation
                 EnterValueById("txtCity", "Automation TestCity");
 
                 //Select from Club Language
-                SelectDropdownValueByVisibleText("ddlClubLanguage", "English");
+               // SelectDropdownValueByVisibleText("ddlClubLanguage", "English");
+                VerifyLanguageListAddClub();
                 
                 //Click for a sponsoring club
                 ClickById("btnSelectSponsoringClub");

@@ -34,3 +34,5 @@ D:\Project_KBS\ProjectFromGit\KBS\KBS\bin\Debug\WebDriver.xml
 D:\Project_KBS\ProjectFromGit\KBS\KBS\obj\Debug\KBS.dll
 D:\Project_KBS\ProjectFromGit\KBS\KBS\obj\Debug\KBS.pdb
 D:\KBSGIT_REPO\KBS\KBS\bin\Debug\IEDriverServer.exe
+D:\KBSGIT_REPO\KBS\KBS\obj\Debug\MyLCISprint1-5Automation.csprojResolveAssemblyReference.cache
+D:\KBSGIT_REPO\KBS\KBS\bin\Debug\chromedriver.exe
