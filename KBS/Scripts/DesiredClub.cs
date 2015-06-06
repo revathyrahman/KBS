@@ -19,22 +19,29 @@ namespace MyLCIAutomation
             
             for (int i = 0; i < data.Count; i++)
             {
-                UtilityMethods utilityMethods = new UtilityMethods("DesiredClub", i);
+                UtilityMethods utilityMethods = new UtilityMethods("DesiredClub", i,"FAILED"); 
                 if (data[i][0].Equals("LCI"))
                 {
-                    utilityMethods.InvokeApplication("ie", "https://mylcibeta.lionsclubs.org/");
+                    
+                    utilityMethods.InvokeApplication("firefox", "https://mylcibeta.lionsclubs.org/");
 
                     utilityMethods.LoginMyLCI(data[i][0], data[i][1], data[i][2]);
+                   
 
-                    utilityMethods.ClickById("a_3_1_28");
 
-                    utilityMethods.ClickById("a_3_2_40");
+                    //utilityMethods.ClickById("a_3_1_28");
 
-                    utilityMethods.FindDesiredClub("LCI Authorization");
+                    //utilityMethods.ClickById("a_3_2_40");
 
-                    utilityMethods.ViewApplication("Club123");
+                    //utilityMethods.FindDesiredClub("LCI Authorization");
 
-                    utilityMethods.LogoutMyLCI();
+                   
+
+                    
+
+                    //utilityMethods.ViewApplication("Club123");
+
+                    //utilityMethods.LogoutMyLCI();
 
                     utilityMethods.CloseApplication();
                 }       

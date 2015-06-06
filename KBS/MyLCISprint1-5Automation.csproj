@@ -100,7 +100,6 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="LibraryClasses\UtilityMethodsAuthorization.cs" />
     <Compile Include="LibraryClasses\ExcelReporterAuthorization.cs" />
     <Compile Include="Scripts\DesiredClub.cs" />
     <Compile Include="Scripts\AddClubLinkUsersCheck.cs" />
