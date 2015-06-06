@@ -21,13 +21,14 @@ namespace MyLCIAutomation
             for (int i = 0; i < data.Count; i++)
             {
                 utilityMethods = new UtilityMethods("DiscontinueClub", i);
-                utilityMethods.InvokeApplication("Firefox", "http://mylcibeta.lionsclubs.org/");
+                utilityMethods.InvokeApplication("chrome", "http://mylcibeta.lionsclubs.org/");
                 try
                 {
                     if (data[i][0].Equals("LCI"))
                     {
                         //Call the login method and to verify the home page is displayed
                         utilityMethods.LoginMyLCI(data[i][0], data[i][1], data[i][2]);
+<<<<<<< HEAD
 
                         ////Click on My Districts Link in the home page
                         //utilityMethods.ClickById("a_3_1_28");
@@ -57,6 +58,31 @@ namespace MyLCIAutomation
                         //utilityMethods.ContinueClub(ClubName);
                         //// click logout
                         //utilityMethods.LinkClickByText("Logout");
+=======
+
+                        //Verify "Add Club" link exists for this user
+                        Boolean status = utilityMethods.VerifyAddClubLinkExists("hlAddClub");
+
+                        if (status.Equals(true))
+                            excelReporter.ReportStep("User is Authorized User", "SUCCESS");
+
+                        else
+                            excelReporter.ReportStep("User is not Authorized User", "FAILURE");
+
+
+                        //Click Add Club link
+                        utilityMethods.ClickById("hlAddClub");
+
+                        string ClubName = utilityMethods.AddClubFormEntry();
+
+                        utilityMethods.MoveClubtoNextStatus("DG Auth");
+
+                        utilityMethods.DiscontinueClub(ClubName);
+
+                        utilityMethods.ContinueClub(ClubName);
+                        // click logout
+                        utilityMethods.LinkClickByText("Logout");
+>>>>>>> 6d2503f15d86772baee3f9875ecd13d80e8f4af9
                         // close application
                         utilityMethods.CloseApplication();
                     }
@@ -66,7 +92,13 @@ namespace MyLCIAutomation
                 {
                     e.StackTrace.ToString();
                 }
+                finally
+                {
+                    utilityMethods.CloseApplication();
+                }
+         
             }
+
         }
     }
 }
