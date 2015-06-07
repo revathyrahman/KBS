@@ -13,11 +13,12 @@ namespace MyLCIAutomation
         [TestMethod]
         public void DiscontinueClubDGAuth()
         {
-            DataInputProvider dataInputProvider = new DataInputProvider();
-            ExcelReporter excelReporter = new ExcelReporter();
-            List<List<String>> data = dataInputProvider.GetInputData("Login");
-            UtilityMethods utilityMethods;
+        //    DataInputProvider dataInputProvider = new DataInputProvider();
+        //    ExcelReporter excelReporter = new ExcelReporter();
+        //    List<List<String>> data = dataInputProvider.GetInputData("Login");
+        //    UtilityMethods utilityMethods;
             
+<<<<<<< HEAD
             for (int i = 0; i < data.Count; i++)
             {
                 utilityMethods = new UtilityMethods("DiscontinueClub", i);
@@ -28,76 +29,88 @@ namespace MyLCIAutomation
                     {
                         //Call the login method and to verify the home page is displayed
                         utilityMethods.LoginMyLCI(data[i][0], data[i][1], data[i][2]);
-
-
-                        ////Click on My Districts Link in the home page
-                        //utilityMethods.ClickById("a_3_1_28");
-
-                        ////Click on Clubs Link under My Districts Menu List
-                        //utilityMethods.ClickById("a_3_2_40");
-
-                        //Verify "Add Club" link exists for this user
-                        Boolean status = utilityMethods.VerifyAddClubLinkExists("hlAddClub");
-
-                        if (status.Equals(true))
-                            excelReporter.ReportStep("User is Authorized User", "SUCCESS");
-
-                        else
-                            excelReporter.ReportStep("User is not Authorized User", "FAILURE");
-
-
-                        //Click Add Club link
-                        //utilityMethods.ClickById("hlAddClub");
-
-                        //string ClubName = utilityMethods.AddClubFormEntry();
-
-                        //utilityMethods.MoveClubtoNextStatus("DG Auth");
-
-                        //utilityMethods.DiscontinueClub(ClubName);
-
-                        //utilityMethods.ContinueClub(ClubName);
-                        //// click logout
-                        //utilityMethods.LinkClickByText("Logout");
 =======
+        //    for (int i = 0; i < data.Count; i++)
+        //    {
+        //        utilityMethods = new UtilityMethods("DiscontinueClub", i);
+        //        utilityMethods.InvokeApplication("chrome", "http://mylcibeta.lionsclubs.org/");
+        //        try
+        //        {
+        //            if (data[i][0].Equals("LCI"))
+        //            {
+        //                //Call the login method and to verify the home page is displayed
+        //                utilityMethods.LoginMyLCI(data[i][0], data[i][1], data[i][2]);
+>>>>>>> d6467e02e76950932c2a18f390731a7c09650004
 
-                        //Verify "Add Club" link exists for this user
-                        Boolean status = utilityMethods.VerifyAddClubLinkExists("hlAddClub");
 
-                        if (status.Equals(true))
-                            excelReporter.ReportStep("User is Authorized User", "SUCCESS");
+        //                ////Click on My Districts Link in the home page
+        //                //utilityMethods.ClickById("a_3_1_28");
 
-                        else
-                            excelReporter.ReportStep("User is not Authorized User", "FAILURE");
+        //                ////Click on Clubs Link under My Districts Menu List
+        //                //utilityMethods.ClickById("a_3_2_40");
+
+        //                //Verify "Add Club" link exists for this user
+        //                Boolean status = utilityMethods.VerifyAddClubLinkExists("hlAddClub");
+
+        //                if (status.Equals(true))
+        //                    excelReporter.ReportStep("User is Authorized User", "SUCCESS");
+
+        //                else
+        //                    excelReporter.ReportStep("User is not Authorized User", "FAILURE");
 
 
-                        //Click Add Club link
-                        utilityMethods.ClickById("hlAddClub");
+        //                //Click Add Club link
+        //                //utilityMethods.ClickById("hlAddClub");
 
-                        string ClubName = utilityMethods.AddClubFormEntry();
+        //                //string ClubName = utilityMethods.AddClubFormEntry();
 
-                        utilityMethods.MoveClubtoNextStatus("DG Auth");
+        //                //utilityMethods.MoveClubtoNextStatus("DG Auth");
 
-                        utilityMethods.DiscontinueClub(ClubName);
+        //                //utilityMethods.DiscontinueClub(ClubName);
 
-                        utilityMethods.ContinueClub(ClubName);
-                        // click logout
-                        utilityMethods.LinkClickByText("Logout");
+        //                //utilityMethods.ContinueClub(ClubName);
+        //                //// click logout
+        //                //utilityMethods.LinkClickByText("Logout");
 
-                        // close application
-                        utilityMethods.CloseApplication();
-                    }
-                }
 
-                catch (Exception e)
-                {
-                    e.StackTrace.ToString();
-                }
-                finally
-                {
-                    utilityMethods.CloseApplication();
-                }
+        //                //Verify "Add Club" link exists for this user
+        //                Boolean status = utilityMethods.VerifyAddClubLinkExists("hlAddClub");
+
+        //                if (status.Equals(true))
+        //                    excelReporter.ReportStep("User is Authorized User", "SUCCESS");
+
+        //                else
+        //                    excelReporter.ReportStep("User is not Authorized User", "FAILURE");
+
+
+        //                //Click Add Club link
+        //                utilityMethods.ClickById("hlAddClub");
+
+        //                string ClubName = utilityMethods.AddClubFormEntry();
+
+        //                utilityMethods.MoveClubtoNextStatus("DG Auth");
+
+        //                utilityMethods.DiscontinueClub(ClubName);
+
+        //                utilityMethods.ContinueClub(ClubName);
+        //                // click logout
+        //                utilityMethods.LinkClickByText("Logout");
+
+        //                // close application
+        //                utilityMethods.CloseApplication();
+        //            }
+        //        }
+
+        //        catch (Exception e)
+        //        {
+        //            e.StackTrace.ToString();
+        //        }
+        //        finally
+        //        {
+        //            utilityMethods.CloseApplication();
+        //        }
          
-            }
+        //    }
 
         }
     }
