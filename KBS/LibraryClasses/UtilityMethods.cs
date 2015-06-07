@@ -417,7 +417,7 @@ namespace MyLCIAutomation
      //           TakeSnapshot(this.screenShotFlag,flag);
      //       }
      //   }
-=======
+
         public void LinkClickByText(String text)
         {
             try
@@ -499,7 +499,7 @@ namespace MyLCIAutomation
             }
         }
 
->>>>>>> 6d2503f15d86772baee3f9875ecd13d80e8f4af9
+
         public void ClickById(String Id)
         {
             Boolean flag = true;
