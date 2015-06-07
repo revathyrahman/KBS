@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
@@ -28,7 +28,7 @@ namespace MyLCIAutomation
                     {
                         //Call the login method and to verify the home page is displayed
                         utilityMethods.LoginMyLCI(data[i][0], data[i][1], data[i][2]);
-<<<<<<< HEAD
+
 
                         ////Click on My Districts Link in the home page
                         //utilityMethods.ClickById("a_3_1_28");
@@ -82,7 +82,7 @@ namespace MyLCIAutomation
                         utilityMethods.ContinueClub(ClubName);
                         // click logout
                         utilityMethods.LinkClickByText("Logout");
->>>>>>> 6d2503f15d86772baee3f9875ecd13d80e8f4af9
+
                         // close application
                         utilityMethods.CloseApplication();
                     }

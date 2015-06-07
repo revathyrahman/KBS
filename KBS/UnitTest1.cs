@@ -1,25 +1,25 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
-<<<<<<< HEAD
+
 using OpenQA.Selenium.IE;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 
 
-=======
+
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 
->>>>>>> 955caa7a494acead203191ef3c27abbb08d29b29
+
 namespace MyLCIAutomation
 {
     [TestClass]
     public class UnitTest1
     {
         [TestMethod]
-<<<<<<< HEAD
+
         public void TestMethod1()
         {
             
@@ -29,7 +29,8 @@ namespace MyLCIAutomation
             driver.FindElement(By.Id("PageContent_Login1_txtPassword")).SendKeys("password0");
             driver.FindElement(By.Id("PageContent_Login1_btnSubmit")).Click();
 
-=======
+
+
         public void FieldChk()
         {
             UtilityMethods utilityMethods;
@@ -106,7 +107,7 @@ namespace MyLCIAutomation
                     utilityMethods.CloseApplication();
                 }
             }
->>>>>>> 955caa7a494acead203191ef3c27abbb08d29b29
+
         }
     }
 }

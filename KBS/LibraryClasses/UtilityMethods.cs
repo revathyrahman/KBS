@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -336,7 +336,7 @@ namespace MyLCIAutomation
 
             excelReporterforAuthorization.FlushWorkbook(testCaseName + "-Run");
         }
-<<<<<<< HEAD
+
      //   public void LinkClickByText(String text)
      //   {
      //       try
@@ -543,7 +543,7 @@ namespace MyLCIAutomation
      //           //Enter Club City 
      //           EnterValueById("txtCity", "Automation TestCity");
 
-<<<<<<< HEAD
+
      //           //Select from Club Language
      //           SelectDropdownValueByVisibleText("ddlClubLanguage", "English");
 
@@ -552,7 +552,7 @@ namespace MyLCIAutomation
      //           browserDriver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(5));
      //           ClickByXPath("//div[@class='DistrictClubResults']/div/div/div[1]");
      //           browserDriver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(3));
-=======
+
                 //Select from Club Language
                // SelectDropdownValueByVisibleText("ddlClubLanguage", "English");
                 VerifyLanguageListAddClub();
@@ -562,7 +562,7 @@ namespace MyLCIAutomation
                 browserDriver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(5));
                 ClickByXPath("//div[@class='DistrictClubResults']/div/div/div[1]");
                 browserDriver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(3));
->>>>>>> 6d2503f15d86772baee3f9875ecd13d80e8f4af9
+
                                
      //           //Enter New Club President creation details
      //           ClickByXPath("//*[@id='pnlNewClubPresidentHeader']/div/b");
@@ -612,7 +612,7 @@ namespace MyLCIAutomation
             try
             {
                 LinkClickByText("Logout");
-<<<<<<< HEAD
+
             }
             catch (NoSuchElementException e)
             {
@@ -747,21 +747,21 @@ namespace MyLCIAutomation
      //       {
 
      //           //IList<IWebElement> clublist = driver.FindElements(By.XPath("//div[@class='gridData']/div/div/div/div"));
-     //           IList<IWebElement> clublist = browserDriver.FindElements(By.XPath("//div[@class='gridHeader']/div/div/div[1]"));
+     //           IList<IWebElement> clublist = browserDriver.FindElements(By.XPath("//div[@class='grid`er']/div/div/div[1]"));
      //           IList<IWebElement> viewApplist = browserDriver.FindElements(By.XPath("//a[.='View Application']"));
                        
-<<<<<<< HEAD
+
      //           int val = 0;
      //           foreach (IWebElement clnames in clublist)
      //           {
      //               string clvalue = clnames.Text;
-=======
+
                 int val = 0;
                 foreach (IWebElement clnames in clublist)
                 {
                     Thread.Sleep(5000);
                     string clvalue = clnames.Text;
->>>>>>> 6d2503f15d86772baee3f9875ecd13d80e8f4af9
+
                    
      //               if (clvalue.Contains(clubname))
      //               {
@@ -885,7 +885,7 @@ namespace MyLCIAutomation
                 
      //       }
            
-<<<<<<< HEAD
+
      //   public void VerifyFieldEdit(string Fieldname,string Xpath )
      //   {
      //        Boolean flag = false;
