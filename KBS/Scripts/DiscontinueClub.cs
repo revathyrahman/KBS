@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
@@ -82,7 +82,7 @@ namespace MyLCIAutomation
                         utilityMethods.ContinueClub(ClubName);
                         // click logout
                         utilityMethods.LinkClickByText("Logout");
->>>>>>> 6d2503f15d86772baee3f9875ecd13d80e8f4af9
+
                         // close application
                         utilityMethods.CloseApplication();
                     }

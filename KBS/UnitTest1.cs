@@ -1,10 +1,20 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
+<<<<<<< HEAD
 using OpenQA.Selenium.IE;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
+=======
+
+using OpenQA.Selenium.IE;
+using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.UI;
+
+
+
+>>>>>>> 019d3b13f7aed8de95bffd83f6f12a94a714d15f
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 
@@ -26,6 +36,10 @@ namespace MyLCIAutomation
             driver.FindElement(By.Id("PageContent_Login1_btnSubmit")).Click();
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 019d3b13f7aed8de95bffd83f6f12a94a714d15f
         public void FieldChk()
         {
             UtilityMethods utilityMethods;
