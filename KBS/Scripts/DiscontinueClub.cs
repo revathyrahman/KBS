@@ -21,14 +21,14 @@ namespace MyLCIAutomation
             for (int i = 0; i < data.Count; i++)
             {
                 utilityMethods = new UtilityMethods("DiscontinueClub", i);
-                utilityMethods.InvokeApplication("chrome", "http://mylcibeta.lionsclubs.org/");
+                utilityMethods.InvokeApplication("ie", "http://mylcibeta.lionsclubs.org/");
                 try
                 {
                     if (data[i][0].Equals("LCI"))
                     {
                         //Call the login method and to verify the home page is displayed
                         utilityMethods.LoginMyLCI(data[i][0], data[i][1], data[i][2]);
-<<<<<<< HEAD
+
 
                         ////Click on My Districts Link in the home page
                         //utilityMethods.ClickById("a_3_1_28");

@@ -31,7 +31,8 @@ namespace MyLCIAutomation
             rowAuth.CreateCell(2).SetCellValue("Test Status");
         }
         // Write to the Excel Report file
-        public void FlushWorkbook(String TestCaseName)
+   
+       public void FlushWorkbook(String TestCaseName)
         {
             try
             {
