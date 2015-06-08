@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,11 +21,30 @@ namespace MyLCIAutomation
        private static IWorkbook workbook ;
        private static IRow row;
        private static ISheet sheet;
+       private string testCaseName;
+       public ExcelReporter(string testCaseName)
+       {
+           this.testCaseName = testCaseName;
+       }
+       public ExcelReporter()
+       {
+           
+       }
         public void CreateReportHeader()
         {
             workbook = new XSSFWorkbook();
             sheet = workbook.CreateSheet("Report");
             row = sheet.CreateRow(0);    
+            row.CreateCell(0).SetCellValue("Step No");
+            row.CreateCell(1).SetCellValue("Test Description");
+            row.CreateCell(2).SetCellValue("Test Status");
+        }
+
+        public void CreateReportHeader(string testcasename)
+        {
+            workbook = new XSSFWorkbook();
+            sheet = workbook.CreateSheet("Report");
+            row = sheet.CreateRow(0);
             row.CreateCell(0).SetCellValue("Step No");
             row.CreateCell(1).SetCellValue("Test Description");
             row.CreateCell(2).SetCellValue("Test Status");
@@ -52,5 +71,13 @@ namespace MyLCIAutomation
            row.CreateCell(1).SetCellValue(Desc);
     	   row.CreateCell(2).SetCellValue(Status);
 		}
+
+        public void ReportStep(String testcasename,String Desc, String Status)
+        {
+            row = sheet.CreateRow(sheet.LastRowNum + 1);
+            row.CreateCell(0).SetCellValue(sheet.LastRowNum);
+            row.CreateCell(1).SetCellValue(Desc);
+            row.CreateCell(2).SetCellValue(Status);
+        }
     }
 }

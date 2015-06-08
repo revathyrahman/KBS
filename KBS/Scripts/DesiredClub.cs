@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
@@ -19,23 +19,40 @@ namespace MyLCIAutomation
             
             for (int i = 0; i < data.Count; i++)
             {
-                UtilityMethods utilityMethods = new UtilityMethods("DesiredClub", i);
+                UtilityMethods utilityMethods = new UtilityMethods("DesiredClub", i,"FAILED"); 
                 if (data[i][0].Equals("LCI"))
                 {
+
+                    
+                    utilityMethods.InvokeApplication("firefox", "https://mylcibeta.lionsclubs.org/");
+
                     utilityMethods.InvokeApplication("Firefox", "https://mylcibeta.lionsclubs.org/");
 
+
                     utilityMethods.LoginMyLCI(data[i][0], data[i][1], data[i][2]);
+                   
 
-                    utilityMethods.ClickById("a_3_1_28");
 
-                    utilityMethods.ClickById("a_3_2_40");
+                    //utilityMethods.ClickById("a_3_1_28");
+
+
+                    //utilityMethods.ClickById("a_3_2_40");
+
+                    //utilityMethods.FindDesiredClub("LCI Authorization");
 
                     utilityMethods.FindDesiredClub("All Pending");
 
                     utilityMethods.ViewApplication("Alpha Club");
                     utilityMethods.VerifyFieldEdit("Find Club", "txtClubName");
 
-                    utilityMethods.LogoutMyLCI();
+
+                   
+
+                    
+
+                    //utilityMethods.ViewApplication("Club123");
+
+                    //utilityMethods.LogoutMyLCI();
 
                     utilityMethods.CloseApplication();
                 }       
