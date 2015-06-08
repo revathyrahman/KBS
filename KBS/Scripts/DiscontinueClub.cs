@@ -13,105 +13,62 @@ namespace MyLCIAutomation
         [TestMethod]
         public void DiscontinueClubDGAuth()
         {
-        //    DataInputProvider dataInputProvider = new DataInputProvider();
-        //    ExcelReporter excelReporter = new ExcelReporter();
-        //    List<List<String>> data = dataInputProvider.GetInputData("Login");
-        //    UtilityMethods utilityMethods;
+           DataInputProvider dataInputProvider = new DataInputProvider();
+            ExcelReporter excelReporter = new ExcelReporter();
+            List<List<String>> data = dataInputProvider.GetInputData("Login");
+           UtilityMethods utilityMethods;
             
-<<<<<<< HEAD
+
             for (int i = 0; i < data.Count; i++)
             {
-                utilityMethods = new UtilityMethods("DiscontinueClub", i);
-                utilityMethods.InvokeApplication("ie", "http://mylcibeta.lionsclubs.org/");
+                utilityMethods = new UtilityMethods("DiscontinueClub",i, "ALL");
+                utilityMethods.InvokeApplication("chrome", "http://mylcibeta.lionsclubs.org/");
                 try
                 {
                     if (data[i][0].Equals("LCI"))
                     {
-                        //Call the login method and to verify the home page is displayed
+                       // Call the login method and to verify the home page is displayed
                         utilityMethods.LoginMyLCI(data[i][0], data[i][1], data[i][2]);
-=======
-        //    for (int i = 0; i < data.Count; i++)
-        //    {
-        //        utilityMethods = new UtilityMethods("DiscontinueClub", i);
-        //        utilityMethods.InvokeApplication("chrome", "http://mylcibeta.lionsclubs.org/");
-        //        try
-        //        {
-        //            if (data[i][0].Equals("LCI"))
-        //            {
-        //                //Call the login method and to verify the home page is displayed
-        //                utilityMethods.LoginMyLCI(data[i][0], data[i][1], data[i][2]);
->>>>>>> d6467e02e76950932c2a18f390731a7c09650004
 
+                        //Verify "Add Club" link exists for this user
+                        Boolean addClubLinkstatus = utilityMethods.VerifyAddClubLinkExists("hlAddClub");
 
-        //                ////Click on My Districts Link in the home page
-        //                //utilityMethods.ClickById("a_3_1_28");
+                        if (addClubLinkstatus.Equals(true))
+                            excelReporter.ReportStep("User is Authorized User", "SUCCESS");
 
-        //                ////Click on Clubs Link under My Districts Menu List
-        //                //utilityMethods.ClickById("a_3_2_40");
+                        else
+                            excelReporter.ReportStep("User is not Authorized User", "FAILURE");
+                        
+                       //Click Add Club link
+                        utilityMethods.ClickById("hlAddClub");
 
-        //                //Verify "Add Club" link exists for this user
-        //                Boolean status = utilityMethods.VerifyAddClubLinkExists("hlAddClub");
+                        string ClubName = utilityMethods.AddClubFormEntry();
 
-        //                if (status.Equals(true))
-        //                    excelReporter.ReportStep("User is Authorized User", "SUCCESS");
+                        utilityMethods.MoveClubtoNextStatus("DG Auth");
 
-        //                else
-        //                    excelReporter.ReportStep("User is not Authorized User", "FAILURE");
+                        utilityMethods.DiscontinueClub(ClubName);
 
+                        utilityMethods.ContinueClub(ClubName);
+                        // click logout
+                        utilityMethods.LinkClickByText("Logout");
 
-        //                //Click Add Club link
-        //                //utilityMethods.ClickById("hlAddClub");
+                        // close application
+                        utilityMethods.CloseApplication();
+                    }
+                }
 
-        //                //string ClubName = utilityMethods.AddClubFormEntry();
-
-        //                //utilityMethods.MoveClubtoNextStatus("DG Auth");
-
-        //                //utilityMethods.DiscontinueClub(ClubName);
-
-        //                //utilityMethods.ContinueClub(ClubName);
-        //                //// click logout
-        //                //utilityMethods.LinkClickByText("Logout");
-
-
-        //                //Verify "Add Club" link exists for this user
-        //                Boolean status = utilityMethods.VerifyAddClubLinkExists("hlAddClub");
-
-        //                if (status.Equals(true))
-        //                    excelReporter.ReportStep("User is Authorized User", "SUCCESS");
-
-        //                else
-        //                    excelReporter.ReportStep("User is not Authorized User", "FAILURE");
-
-
-        //                //Click Add Club link
-        //                utilityMethods.ClickById("hlAddClub");
-
-        //                string ClubName = utilityMethods.AddClubFormEntry();
-
-        //                utilityMethods.MoveClubtoNextStatus("DG Auth");
-
-        //                utilityMethods.DiscontinueClub(ClubName);
-
-        //                utilityMethods.ContinueClub(ClubName);
-        //                // click logout
-        //                utilityMethods.LinkClickByText("Logout");
-
-        //                // close application
-        //                utilityMethods.CloseApplication();
-        //            }
-        //        }
-
-        //        catch (Exception e)
-        //        {
-        //            e.StackTrace.ToString();
-        //        }
-        //        finally
-        //        {
-        //            utilityMethods.CloseApplication();
-        //        }
+                catch (Exception e)
+                {
+                    e.StackTrace.ToString();
+                }
+                finally
+                {
+                    utilityMethods.CloseApplication();
+               }
          
-        //    }
+           }
 
         }
     }
 }
+          

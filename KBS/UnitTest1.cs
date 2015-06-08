@@ -2,19 +2,18 @@ using System;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
-<<<<<<< HEAD
-using OpenQA.Selenium.IE;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Support.UI;
-=======
 
 using OpenQA.Selenium.IE;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 
 
+using OpenQA.Selenium.IE;
+using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.UI;
 
->>>>>>> 019d3b13f7aed8de95bffd83f6f12a94a714d15f
+
+
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 
@@ -37,11 +36,7 @@ namespace MyLCIAutomation
 
         }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 
->>>>>>> 019d3b13f7aed8de95bffd83f6f12a94a714d15f
         public void FieldChk()
         {
             UtilityMethods utilityMethods;
@@ -65,7 +60,7 @@ namespace MyLCIAutomation
 
                     utilityMethods.ClickById("hlAddClub");
                    utilityMethods.ClickById("btnCancel");
-                   utilityMethods.VerifyTextDisplay(".//*[@id='lblCaption']", "District Clubs");
+                   //utilityMethods.VerifyTextDisplay(".//*[@id='lblCaption']", "District Clubs");
 
                     // Verify Delete with Clubname
 
@@ -77,9 +72,9 @@ namespace MyLCIAutomation
                    utilityMethods.VerifyButtonExists("Cancel", "btnCancel");
 
                    utilityMethods.ClickById("btnDelete");
-                   utilityMethods.VerifyTextDisplay(".//*[@id='form1x']/div[4]/div[1]/div[5]/div[1]/div[1]/div/div[6]/div[2]/div/div", "Club-Jeynew");
-                   utilityMethods.ClickById("btnSave");
-                   utilityMethods.VerifyTextDisplay(".//*[@id='lblCaption']", "District Clubs");
+                 //  utilityMethods.VerifyTextDisplay(".//*[@id='form1x']/div[4]/div[1]/div[5]/div[1]/div[1]/div/div[6]/div[2]/div/div", "Club-Jeynew");
+                 //  utilityMethods.ClickById("btnSave");
+                 //  utilityMethods.VerifyTextDisplay(".//*[@id='lblCaption']", "District Clubs");
                     utilityMethods.FindDesiredClub("All Pending");
                     utilityMethods.VerifyDeleteApplication("Club-Jeynew");
                     //New Club creation and deletion
@@ -94,7 +89,7 @@ namespace MyLCIAutomation
                     //Once again to delete the existing club
                     utilityMethods.ClickById("btnDelete");
                     utilityMethods.ClickById("btnSave");
-                    utilityMethods.VerifyTextDisplay(".//*[@id='lblCaption']", "District Clubs");
+                 //   utilityMethods.VerifyTextDisplay(".//*[@id='lblCaption']", "District Clubs");
                     utilityMethods.FindDesiredClub("All Pending");
 
 
@@ -106,11 +101,11 @@ namespace MyLCIAutomation
                     utilityMethods.VerifyFieldEdit("City", "txtCity");
                     utilityMethods.VerifyDropdownEdit("Club Language", "ddlClubLanguage");
                     utilityMethods.VerifyButtonExists("Sponsoring Club", "btnSelectSponsoringClub");
-                    utilityMethods.NewClubOfficersChk();
-                    utilityMethods.ECMforLionsClub();
-                    utilityMethods.VerifyCheckboxExists("Club Criteria", "cbReadNewClubCriteria");
+                  //  utilityMethods.NewClubOfficersChk();
+                //    utilityMethods.ECMforLionsClub();
+                 //   utilityMethods.VerifyCheckboxExists("Club Criteria", "cbReadNewClubCriteria");
                     utilityMethods.VerifyFieldEdit("Comments", "txtNewClubAppComment");
-=======
+
         //public void FieldChk()
         //{
         //    UtilityMethods utilityMethods;
@@ -179,16 +174,16 @@ namespace MyLCIAutomation
         //            utilityMethods.ECMforLionsClub();
         //            utilityMethods.VerifyCheckboxExists("Club Criteria", "cbReadNewClubCriteria");
         //            utilityMethods.VerifyFieldEdit("Comments", "txtNewClubAppComment");
->>>>>>> d6467e02e76950932c2a18f390731a7c09650004
+
                                                                          
 
 
         //            utilityMethods.LogoutMyLCI();
 
         //            utilityMethods.CloseApplication();
-        //        }
-        //    }
+               }
+           }
 
-        //}
-    }
+        }
+   }
 }

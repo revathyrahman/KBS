@@ -39,6 +39,16 @@ namespace MyLCIAutomation
             row.CreateCell(1).SetCellValue("Test Description");
             row.CreateCell(2).SetCellValue("Test Status");
         }
+
+        public void CreateReportHeader(string testcasename)
+        {
+            workbook = new XSSFWorkbook();
+            sheet = workbook.CreateSheet("Report");
+            row = sheet.CreateRow(0);
+            row.CreateCell(0).SetCellValue("Step No");
+            row.CreateCell(1).SetCellValue("Test Description");
+            row.CreateCell(2).SetCellValue("Test Status");
+        }
         // Write to the Excel Report file
         public void FlushWorkbook(String TestCaseName)
         {
