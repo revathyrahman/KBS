@@ -642,9 +642,9 @@ namespace MyLCIAutomation
             {
 
                 //IList<IWebElement> clublist = driver.FindElements(By.XPath("//div[@class='gridData']/div/div/div/div"));
-                IList<IWebElement> clublist = browserDriver.FindElements(By.XPath("//div[@class='grid`er']/div/div/div[1]"));
+                IList<IWebElement> clublist = browserDriver.FindElements(By.XPath("//div[@class='gridHeader']/div/div/div[1]"));
                 IList<IWebElement> viewApplist = browserDriver.FindElements(By.XPath("//a[.='View Application']"));
-                       
+                // int Countclublist= clublist.Count();     
 
                 int val = 0;
                 foreach (IWebElement clnames in clublist)
@@ -659,6 +659,11 @@ namespace MyLCIAutomation
                         break;
                     }
                     val++;
+                    //if (val == Countclublist)
+                    //{
+                      //  IWebElement pagnation = browserDriver.FindElement(By.XPath(".//*[@id='myGrid']/div[2]/div[3]/a[2]/img"));
+                      //  pagnation.Click();
+                    //}
                 }
 
             }
@@ -867,21 +872,23 @@ namespace MyLCIAutomation
                 if (button.Enabled)
                 {
                     flag = true;
-                    excelReporter.ReportStep("The" + Fieldname + "is Enabled", "Pass");
+                    excelReporter.ReportStep("The" + Fieldname + " is Enabled", "Pass");
                 }
                 else
                 {
                     flag = false;
-                    excelReporter.ReportStep("The" + Fieldname + "is  not Enabled", "Fail");
+                    excelReporter.ReportStep("The" + Fieldname + " is  not Enabled", "Fail");
                 }
 
             }
             catch (NoSuchElementException e)
             {
+                flag = false;
                 excelReporter.ReportStep("Element with Fieldname could not found..", "FAILURE");
             }
             catch (WebDriverException ex)
             {
+                flag = false;
                 excelReporter.ReportStep("Driver could not found !!!", "FAILURE");
 
             }
@@ -1066,10 +1073,12 @@ namespace MyLCIAutomation
             }
             catch (NoSuchElementException e)
             {
+                flag = false;
                 excelReporter.ReportStep("Element with Fieldname could not found..", "FAILURE");
             }
             catch (WebDriverException ex)
             {
+                flag = false;
                 excelReporter.ReportStep("Driver could not found !!!", "FAILURE");
 
             }
@@ -1096,13 +1105,16 @@ namespace MyLCIAutomation
                 {
                     string clvalue = clnames.Text;
 
-                    if (clvalue != (clubname))
+                    if (clvalue.Equals(clubname))
                     {
-                        excelReporter.ReportStep("Clubname is Deleted Successfully.", "SUCCESS");
+                        excelReporter.ReportStep("Clubname is not Deleted Successfully.", "FAILURE");
                         break;
                     }
+                    else
+                        continue;
                     val++;
                 }
+                excelReporter.ReportStep("Clubname is  Deleted Successfully.", "SUCCESS");
 
             }
             catch (NoSuchElementException e)
@@ -1145,10 +1157,12 @@ namespace MyLCIAutomation
             }
             catch (NoSuchElementException e)
             {
+                flag = false;
                 excelReporter.ReportStep("Element with Fieldname could not found..", "FAILURE");
             }
             catch (WebDriverException ex)
             {
+                flag = false;
                 excelReporter.ReportStep("Driver could not found !!!", "FAILURE");
 
             }
