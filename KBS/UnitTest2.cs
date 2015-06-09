@@ -17,14 +17,14 @@ namespace MyLCIAutomation
             UtilityMethods utilityMethods;
             DataInputProvider dataInputProvider = new DataInputProvider();
             List<List<String>> data = dataInputProvider.GetInputData("Login-2data");
+            utilityMethods = new UtilityMethods("Deletevisible_839", "FAILED");
+             utilityMethods.InvokeApplication("Firefox", "https://mylcibeta.lionsclubs.org/");
 
             for (int i = 0; i < data.Count; i++)
             {
-                utilityMethods = new UtilityMethods("Deletevisible_839", i);
-                if (data[i][0].Equals("CS"))
+                 if (data[i][0].Equals("LCI"))
                 {
-                    utilityMethods.InvokeApplication("Firefox", "https://mylcibeta.lionsclubs.org/");
-
+                   
                     utilityMethods.LoginMyLCI(data[i][0], data[i][1], data[i][2]);
 
                     utilityMethods.ClickById("a_3_1_30");
@@ -34,8 +34,11 @@ namespace MyLCIAutomation
                     utilityMethods.EnterValueById("txtClubName", "Club-Sec-chk2");
                     utilityMethods.ClickById("btnSave");
                     utilityMethods.LogoutMyLCI();
-
-                    utilityMethods.LoginMyLCI(data[1][0], data[1][1], data[1][2]);
+                }
+                    if (data[i][0].Equals("DG"))
+                    {
+                    utilityMethods.LoginMyLCI(data[i][0], data[i][1], data[i][2]);
+                   // utilityMethods.LoginMyLCI(data[1][0], data[1][1], data[1][2]);
                     utilityMethods.ClickById("a_3_1_28");
 
                     utilityMethods.ClickById("a_3_2_40");
@@ -47,8 +50,9 @@ namespace MyLCIAutomation
                     utilityMethods.LogoutMyLCI();
 
                     utilityMethods.CloseApplication();
+                    }
                 }
             }
         }
     }
-}
+
