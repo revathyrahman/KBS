@@ -788,20 +788,20 @@ namespace MyLCIAutomation
             }
 
 
-        public void VerifyFieldEdit(string Fieldname, string Xpath)
+        public void VerifyFieldEdit(string Fieldname, string id)
         {
             Boolean flag = false;
             try
             {
-                if (browserDriver.FindElement(By.XPath(Xpath)).Enabled)
+                if (browserDriver.FindElement(By.Id(id)).Enabled)
                 {
                     flag = true;
-                    excelReporter.ReportStep("The" + Fieldname + "is Editable", "Pass");
+                    excelReporter.ReportStep("The" + Fieldname + " is Editable", "Pass");
                 }
                 else
                 {
                     flag = false;
-                    excelReporter.ReportStep("The" + Fieldname + "is  not Editable", "Fail");
+                    excelReporter.ReportStep("The" + Fieldname + " is  not Editable", "Fail");
                 }
 
             }
@@ -836,7 +836,8 @@ namespace MyLCIAutomation
                     {
                         flag = true;
                         excelReporter.ReportStep("The" + Fieldname + "is Editable", "Pass");
-                    }
+                        break;
+                     }
                     else
                     {
                         flag = false;
@@ -908,21 +909,21 @@ namespace MyLCIAutomation
                 //President fieldlevel chk
 
                 ClickByXPath(".//*[@id='pnlNewClubPresidentHeader']/div/b");
-                VerifyFieldEdit("First Name", ".//*[@id='txtPresidentFirstName']");
-                VerifyFieldEdit("Last Name", ".//*[@id='txtPresidentLastName']");
-                VerifyFieldEdit("Year Of Birth", ".//*[@id='txtPresidentYearOfBirth']");
+                VerifyFieldEdit("First Name", "txtPresidentFirstName");
+                VerifyFieldEdit("Last Name", "txtPresidentLastName");
+                VerifyFieldEdit("Year Of Birth", "txtPresidentYearOfBirth");
                 VerifyDropdownEdit("Gender", "ddlPresidentGender");
-                VerifyFieldEdit("Email Address", ".//*[@id='txtPresidentEmailAddress']");
+                VerifyFieldEdit("Email Address", "txtPresidentEmailAddress");
                 VerifyButtonExists("Clear", "btnClearPresident");
 
                 //Secretary Fieldlevel chk
 
                 ClickByXPath(".//*[@id='pnlNewClubSecretaryHeader']/p/b");
-                VerifyFieldEdit("First Name", ".//*[@id='txtSecretaryFirstName']");
-                VerifyFieldEdit("Last Name", ".//*[@id='txtSecretaryLastName']");
-                VerifyFieldEdit("Year Of Birth", ".//*[@id='txtSecretaryYearOfBirth']");
+                VerifyFieldEdit("First Name", "txtSecretaryFirstName");
+                VerifyFieldEdit("Last Name", "txtSecretaryLastName");
+                VerifyFieldEdit("Year Of Birth", "txtSecretaryYearOfBirth");
                 VerifyDropdownEdit("Gender", "ddlSecretaryGender");
-                VerifyFieldEdit("Email Address", ".//*[@id='txtSecretaryEmailAddress']");
+                VerifyFieldEdit("Email Address", "txtSecretaryEmailAddress");
                 VerifyButtonExists("Clear", "btnClearSecretary");
             }
             catch (NoSuchElementException e)
@@ -949,10 +950,10 @@ namespace MyLCIAutomation
             Boolean flag = true;
             try
             {
-                VerifyFieldEdit("New Members", ".//*[@id='txtNewMemberCount']");
-                VerifyFieldEdit("Transfer Members", ".//*[@id='txtTransferMemberCount']");
-                VerifyFieldEdit("Student Members", ".//*[@id='txtStudentCount']");
-                VerifyFieldEdit("Leo Lions", ".//*[@id='txtLeoLionCount']");
+                VerifyFieldEdit("New Members", "txtNewMemberCount");
+                VerifyFieldEdit("Transfer Members", "txtTransferMemberCount");
+                VerifyFieldEdit("Student Members", "txtStudentCount");
+                VerifyFieldEdit("Leo Lions", "txtLeoLionCount");
             }
             catch (NoSuchElementException e)
             {
@@ -978,11 +979,11 @@ namespace MyLCIAutomation
             Boolean flag = true;
             try
             {
-                VerifyFieldEdit("New Members", ".//*[@id='txtNewMemberCount']");
-                VerifyFieldEdit("Transfer Members", ".//*[@id='txtTransferMemberCount']");
-                VerifyFieldEdit("Students Over 30 Years", ".//*[@id='txtStudentOver30YrsCount']");
-                VerifyFieldEdit("Students 30 Years or younger", " .//*[@id='txtStudentUnder30YrsCount']");
-                VerifyFieldEdit("Leo Lions", ".//*[@id='txtLeoLionCount']");
+                VerifyFieldEdit("New Members", "txtNewMemberCount");
+                VerifyFieldEdit("Transfer Members", "txtTransferMemberCount");
+                VerifyFieldEdit("Students Over 30 Years", "txtStudentOver30YrsCount");
+                VerifyFieldEdit("Students 30 Years or younger", "txtStudentUnder30YrsCount");
+                VerifyFieldEdit("Leo Lions", "txtLeoLionCount");
             }
             catch (NoSuchElementException e)
             {
@@ -1005,11 +1006,11 @@ namespace MyLCIAutomation
             Boolean flag = true;
             try
             {
-                VerifyFieldEdit("New Members", ".//*[@id='txtNewMemberCount']");
-                VerifyFieldEdit("Transfer Members", ".//*[@id='txtTransferMemberCount']");
-                VerifyFieldEdit("Student Members", ".//*[@id='txtStudentCount']");
-                VerifyFieldEdit("Young Adults", " .//*[@id='txtYoungAdultMemberCount']");
-                VerifyFieldEdit("Leo Lions", ".//*[@id='txtLeoLionCount']");
+                VerifyFieldEdit("New Members", "txtNewMemberCount");
+                VerifyFieldEdit("Transfer Members", "txtTransferMemberCount");
+                VerifyFieldEdit("Student Members", "txtStudentCount");
+                VerifyFieldEdit("Young Adults", " txtYoungAdultMemberCount");
+                VerifyFieldEdit("Leo Lions", "txtLeoLionCount");
             }
             catch (NoSuchElementException e)
             {
@@ -1030,12 +1031,12 @@ namespace MyLCIAutomation
 
         }
 
-        public void VerifyCheckboxExists(String label, string Xpath)
+        public void VerifyCheckboxExists(String label, string id)
         {
             Boolean flag = true;
             try
             {
-                IWebElement Chkbox = browserDriver.FindElement(By.XPath(Xpath));
+                IWebElement Chkbox = browserDriver.FindElement(By.Id(id));
                 if (Chkbox.Enabled)
                     excelReporter.ReportStep("Check box for" + label + "Is present", "Pass");
                 else
@@ -1171,6 +1172,81 @@ namespace MyLCIAutomation
                 TakeSnapshot(this.screenShotFlag, flag);
             }
         }
+
+        public void VerifyMessage(String Fieldname,String Xpath,String Value)
+        {
+             Boolean flag = false;
+            try
+            {
+                string Message = browserDriver.FindElement(By.XPath(Xpath)).Text;
+                    if(Message.Contains(Value))
+                    {
+                      flag = true;
+                    excelReporter.ReportStep( Value + " message is displayed Successfully", "Pass");
+                }
+                else
+                {
+                    flag = false;
+                    excelReporter.ReportStep( Value + " message is not displayed ", "Fail");
+                }
+
+            }
+            catch (NoSuchElementException e)
+            {
+                flag = false;
+                excelReporter.ReportStep("Element with Fieldname could not found..", "FAILURE");
+            }
+            catch (WebDriverException ex)
+            {
+                flag = false;
+                excelReporter.ReportStep("Driver could not found !!!", "FAILURE");
+
+            }
+            finally
+            {
+                TakeSnapshot(this.screenShotFlag, flag);
+            }
+        }
+
+        public void VerifyMessageclubcount()
+        {
+           Boolean flag = false;
+
+           try
+               {
+               
+                 IList<IWebElement> clublist = browserDriver.FindElements(By.XPath("//div[@class='gridHeader']/div/div/div[1]"));
+
+                   int Countclublist= clublist.Count();
+                   if (Countclublist > 10)
+                   {
+                       flag = true;
+                       VerifyMessage("Clubcount", ".//*[@id='lblDistrictNewClubRequestCountWarning']", "New Club Request represents 10 or more new clubs for your district");
+                   }
+                   else
+                       flag = true;
+
+                    excelReporter.ReportStep("The Club Count is less than 10 hence No message is displayed","Pass");
+            }
+            catch (NoSuchElementException e)
+            {
+                flag = false;
+                excelReporter.ReportStep("Element with Fieldname could not found..", "FAILURE");
+            }
+            catch (WebDriverException ex)
+            {
+                flag = false;
+                excelReporter.ReportStep("Driver could not found !!!", "FAILURE");
+
+            }
+            finally
+            {
+                TakeSnapshot(this.screenShotFlag, flag);
+            }
+        }
+
+
+
     }
 }
      
