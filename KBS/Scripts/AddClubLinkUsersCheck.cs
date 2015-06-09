@@ -44,9 +44,7 @@ namespace MyLCIAutomation
                         authorizationReport.ReportStep("Authorization","User is not Authorized User", "SUCCESS");
                        
                     }
-
-                    
-                                        
+                                                                      
                     //Logout from the application
                     utilityMethods.LogoutMyLCI();
                 }
@@ -54,8 +52,6 @@ namespace MyLCIAutomation
                 {
                     e.StackTrace.ToString();
                 }
-
-             
             }
             // Close the browser and write the report into Excelsheet
             authorizationReport.FlushWorkbook("Authorization-Run");

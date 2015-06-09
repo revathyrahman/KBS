@@ -525,7 +525,7 @@ namespace MyLCIAutomation
                 EnterValueById("txtSecretaryEmailAddress", "testsecretary@test.com");
 
                 //Enter Charter Member details
-                EnterValueById("txtNewMemberCount", "2");
+                EnterValueById("txtNewMemberCount", "20");
                 EnterValueById("txtTransferMemberCount", "0");
                 EnterValueById("txtStudentCount", "0");
                 EnterValueById("txtLeoLionCount", "0");
@@ -715,7 +715,9 @@ namespace MyLCIAutomation
             {
                 ClickById("cbReadNewClubCriteria");
                 ClickById("cbStatusAction_Submit");
+                Thread.Sleep(5000);
                 ClickById("btnSave");
+                Thread.Sleep(5000);
                 string confirmationMessage = browserDriver.FindElement(By.XPath("//div[@class='confirmationMessages']/table/tbody/tr/td")).Text;
                 if (confirmationMessage.Contains("District Governor authorization"))
 
@@ -842,10 +844,12 @@ namespace MyLCIAutomation
             }
             catch (NoSuchElementException e)
             {
+                flag = false;
                 excelReporter.ReportStep("Element with Fieldname could not found..", "FAILURE");
             }
             catch (WebDriverException ex)
             {
+                flag = false;
                 excelReporter.ReportStep("Driver could not found !!!", "FAILURE");
 
             }
@@ -878,10 +882,12 @@ namespace MyLCIAutomation
             }
             catch (NoSuchElementException e)
             {
+                flag = false;
                 excelReporter.ReportStep("Element with Fieldname could not found..", "FAILURE");
             }
             catch (WebDriverException ex)
             {
+                flag = false;
                 excelReporter.ReportStep("Driver could not found !!!", "FAILURE");
 
             }

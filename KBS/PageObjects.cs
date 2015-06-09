@@ -13,7 +13,8 @@ namespace MyLCIAutomation
         public const string btnLogin = "PageContent_Login1_btnSubmit";
         public const string mnuLinkDistricts = "a_3_1_28";
         public const string subMenuLinkClubs = "a_3_2_40";
-        public const string linkAddClub = "hlAddClub";
+        public const string linkTextAddClub = "hlAddClub";
+        public const string idAddClub = "AddClub";
         public const string clubName = "txtClubName";
 
     }
