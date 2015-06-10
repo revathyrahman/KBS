@@ -228,7 +228,7 @@ namespace MyLCIAutomation
             try
             {
                 browserDriver.FindElement(By.Id(id)).SendKeys(value);
-                excelReporter.ReportStep("Element with id :" + id + " is found and value :" + value + " entered successfully..", "SUCCESS");
+                excelReporter.ReportStep("Element with id :" + id + "is found and value :" + value + " entered successfully..", "SUCCESS");
             }
             catch (NoSuchElementException exc)
             {
@@ -675,11 +675,12 @@ namespace MyLCIAutomation
                 //IList<IWebElement> clublist = driver.FindElements(By.XPath("//div[@class='gridData']/div/div/div/div"));
                 IList<IWebElement> clublist = browserDriver.FindElements(By.XPath("//div[@class='gridHeader']/div/div/div[1]"));
                 IList<IWebElement> viewApplist = browserDriver.FindElements(By.XPath("//a[.='View Application']"));
-                // int Countclublist= clublist.Count();     
+                 int Countclublist= clublist.Count();     
 
                 int val = 0;
                 foreach (IWebElement clnames in clublist)
                 {
+
                     Thread.Sleep(1000);
                     string clvalue = clnames.Text;
 
@@ -690,13 +691,16 @@ namespace MyLCIAutomation
                         break;
                     }
                     val++;
-                    //if (val == Countclublist)
-                    //{
-                      //  IWebElement pagnation = browserDriver.FindElement(By.XPath(".//*[@id='myGrid']/div[2]/div[3]/a[2]/img"));
-                      //  pagnation.Click();
-                    //}
-                }
 
+                    if (val == Countclublist)
+                    {
+                        IWebElement pagination = browserDriver.FindElement(By.XPath(".//*[@id='myGrid']/div[2]/div[3]/a[2]/img"));
+                        pagination.Click();
+                        Thread.Sleep(5000);
+                        clublist = browserDriver.FindElements(By.XPath("//div[@class='gridHeader']/div/div/div[1]"));
+
+                    }
+                }
             }
             catch (NoSuchElementException e)
             {

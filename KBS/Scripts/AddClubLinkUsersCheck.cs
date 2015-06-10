@@ -22,8 +22,9 @@ namespace MyLCIAutomation
             string theDirectory = AppDomain.CurrentDomain.BaseDirectory;
             Dictionary<string, string> Properties = ReadProperty.GetProperties(theDirectory + "\\..\\..\\ConfigProperities.txt");
 
-            UtilityMethods utilityMethods = new UtilityMethods("AddClubLinkUsersCheck","FAILED");
-            utilityMethods.InvokeApplication(Properties["Browser"], "http://mylcibeta.lionsclubs.org/");
+            UtilityMethods utilityMethods = new UtilityMethods("AddClubLinkUsersCheck",Properties["ScreenshotCaptureFlag"]);
+            
+            utilityMethods.InvokeApplication(Properties["Browser"], Properties["ApplicationURL"]);
 
             for (int i = 0; i < data.Count; i++)
             {
