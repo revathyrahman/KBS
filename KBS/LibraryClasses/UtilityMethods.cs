@@ -133,6 +133,36 @@ namespace MyLCIAutomation
             }
             return flag;
       }
+
+        public Boolean FindClubs()
+        {
+            Boolean flag = false;
+            try
+            {
+                browserDriver.FindElement(By.Id("a_3_1_28")).Click();
+                browserDriver.FindElement(By.Id("a_3_2_40")).Click();
+
+                if (browserDriver.FindElement(By.Id("lblSearchOptionTitle")).Enabled)
+                {
+                    flag = true;
+                    excelReporter.ReportStep("Find Clubs Link exists", "Pass");
+                }
+                else
+                {
+                    flag = false;
+                    excelReporter.ReportStep("Find Clubs Link does not exist", "Pass");
+                }
+            }
+            catch (NoSuchElementException e)
+            {
+                excelReporter.ReportStep("Element FindClubs does not Exist", "FAILURE");
+            }
+            finally
+            {
+                TakeSnapshot(this.screenShotFlag, flag);
+            }
+            return flag;
+        }
        
       public IWebDriver InvokeApplication(String browser, String url)
       {
@@ -473,7 +503,7 @@ namespace MyLCIAutomation
             Random rdmNo = new Random();
             int randnum = rdmNo.Next(1000);
             
-            string ClubName = "Club_" + randnum;
+            string ClubName = "Club" + randnum;
             Boolean flag = true;
             try
             {
@@ -628,6 +658,7 @@ namespace MyLCIAutomation
                     excelReporter.ReportStep("The club Name" + ClubName + "is not Discontinued", "Fail");
                 }
                 LinkClickByText("Go to Application");
+                Thread.Sleep(7000);
             }
             catch (Exception e)
             {
@@ -1070,7 +1101,7 @@ namespace MyLCIAutomation
                 IWebElement Element = browserDriver.FindElement(By.XPath(Xpath));
                 string Label = Element.Text;
 
-                if (Label == text)
+                if (Label.Contains(text))
                     excelReporter.ReportStep(text + " is Displayed Successfully", "Pass");
                 else
                     excelReporter.ReportStep(text + " is  not Displayed", "Fail");
@@ -1094,6 +1125,35 @@ namespace MyLCIAutomation
 
         }
 
+        public void VerifyTextDisplayById(String Id, string text)
+        {
+            Boolean flag = true;
+            try
+            {
+                IWebElement Element = browserDriver.FindElement(By.Id(Id));
+                string Label = Element.Text;
+
+                if (Label == text)
+                    excelReporter.ReportStep(text + " is displayed Successfully", "Pass");
+                else
+                    excelReporter.ReportStep(text + " is  not Displayed", "Fail");
+            }
+            catch (NoSuchElementException e)
+            {
+                flag = false;
+                excelReporter.ReportStep("Element with Fieldname could not found..", "FAILURE");
+            }
+            catch (WebDriverException ex)
+            {
+                flag = false;
+                excelReporter.ReportStep("Driver could not found !!!", "FAILURE");
+
+            }
+            finally
+            {
+                TakeSnapshot(this.screenShotFlag, flag);
+            }
+        }
         public void VerifyDeleteApplication(String clubname)
         {
             Boolean flag = true;

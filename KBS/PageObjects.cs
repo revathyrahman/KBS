@@ -8,7 +8,7 @@ namespace MyLCIAutomation
 {
     public class PageObjects
     {
-        public const string idLoginUserName = "PageContent_Login1_txtUsername";
+        public static string idLoginUserName = "PageContent_Login1_txtUsername";
         public const string idLoginPassword = "PageContent_Login1_txtPassword";
         public const string btnLogin = "PageContent_Login1_btnSubmit";
         public const string mnuLinkDistricts = "a_3_1_28";
@@ -16,6 +16,7 @@ namespace MyLCIAutomation
         public const string linkTextAddClub = "hlAddClub";
         public const string idAddClub = "AddClub";
         public const string clubName = "txtClubName";
+
 
     }
 }
