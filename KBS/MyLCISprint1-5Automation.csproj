@@ -101,6 +101,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="PageObjects.cs" />
+    <Compile Include="ReadProperty.cs" />
     <Compile Include="Scripts\DesiredClub.cs" />
     <Compile Include="Scripts\AddClubLinkUsersCheck.cs" />
     <Compile Include="LibraryClasses\UtilityMethods.cs" />

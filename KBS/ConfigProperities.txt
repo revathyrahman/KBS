@@ -1,0 +1,2 @@
+Browser=Firefox
+Report=FAILED

@@ -906,7 +906,7 @@ namespace MyLCIAutomation
             Boolean flag = true;
             try
             {
-                //President fieldlevel chk
+                // Verify President fieldlevel check
 
                 ClickByXPath(".//*[@id='pnlNewClubPresidentHeader']/div/b");
                 VerifyFieldEdit("First Name", "txtPresidentFirstName");
@@ -916,7 +916,7 @@ namespace MyLCIAutomation
                 VerifyFieldEdit("Email Address", "txtPresidentEmailAddress");
                 VerifyButtonExists("Clear", "btnClearPresident");
 
-                //Secretary Fieldlevel chk
+                // Verify Secretary Fieldlevel check
 
                 ClickByXPath(".//*[@id='pnlNewClubSecretaryHeader']/p/b");
                 VerifyFieldEdit("First Name", "txtSecretaryFirstName");
@@ -950,6 +950,7 @@ namespace MyLCIAutomation
             Boolean flag = true;
             try
             {
+                //Verify field is editable for Estimate Charter Members of Lions Club
                 VerifyFieldEdit("New Members", "txtNewMemberCount");
                 VerifyFieldEdit("Transfer Members", "txtTransferMemberCount");
                 VerifyFieldEdit("Student Members", "txtStudentCount");
@@ -979,6 +980,7 @@ namespace MyLCIAutomation
             Boolean flag = true;
             try
             {
+                //Verify field is editable for Estimate Charter Members of University/Campus Club
                 VerifyFieldEdit("New Members", "txtNewMemberCount");
                 VerifyFieldEdit("Transfer Members", "txtTransferMemberCount");
                 VerifyFieldEdit("Students Over 30 Years", "txtStudentOver30YrsCount");
@@ -1006,6 +1008,7 @@ namespace MyLCIAutomation
             Boolean flag = true;
             try
             {
+                //Verify field is editable for Estimate Charter Members of Leo Lions Club
                 VerifyFieldEdit("New Members", "txtNewMemberCount");
                 VerifyFieldEdit("Transfer Members", "txtTransferMemberCount");
                 VerifyFieldEdit("Student Members", "txtStudentCount");
