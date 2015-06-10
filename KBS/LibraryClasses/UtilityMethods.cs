@@ -167,7 +167,8 @@ namespace MyLCIAutomation
        
       public IWebDriver InvokeApplication(String browser, String url)
       {
-          excelReporter.CreateReportHeader("Authorization");
+          excelReporter.CreateReportHeader();
+          excelReporterAuth.CreateReportHeader();
           
           try
           {
