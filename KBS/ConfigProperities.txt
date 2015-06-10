@@ -1,2 +1,7 @@
 Browser=Firefox
+<<<<<<< HEAD
 Report=FAILED
+=======
+ApplicationURL=https://mylcibeta.lionsclubs.org/
+ScreenshotCaptureFlag=FAILED
+>>>>>>> f4a832810035900c019cf823b84c313a3eb18a0b

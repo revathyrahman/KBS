@@ -23,8 +23,14 @@ namespace MyLCIAutomation
             string theDirectory = AppDomain.CurrentDomain.BaseDirectory;
             Dictionary<string, string> Properties = ReadProperty.GetProperties(theDirectory + "\\..\\..\\ConfigProperities.txt");
 
+<<<<<<< HEAD
             UtilityMethods utilityMethods = new UtilityMethods("AddClubLinkUsersCheck", Properties["Report"]);
             utilityMethods.InvokeApplication(Properties["Browser"], "http://mylcibeta.lionsclubs.org/");
+=======
+            UtilityMethods utilityMethods = new UtilityMethods("AddClubLinkUsersCheck",Properties["ScreenshotCaptureFlag"]);
+            
+            utilityMethods.InvokeApplication(Properties["Browser"], Properties["ApplicationURL"]);
+>>>>>>> f4a832810035900c019cf823b84c313a3eb18a0b
 
             for (int i = 0; i < data.Count; i++)
             {
@@ -48,9 +54,7 @@ namespace MyLCIAutomation
                         authorizationreport.ReportStep("User is not Authorized User", "SUCCESS");
                        
                     }
-
-                    
-                                        
+                                                                      
                     //Logout from the application
                     utilityMethods.LogoutMyLCI();
                 }
@@ -58,8 +62,6 @@ namespace MyLCIAutomation
                 {
                     e.StackTrace.ToString();
                 }
-
-             
             }
             // Close the browser and write the report into Excelsheet
             authorizationreport.FlushWorkbook("Authorization-Run");

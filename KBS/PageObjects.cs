@@ -8,12 +8,13 @@ namespace MyLCIAutomation
 {
     public class PageObjects
     {
-        public const string idLoginUserName = "PageContent_Login1_txtUsername";
+        public static string idLoginUserName = "PageContent_Login1_txtUsername";
         public const string idLoginPassword = "PageContent_Login1_txtPassword";
         public const string btnLogin = "PageContent_Login1_btnSubmit";
         public const string mnuLinkDistricts = "a_3_1_28";
         public const string subMenuLinkClubs = "a_3_2_40";
-        public const string linkAddClub = "hlAddClub";
+        public const string linkTextAddClub = "hlAddClub";
+        public const string idAddClub = "AddClub";
         public const string clubName = "txtClubName";
         public const string clubType = "ddlClubType";
         public const string city = "txtCity";
@@ -40,6 +41,8 @@ namespace MyLCIAutomation
         public const string youngAdultscount = "txtYoungAdultMemberCount";
         public const string clubcriteria = "cbReadNewClubCriteria";
         public const string comments = "txtNewClubAppComment";
+
+
 
 
 
