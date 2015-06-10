@@ -24,9 +24,7 @@ namespace MyLCIAutomation
                 {
 
                     
-                    utilityMethods.InvokeApplication("firefox", "https://mylcibeta.lionsclubs.org/");
-
-                    utilityMethods.InvokeApplication("Firefox", "https://mylcibeta.lionsclubs.org/");
+                   utilityMethods.InvokeApplication("Firefox", "https://mylcibeta.lionsclubs.org/");
 
 
                     utilityMethods.LoginMyLCI(data[i][0], data[i][1], data[i][2]);
@@ -46,11 +44,8 @@ namespace MyLCIAutomation
                     utilityMethods.VerifyFieldEdit("Find Club", "txtClubName");
 
 
-                   
-
-                    
-
-                    //utilityMethods.ViewApplication("Club123");
+               
+                     //utilityMethods.ViewApplication("Club123");
 
                     //utilityMethods.LogoutMyLCI();
 
