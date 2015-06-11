@@ -36,40 +36,40 @@ namespace MyLCIAutomation
                     utilityMethods.LoginMyLCI(data[i][0], data[i][1], data[i][2]);
 
                     //Click My Districts Selection
-                    utilityMethods.ClickById("a_3_1_28");
+                    utilityMethods.ClickById(PageObjects.mnuLinkDistricts);
                     //Click Clubs link
-                    utilityMethods.ClickById("a_3_2_40");
+                    utilityMethods.ClickById(PageObjects.subMenuLinkClubs);
 
                    //Verify Cancel request of the New Club 
 
                     //Click Add Club link
-                    utilityMethods.ClickById("hlAddClub");
+                    utilityMethods.ClickById(PageObjects.linkTextAddClub);
                     //Click  on Cancel button
-                    utilityMethods.ClickById("btnCancel");
+                    utilityMethods.ClickById(PageObjects.cancelbtn);
                     //Verify Districts Club Page is displayed
-                    utilityMethods.VerifyTextDisplay(".//*[@id='lblCaption']", "District Clubs");
+                    utilityMethods.VerifyTextDisplay(PageObjects.labelcaption, "District Clubs");
 
 
                     // Verify Delete functionality with Clubname Exists after deletion
 
                    // Click Add Club link
-                   utilityMethods.ClickById("hlAddClub");
+                   utilityMethods.ClickById(PageObjects.linkTextAddClub);
                    // Passing the Club name to the text field
-                   utilityMethods.EnterValueById("txtClubName", "Club-Jeynew");
+                   utilityMethods.EnterValueById(PageObjects.clubName, "Club-Jeynew");
                    // Click Save button
-                   utilityMethods.ClickById("btnSave");
+                   utilityMethods.ClickById(PageObjects.savebtn);
                    // Verify visibility of  buttons
-                   utilityMethods.VerifyButtonExists("Save", "btnSave");
-                   utilityMethods.VerifyButtonExists("Delete", "btnDelete");
-                   utilityMethods.VerifyButtonExists("Cancel", "btnCancel");
+                   utilityMethods.VerifyButtonExists("Save", PageObjects.savebtn);
+                   utilityMethods.VerifyButtonExists("Delete", PageObjects.deletebtn);
+                   utilityMethods.VerifyButtonExists("Cancel", PageObjects.cancelbtn);
                    // Click Delete button
-                   utilityMethods.ClickById("btnDelete");
+                   utilityMethods.ClickById(PageObjects.deletebtn);
                   // Validate the Club name to be deleted is displayed
                    utilityMethods.VerifyTextDisplay(".//*[@id='form1x']/div[4]/div[1]/div[5]/div[1]/div[1]/div/div[6]/div[2]/div/div", "Club-Jeynew");
                   //Click Save button
-                   utilityMethods.ClickById("btnSave");
+                   utilityMethods.ClickById(PageObjects.savebtn);
                    //Verify Districts Club Page is displayed
-                   utilityMethods.VerifyTextDisplay(".//*[@id='lblCaption']", "District Clubs");
+                   utilityMethods.VerifyTextDisplay(PageObjects.labelcaption, "District Clubs");
                    //Navigating to the Club status
                     utilityMethods.FindDesiredClub("All Pending");
                     //Verify Club is deleted
@@ -79,23 +79,23 @@ namespace MyLCIAutomation
 
                     //New Club creation and deletion
                     //Click Add Club link
-                    utilityMethods.ClickById("hlAddClub");
+                    utilityMethods.ClickById(PageObjects.linkTextAddClub);
                     // Passing the Club name to the text field
-                    utilityMethods.EnterValueById("txtClubName", "club-Jeynew");
+                    utilityMethods.EnterValueById(PageObjects.clubName, "club-Jeynew");
                     //Click Save button
-                    utilityMethods.ClickById("btnSave");
+                    utilityMethods.ClickById(PageObjects.savebtn);
                     //Verify visibility  of button
-                    utilityMethods.VerifyButtonExists("Save", "btnSave");
-                    utilityMethods.VerifyButtonExists("Delete", "btnDelete");
-                    utilityMethods.VerifyButtonExists("Cancel", "btnCancel");
+                    utilityMethods.VerifyButtonExists("Save", PageObjects.savebtn);
+                    utilityMethods.VerifyButtonExists("Delete", PageObjects.deletebtn);
+                    utilityMethods.VerifyButtonExists("Cancel", PageObjects.cancelbtn);
 
                     //Once again to delete the existing club
                     //Click Delete button
-                    utilityMethods.ClickById("btnDelete");
+                    utilityMethods.ClickById(PageObjects.deletebtn);
                     //Click Save button
-                    utilityMethods.ClickById("btnSave");
+                    utilityMethods.ClickById(PageObjects.savebtn);
                     //Verify Districts Page is displayed
-                    utilityMethods.VerifyTextDisplay(".//*[@id='lblCaption']", "District Clubs");
+                    utilityMethods.VerifyTextDisplay(PageObjects.labelcaption, "District Clubs");
                     //Navigating to the Club status
                     utilityMethods.FindDesiredClub("All Pending");
 
@@ -104,23 +104,23 @@ namespace MyLCIAutomation
                     //Navigating to the Desired Application
                     utilityMethods.ViewApplication("Alpha club");
                     //Verify the Club Name field is editable
-                    utilityMethods.VerifyFieldEdit("Club Name","txtClubName");
+                    utilityMethods.VerifyFieldEdit("Club Name",PageObjects.clubName);
                     //Verify the Club Type Dropdown is editable
-                    utilityMethods.VerifyDropdownEdit("Club Type", "ddlClubType");
+                    utilityMethods.VerifyDropdownEdit("Club Type",PageObjects.clubType);
                     //Verify the City field is editable 
-                    utilityMethods.VerifyFieldEdit("City", "txtCity");
+                    utilityMethods.VerifyFieldEdit("City", PageObjects.city);
                     //Verify the Club language Dropdown  is editable
-                    utilityMethods.VerifyDropdownEdit("Club Language", "ddlClubLanguage");
+                    utilityMethods.VerifyDropdownEdit("Club Language", PageObjects.clubLang);
                     //Verify the Sponsoring Club button is enabled
-                    utilityMethods.VerifyButtonExists("Sponsoring Club", "btnSelectSponsoringClub");
+                    utilityMethods.VerifyButtonExists("Sponsoring Club", PageObjects.sponsoringClub);
                     //Verify New Club Officers fields are editable
                     utilityMethods.NewClubOfficersChk();
                     //Verify Estimate of Chambers fields are editable
                     utilityMethods.ECMforLionsClub();
                     //Verify the Checkbox is visible for Club criteria
-                    utilityMethods.VerifyCheckboxExists("Club Criteria", "cbReadNewClubCriteria");
+                    utilityMethods.VerifyCheckboxExists("Club Criteria", PageObjects.clubcriteria);
                     //Verify the Comments text area  is editable
-                    utilityMethods.VerifyFieldEdit("Comments", "txtNewClubAppComment");
+                    utilityMethods.VerifyFieldEdit("Comments", PageObjects.comments);
 
                                                                          
 

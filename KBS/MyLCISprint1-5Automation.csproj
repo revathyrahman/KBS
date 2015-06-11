@@ -111,7 +111,7 @@
     <Compile Include="Scripts\DiscontinueClub.cs" />
     <Compile Include="Scripts\Fieldlevelchk.cs" />
     <Compile Include="Scripts\Messagechk.cs" />
-    <Compile Include="UnitTest2.cs" />
+    <Compile Include="Scripts\UnitTest1.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

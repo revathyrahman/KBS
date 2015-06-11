@@ -16,12 +16,13 @@ namespace MyLCIAutomation
         {
             UtilityMethods utilityMethods;
             DataInputProvider dataInputProvider = new DataInputProvider();
-            List<List<String>> data = dataInputProvider.GetInputData("Login-2data");
+            List<List<String>> data = dataInputProvider.GetInputData("LCILogin");
             utilityMethods = new UtilityMethods("Deletevisible_839", "FAILED");
-             utilityMethods.InvokeApplication("Firefox", "https://mylcibeta.lionsclubs.org/");
+            utilityMethods.InvokeApplication("Firefox", "https://mylcibeta.lionsclubs.org/");
 
             for (int i = 0; i < data.Count; i++)
             {
+
                  if (data[i][0].Equals("CS"))
                 {
                     //Call the login method and to verify the home page is displayed
@@ -57,9 +58,11 @@ namespace MyLCIAutomation
                     utilityMethods.LogoutMyLCI();
                     // Close the  Application
                     utilityMethods.CloseApplication();
+
                     }
                 }
             }
         }
     }
+
 

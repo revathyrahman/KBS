@@ -64,13 +64,13 @@ namespace MyLCIAutomation
             try
             {
                 // Enter user name
-                EnterValueById("PageContent_Login1_txtUsername", UserId);
+                EnterValueById(PageObjects.idLoginUserName,UserId);
 
                 // Enter password
-                EnterValueById("PageContent_Login1_txtPassword", Password);
+                EnterValueById(PageObjects.idLoginPassword, Password);
 
                 // Click login button
-                ClickById("PageContent_Login1_btnSubmit");
+                ClickById(PageObjects.btnLogin);
 
                 if (browserDriver.FindElement(By.LinkText("Home")).Displayed)
                 {
@@ -525,8 +525,8 @@ namespace MyLCIAutomation
                 EnterValueById("txtSecretaryEmailAddress", "testsecretary@test.com");
 
                 //Enter Charter Member details
-                EnterValueById("txtNewMemberCount", "2");
-                EnterValueById("txtTransferMemberCount", "0");
+                EnterValueById(PageObjects.newMemberscount, "2");
+                EnterValueById(PageObjects.transferMemberscount, "0");
                 EnterValueById("txtStudentCount", "0");
                 EnterValueById("txtLeoLionCount", "0");
 
@@ -788,7 +788,7 @@ namespace MyLCIAutomation
             }
 
 
-        public void VerifyFieldEdit(string Fieldname, string id)
+        public void VerifyFieldEdit(string Fielddesc, string id)
         {
             Boolean flag = false;
             try
@@ -796,12 +796,12 @@ namespace MyLCIAutomation
                 if (browserDriver.FindElement(By.Id(id)).Enabled)
                 {
                     flag = true;
-                    excelReporter.ReportStep("The" + Fieldname + " is Editable", "Pass");
+                    excelReporter.ReportStep("The" + Fielddesc + " is Editable", "Pass");
                 }
                 else
                 {
                     flag = false;
-                    excelReporter.ReportStep("The" + Fieldname + " is  not Editable", "Fail");
+                    excelReporter.ReportStep("The" + Fielddesc + " is  not Editable", "Fail");
                 }
 
             }
@@ -823,7 +823,7 @@ namespace MyLCIAutomation
 
         }
 
-        public void VerifyDropdownEdit(string Fieldname, string id)
+        public void VerifyDropdownEdit(string Fielddesc, string id)
         {
             Boolean flag = false;
             try
@@ -835,13 +835,13 @@ namespace MyLCIAutomation
                     if (opt.Enabled)
                     {
                         flag = true;
-                        excelReporter.ReportStep("The" + Fieldname + "is Editable", "Pass");
+                        excelReporter.ReportStep("The" + Fielddesc + "is Editable", "Pass");
                         break;
                      }
                     else
                     {
                         flag = false;
-                        excelReporter.ReportStep("The" + Fieldname + "is  not Editable", "Fail");
+                        excelReporter.ReportStep("The" + Fielddesc + "is  not Editable", "Fail");
                     }
 
                 }
@@ -863,7 +863,7 @@ namespace MyLCIAutomation
 
         }
 
-        public void VerifyButtonExists(string Fieldname, string id)
+        public void VerifyButtonExists(string Fielddesc, string id)
         {
             Boolean flag = false;
             try
@@ -873,12 +873,12 @@ namespace MyLCIAutomation
                 if (button.Enabled)
                 {
                     flag = true;
-                    excelReporter.ReportStep("The" + Fieldname + " is Enabled", "Pass");
+                    excelReporter.ReportStep("The" + Fielddesc + " button is Enabled", "Pass");
                 }
                 else
                 {
                     flag = false;
-                    excelReporter.ReportStep("The" + Fieldname + " is  not Enabled", "Fail");
+                    excelReporter.ReportStep("The" + Fielddesc + "  button is not Enabled", "Fail");
                 }
 
             }
@@ -909,22 +909,22 @@ namespace MyLCIAutomation
                 // Verify President fieldlevel check
 
                 ClickByXPath(".//*[@id='pnlNewClubPresidentHeader']/div/b");
-                VerifyFieldEdit("First Name", "txtPresidentFirstName");
-                VerifyFieldEdit("Last Name", "txtPresidentLastName");
-                VerifyFieldEdit("Year Of Birth", "txtPresidentYearOfBirth");
-                VerifyDropdownEdit("Gender", "ddlPresidentGender");
-                VerifyFieldEdit("Email Address", "txtPresidentEmailAddress");
-                VerifyButtonExists("Clear", "btnClearPresident");
+                VerifyFieldEdit("First Name", PageObjects.presidentFirstname);
+                VerifyFieldEdit("Last Name", PageObjects.presidentLastname);
+                VerifyFieldEdit("Year Of Birth", PageObjects.presidentYOB);
+                VerifyDropdownEdit("Gender", PageObjects.presidentGender);
+                VerifyFieldEdit("Email Address", PageObjects.presidentEmailaddress);
+                VerifyButtonExists("Clear", PageObjects.presidentClearbtn);
 
                 // Verify Secretary Fieldlevel check
 
                 ClickByXPath(".//*[@id='pnlNewClubSecretaryHeader']/p/b");
-                VerifyFieldEdit("First Name", "txtSecretaryFirstName");
-                VerifyFieldEdit("Last Name", "txtSecretaryLastName");
-                VerifyFieldEdit("Year Of Birth", "txtSecretaryYearOfBirth");
-                VerifyDropdownEdit("Gender", "ddlSecretaryGender");
-                VerifyFieldEdit("Email Address", "txtSecretaryEmailAddress");
-                VerifyButtonExists("Clear", "btnClearSecretary");
+                VerifyFieldEdit("First Name", PageObjects.secretaryFirstname);
+                VerifyFieldEdit("Last Name", PageObjects.secretaryLastname);
+                VerifyFieldEdit("Year Of Birth", PageObjects.secretaryYOB);
+                VerifyDropdownEdit("Gender", PageObjects.secretaryGender);
+                VerifyFieldEdit("Email Address", PageObjects.secretaryEmailaddress);
+                VerifyButtonExists("Clear", PageObjects.secretaryclearbtn);
             }
             catch (NoSuchElementException e)
             {
@@ -951,10 +951,10 @@ namespace MyLCIAutomation
             try
             {
                 //Verify field is editable for Estimate Charter Members of Lions Club
-                VerifyFieldEdit("New Members", "txtNewMemberCount");
-                VerifyFieldEdit("Transfer Members", "txtTransferMemberCount");
-                VerifyFieldEdit("Student Members", "txtStudentCount");
-                VerifyFieldEdit("Leo Lions", "txtLeoLionCount");
+                VerifyFieldEdit("New Members", PageObjects.newMemberscount);
+                VerifyFieldEdit("Transfer Members", PageObjects.transferMemberscount);
+                VerifyFieldEdit("Student Members", PageObjects.studentMemberscount);
+                VerifyFieldEdit("Leo Lions", PageObjects.leoLionscount);
             }
             catch (NoSuchElementException e)
             {
@@ -981,11 +981,11 @@ namespace MyLCIAutomation
             try
             {
                 //Verify field is editable for Estimate Charter Members of University/Campus Club
-                VerifyFieldEdit("New Members", "txtNewMemberCount");
-                VerifyFieldEdit("Transfer Members", "txtTransferMemberCount");
-                VerifyFieldEdit("Students Over 30 Years", "txtStudentOver30YrsCount");
-                VerifyFieldEdit("Students 30 Years or younger", "txtStudentUnder30YrsCount");
-                VerifyFieldEdit("Leo Lions", "txtLeoLionCount");
+                VerifyFieldEdit("New Members", PageObjects.newMemberscount);
+                VerifyFieldEdit("Transfer Members", PageObjects.transferMemberscount);
+                VerifyFieldEdit("Students Over 30 Years", PageObjects.studentsOver30Yrs);
+                VerifyFieldEdit("Students 30 Years or younger", PageObjects.studentsUnder30yrs);
+                VerifyFieldEdit("Leo Lions", PageObjects.leoLionscount);
             }
             catch (NoSuchElementException e)
             {
@@ -1009,11 +1009,11 @@ namespace MyLCIAutomation
             try
             {
                 //Verify field is editable for Estimate Charter Members of Leo Lions Club
-                VerifyFieldEdit("New Members", "txtNewMemberCount");
-                VerifyFieldEdit("Transfer Members", "txtTransferMemberCount");
-                VerifyFieldEdit("Student Members", "txtStudentCount");
-                VerifyFieldEdit("Young Adults", " txtYoungAdultMemberCount");
-                VerifyFieldEdit("Leo Lions", "txtLeoLionCount");
+                VerifyFieldEdit("New Members", PageObjects.newMemberscount);
+                VerifyFieldEdit("Transfer Members", PageObjects.transferMemberscount);
+                VerifyFieldEdit("Student Members", PageObjects.studentMemberscount);
+                VerifyFieldEdit("Young Adults", PageObjects.youngAdultscount);
+                VerifyFieldEdit("Leo Lions", PageObjects.leoLionscount);
             }
             catch (NoSuchElementException e)
             {
@@ -1176,7 +1176,7 @@ namespace MyLCIAutomation
             }
         }
 
-        public void VerifyMessage(String Fieldname,String Xpath,String Value)
+        public void VerifyMessage(String Fielddesc,String Xpath,String Value)
         {
              Boolean flag = false;
             try
@@ -1217,19 +1217,23 @@ namespace MyLCIAutomation
 
            try
                {
-               
+                   FindDesiredClub("All Pending");
                  IList<IWebElement> clublist = browserDriver.FindElements(By.XPath("//div[@class='gridHeader']/div/div/div[1]"));
 
                    int Countclublist= clublist.Count();
                    if (Countclublist > 10)
                    {
                        flag = true;
+                       ClickById(PageObjects.linkTextAddClub);
                        VerifyMessage("Clubcount", ".//*[@id='lblDistrictNewClubRequestCountWarning']", "New Club Request represents 10 or more new clubs for your district");
+                       
                    }
                    else
+                   {
                        flag = true;
 
-                    excelReporter.ReportStep("The Club Count is less than 10 hence No message is displayed","Pass");
+                       excelReporter.ReportStep("The Club Count is less than 10 hence No message is displayed", "Pass");
+                   }
             }
             catch (NoSuchElementException e)
             {
