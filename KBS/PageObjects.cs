@@ -13,6 +13,7 @@ namespace MyLCIAutomation
         public const string btnLogin = "PageContent_Login1_btnSubmit";
         public const string mnuLinkDistricts = "a_3_1_28";
         public const string subMenuLinkClubs = "a_3_2_40";
+<<<<<<< HEAD
         public const string lblSearchOption = "lblSearchOptionTitle";
         public const string ulLanguageOptions ="option";
         public const string csmnuLinkDistricts = "a_3_1_30";
@@ -79,6 +80,56 @@ namespace MyLCIAutomation
         public const string idContinueClub = "cbStatusAction_Continue";
         public const string xpathFindClubQuickViewList = "//*[@id='pnlQuickViews']/li/a";
         public const string xpathClubText = ".//*[@id='form1x']/div[4]/div[1]/div[5]/div[1]/div[1]/div/div[6]/div[2]/div/div";
+=======
+        public const string csmnuLinkDistricts = "a_3_1_30";
+        public const string cssubMenuLinkClubs = "a_3_2_35";
+        public const string linkTextAddClub = "hlAddClub";
+        public const string idAddClub = "AddClub";
+        public const string clubName = "txtClubName";
+        public const string clubType = "ddlClubType";
+        public const string city = "txtCity";
+        public const string clubLang = "ddlClubLanguage";
+        public const string sponsoringClub = "btnSelectSponsoringClub";
+        public const string presidentFirstname = "txtPresidentFirstName";
+        public const string presidentLastname = "txtPresidentLastName";
+        public const string presidentYOB = "txtPresidentYearOfBirth";
+        public const string presidentGender = "ddlPresidentGender";
+        public const string presidentEmailaddress= "txtPresidentEmailAddress";
+        public const string presidentClearbtn = "btnClearPresident";
+        public const string secretaryFirstname = "txtSecretaryFirstName";
+        public const string secretaryLastname = "txtSecretaryLastName";
+        public const string secretaryYOB = "txtSecretaryYearOfBirth";
+        public const string secretaryGender = "ddlSecretaryGender";
+        public const string secretaryEmailaddress = "txtSecretaryEmailAddress";
+        public const string secretaryclearbtn = "btnClearSecretary";
+        public const string newMemberscount = "txtNewMemberCount";
+        public const string transferMemberscount = "txtTransferMemberCount";
+        public const string studentMemberscount ="txtStudentCount";
+        public const string leoLionscount = "txtLeoLionCount";
+        public const string studentsOver30Yrs = "txtStudentOver30YrsCount";
+        public const string studentsUnder30yrs ="txtStudentUnder30YrsCount";
+        public const string youngAdultscount = "txtYoungAdultMemberCount";
+        public const string clubcriteria = "cbReadNewClubCriteria";
+        public const string comments = "txtNewClubAppComment";
+        public const string savebtn = "btnSave";
+        public const string cancelbtn = "btnCancel";
+        public const string deletebtn = "btnDelete";
+        public const string submitselection = "cbStatusAction_Submit";
+        public const string errorlabel = ".//*[@id='lblerr']";
+        public const string schoolname = ".//*[@id='txtSchoolName']";
+        public const string clubhelp = ".//*[@id='lblClubNamingHelp']";
+        public const string lionesswrng = ".//*[@id='lblLionessWarning']";
+        public const string addcommentbtn = "btnNewComment";
+        public const string modalcomments = "txtModalComments";
+        public const string modalsavebtn = "btnModalCommentsSave";
+        public const string leolionwrng = ".//*[@id='lblLeoLionWarning']";
+        public const string labelcaption = ".//*[@id='lblCaption']";
+
+
+
+
+
+>>>>>>> 08179da9301276880e1ad79170424002a6c6ffb4
 
     }
 }

@@ -57,8 +57,12 @@ namespace MyLCIAutomation
 
                         utilityMethods.ContinueClub(ClubName);
 
+<<<<<<< HEAD
                         utilityMethods.LogoutMyLCI();
                     }
+=======
+                   // utilityMethods.FindClubs();
+>>>>>>> 08179da9301276880e1ad79170424002a6c6ffb4
 
                     for (int i = 0; i < data.Count; i++)
                     {
@@ -77,7 +81,11 @@ namespace MyLCIAutomation
 
                         utilityMethods.VerifyTextDisplay("//div[@id='divNewClubApplication']/div[1]/div/div[2]", "The Club Application has been Discontinued");
 
+<<<<<<< HEAD
                         utilityMethods.LogoutMyLCI();
+=======
+                       // utilityMethods.FindClubs();
+>>>>>>> 08179da9301276880e1ad79170424002a6c6ffb4
 
                         for (int j = 0; j < lciLoginData.Count; j++)
                         {
