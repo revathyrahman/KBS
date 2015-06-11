@@ -36,17 +36,17 @@ namespace MyLCIAutomation
             this.dataSet = dataSet;
         }
 
-        public UtilityMethods(string testcasename, string screenshotflag)
+        public UtilityMethods(string testCaseName, string screenshotFlag)
         {
-            this.testCaseName = testcasename;
-            this.screenShotFlag = screenshotflag;
+            this.testCaseName = testCaseName;
+            this.screenShotFlag = screenshotFlag;
         }
 
-         public UtilityMethods(string testCaseName, int dataSet,string screenshotflag)
+         public UtilityMethods(string testCaseName, int dataSet,string screenshotFlag)
         {
             this.testCaseName = testCaseName;
             this.dataSet = dataSet;
-            this.screenShotFlag = screenshotflag;
+            this.screenShotFlag = screenshotFlag;
         }
 
 
@@ -64,15 +64,15 @@ namespace MyLCIAutomation
             try
             {
                 // Enter user name
-                EnterValueById("PageContent_Login1_txtUsername", UserId);
+                EnterValueById(PageObjects.idLoginUserName, UserId);
 
                 // Enter password
-                EnterValueById("PageContent_Login1_txtPassword", Password);
+                EnterValueById(PageObjects.idLoginPassword, Password);
 
                 // Click login button
-                ClickById("PageContent_Login1_btnSubmit");
+                ClickById(PageObjects.btnLogin);
 
-                if (browserDriver.FindElement(By.LinkText("Home")).Displayed)
+                if (browserDriver.FindElement(By.LinkText(PageObjects.lnkTextMyLCIHome)).Displayed)
                 {
                     excelReporter.ReportStep("Login is Successful for Userid: " + UserId, "Pass");
                     excelReporterAuth.ReportStep("Authorization", "User id: " + UserId + " is Successful", "SUCCESS");
@@ -109,10 +109,10 @@ namespace MyLCIAutomation
             Boolean flag = false;
             try
             {
-                browserDriver.FindElement(By.Id("a_3_1_28")).Click();
-                browserDriver.FindElement(By.Id("a_3_2_40")).Click();
+                browserDriver.FindElement(By.Id(PageObjects.mnuLinkDistricts)).Click();
+                browserDriver.FindElement(By.Id(PageObjects.subMenuLinkClubs)).Click();
 
-                if (browserDriver.FindElement(By.LinkText("Add Club")).Enabled)
+                if (browserDriver.FindElement(By.LinkText(PageObjects.linkTextAddClub)).Enabled)
                 {
                     flag = true;
                     excelReporter.ReportStep("Add Club Link exists", "Pass");
@@ -139,10 +139,10 @@ namespace MyLCIAutomation
             Boolean flag = false;
             try
             {
-                browserDriver.FindElement(By.Id("a_3_1_28")).Click();
-                browserDriver.FindElement(By.Id("a_3_2_40")).Click();
+                browserDriver.FindElement(By.Id(PageObjects.mnuLinkDistricts)).Click();
+                browserDriver.FindElement(By.Id(PageObjects.subMenuLinkClubs)).Click();
 
-                if (browserDriver.FindElement(By.Id("lblSearchOptionTitle")).Enabled)
+                if (browserDriver.FindElement(By.Id(PageObjects.lblSearchOption)).Enabled)
                 {
                     flag = true;
                     excelReporter.ReportStep("Find Clubs Link exists", "Pass");
@@ -180,10 +180,12 @@ namespace MyLCIAutomation
                 //Code to invoke Chrome browser 
                  browserDriver = new ChromeDriver();
              }
-             else
+             else if (browser.ToLower().Equals("firefox"))
              {
+                //Code to invoke Firefox browser 
                  browserDriver = new FirefoxDriver();
              }
+             
              browserDriver.Navigate().GoToUrl(url);
              browserDriver.Manage().Window.Maximize();
              WebDriverWait wait = new WebDriverWait(browserDriver, TimeSpan.FromSeconds(10));
@@ -197,8 +199,8 @@ namespace MyLCIAutomation
         }
       public void VerifyLanguageListAddClub()
       {
-          IWebElement ele = browserDriver.FindElement(By.Id("ddlClubLanguage"));
-          IList<IWebElement> options= ele.FindElements(By.TagName("option"));
+          IWebElement ele = browserDriver.FindElement(By.Id(PageObjects.ddlclubLang));
+          IList<IWebElement> options = ele.FindElements(By.TagName(PageObjects.ulLanguageOptions));
           if (options.Count() == 12)
           {
               excelReporter.ReportStep("12 languages are listed", "PASS");
@@ -381,7 +383,7 @@ namespace MyLCIAutomation
 
    
 
-        public void ClickByCSS(String css)
+        public void ClickByCSS(string css)
         {
             Boolean flag = true;
             try
@@ -402,7 +404,7 @@ namespace MyLCIAutomation
                 TakeSnapshot(this.screenShotFlag, flag);
             }
         }
-        public Boolean VerifyElementExists(String XPath)
+        public Boolean VerifyElementExists(string XPath)
         {
             Boolean flag = false;
             try
@@ -422,7 +424,7 @@ namespace MyLCIAutomation
         }
 
        
-        public void LinkClickByText(String text)
+        public void LinkClickByText(string text)
         {
             Boolean flag=true;
             try
@@ -448,7 +450,7 @@ namespace MyLCIAutomation
 
        
         
-        public void ClickByXPath(String XPath)
+        public void ClickByXPath(string XPath)
         {
             Boolean flag = true;
             try
@@ -473,7 +475,7 @@ namespace MyLCIAutomation
         }
 
 
-        public void ClickById(String Id)
+        public void ClickById(string Id)
         {
             Boolean flag = true;
             try
@@ -509,64 +511,58 @@ namespace MyLCIAutomation
             {
                 
                 //Enter ClubName - Unique
-                EnterValueById("txtClubName", ClubName);
+                EnterValueById(PageObjects.txtclubName, ClubName);
 
                 //Select Club Type
-                SelectDropdownValueByVisibleText("ddlClubType", "Lions Club");
+                SelectDropdownValueByVisibleText(PageObjects.ddlClubType, "Lions Club");
 
                 //Enter Club City 
-                EnterValueById("txtCity", "Automation TestCity");
+                EnterValueById(PageObjects.txtCity, "Automation TestCity");
 
 
                 //Select from Club Language
-                SelectDropdownValueByVisibleText("ddlClubLanguage", "English");
+                SelectDropdownValueByVisibleText(PageObjects.ddlclubLang, "English");
 
-                //Click for a sponsoring club
-                ClickById("btnSelectSponsoringClub");
-                browserDriver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(5));
-                ClickByXPath("//div[@class='DistrictClubResults']/div/div/div[1]");
-                browserDriver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(3));
 
-               // Select from Club Language
-                SelectDropdownValueByVisibleText("ddlClubLanguage", "English");
+                // Select from Club Language
+                SelectDropdownValueByVisibleText(PageObjects.ddlclubLang, "English");
                 VerifyLanguageListAddClub();
-                
-                //Click for a sponsoring club
-                ClickById("btnSelectSponsoringClub");
-                browserDriver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(5));
-                ClickByXPath("//div[@class='DistrictClubResults']/div/div/div[1]");
-                browserDriver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(3));
 
-                               
+                //Click for a sponsoring club
+                ClickById(PageObjects.btnSponsoringClub);
+                browserDriver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(5));
+                ClickByXPath(PageObjects.xpathListSponsoringClubs);
+                browserDriver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(3));
+                                                                       
                 //Enter New Club President creation details
-                ClickByXPath("//*[@id='pnlNewClubPresidentHeader']/div/b");
-                EnterValueById("txtPresidentFirstName", "PresidentFirstname");
-                EnterValueById("txtPresidentLastName", "PresidentLastname");
-                EnterValueById("txtPresidentYearOfBirth", "1980");
-                SelectDropdownValueByVisibleText("ddlPresidentGender", "Male");
-                EnterValueById("txtPresidentEmailAddress", "president@test.com");
+                ClickByXPath(PageObjects.xpathClubPresident);
+                EnterValueById(PageObjects.idPresidentFirstname, "PresidentFirstname");
+                EnterValueById(PageObjects.idPresidentLastname, "PresidentLastname");
+                EnterValueById(PageObjects.idPresidentYOB, "1980");
+                SelectDropdownValueByVisibleText(PageObjects.idPresidentGender, "Male");
+                EnterValueById(PageObjects.idPresidentEmailaddress, "president@test.com");
 
                 //Enter New Club Secretary Creation details
-                ClickByXPath("//*[@id='pnlNewClubSecretaryHeader']/p/b");
-                EnterValueById("txtSecretaryFirstName", "SecretaryFirstName");
-                EnterValueById("txtSecretaryLastName", "SecretaryLastName");
-                EnterValueById("txtSecretaryYearOfBirth", "1980");
-                SelectDropdownValueByVisibleText("ddlSecretaryGender", "Female");
-                EnterValueById("txtSecretaryEmailAddress", "testsecretary@test.com");
+                ClickByXPath(PageObjects.xpathClubSecretary);
+                EnterValueById(PageObjects.idSecretaryFirstname, "SecretaryFirstName");
+                EnterValueById(PageObjects.idSecretaryLastname, "SecretaryLastName");
+                EnterValueById(PageObjects.idSecretaryYOB, "1980");
+                SelectDropdownValueByVisibleText(PageObjects.idSecretaryGender, "Female");
+                EnterValueById(PageObjects.idSsecretaryEmailaddress, "testsecretary@test.com");
 
                 //Enter Charter Member details
-                EnterValueById("txtNewMemberCount", "20");
-                EnterValueById("txtTransferMemberCount", "0");
-                EnterValueById("txtStudentCount", "0");
-                EnterValueById("txtLeoLionCount", "0");
+                EnterValueById(PageObjects.idNewMemberscount, "20");
+                EnterValueById(PageObjects.idTransferMemberscount, "0");
+                EnterValueById(PageObjects.idStudentMemberscount, "0");
+                EnterValueById(PageObjects.idLeoLionscount, "0");
 
                 //Check New Club Criteria checkbox
-                ClickById("cbReadNewClubCriteria");
+                ClickById(PageObjects.idNewClubCriteria);
                 //Enter Comment
-                EnterValueById("txtNewClubAppComment", "test comment");
+                EnterValueById(PageObjects.idComments, "test comment");
 
                 //Click on Save
-                ClickById("btnSave");
+                ClickById(PageObjects.idBtnSave);
                 browserDriver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(2));
 
             }
@@ -586,7 +582,7 @@ namespace MyLCIAutomation
             Boolean flag=true;
             try
             {
-                LinkClickByText("Logout");
+                LinkClickByText(PageObjects.linkTextLogout);
 
             }
             catch (NoSuchElementException e)
@@ -601,25 +597,24 @@ namespace MyLCIAutomation
         }
 
       
-        public void VerifyMyTask(String taskname)
+        public void VerifyMyTask(string taskName)
         {
             Boolean flag=true;
             try
             {
-               IList<IWebElement> tasks = browserDriver.FindElements(By.XPath("//div[@id='Tab265']/div/ul/li/div/div/a"));
+                IList<IWebElement> listOfTasks = browserDriver.FindElements(By.XPath(PageObjects.xpathTaskList));
                 
-                int val=0;
-                foreach (IWebElement tlist in tasks)
+                int clubCount=0;
+                foreach (IWebElement tlist in listOfTasks)
                 {
-                    string listvalue = tlist.Text;
-                    if(listvalue.Contains(taskname))
-
+                    string listValue = tlist.Text;
+                    if(listValue.Contains(taskName))
                     {
                         tlist.Click(); 
                         excelReporter.ReportStep("Pending Authorization task is clicked successfully", "SUCCESS");
                         break;
                     }
-                    val++;
+                    clubCount++;
                 }
 
             }
@@ -644,9 +639,9 @@ namespace MyLCIAutomation
         {
             try
             {
-                ClickById("cbStatusAction_Discontinue");
-                EnterValueById("txtDiscontinueNote", "Test Comment");
-                ClickById("btnSave");
+                ClickById(PageObjects.idDiscontinueClubchkbox);
+                EnterValueById(PageObjects.idDiscontinueNote, "Test Comment");
+                ClickById(PageObjects.idBtnSave);
                 string ConfirmationMessage = browserDriver.FindElement(By.XPath("//div[@class='confirmationMessages']/table/tbody/tr/td")).Text;
 
                 if (ConfirmationMessage.Contains("Discontinued"))
@@ -657,7 +652,7 @@ namespace MyLCIAutomation
                 {
                     excelReporter.ReportStep("The club Name" + ClubName + "is not Discontinued", "Fail");
                 }
-                LinkClickByText("Go to Application");
+                LinkClickByText(PageObjects.linkTextGotoApplication);
                 Thread.Sleep(7000);
             }
             catch (Exception e)

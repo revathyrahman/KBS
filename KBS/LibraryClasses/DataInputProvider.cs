@@ -23,23 +23,23 @@ namespace MyLCIAutomation
 
             List<List<String>> data = new List<List<String>>();
             string theDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            FileStream fis = new FileStream(theDirectory + "\\..\\..\\Data\\" + DataSheetName + ".xlsx", FileMode.Open, FileAccess.Read);
-            IWorkbook workbook = new XSSFWorkbook(fis);
-            ISheet sheet = new XSSFSheet();
-            sheet = workbook.GetSheet("Login");
+            FileStream fileInputstream = new FileStream(theDirectory + "\\..\\..\\Data\\" + DataSheetName + ".xlsx", FileMode.Open, FileAccess.Read);
+            IWorkbook workbook = new XSSFWorkbook(fileInputstream);
+            ISheet workSheet = new XSSFSheet();
+            workSheet = workbook.GetSheet("Login");
 
             // Get the number of rows
-            int rowCount = sheet.LastRowNum;
+            int rowCount = workSheet.LastRowNum;
 
             // Get the number of columns
-            int columnCount = sheet.GetRow(0).LastCellNum;
+            int columnCount = workSheet.GetRow(0).LastCellNum;
 
             // Loop through the rows
             for (int i = 1; i < rowCount + 1; i++)
             {
                 try
                 {
-                    IRow row = sheet.GetRow(i);
+                    IRow row = workSheet.GetRow(i);
                     List<String> record = new List<String>();
 
                     for (int j = 0; j < columnCount; j++)
@@ -59,7 +59,7 @@ namespace MyLCIAutomation
                 {
                     e.StackTrace.ToString();                   
                 }
-              fis.Close();
+              fileInputstream.Close();
            }
           return data;
        }

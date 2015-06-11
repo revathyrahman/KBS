@@ -1,3 +1,8 @@
+//Browser type for Execution
 Browser=Firefox
+
+//Application URL
 ApplicationURL=https://mylcibeta.lionsclubs.org/
+
+//Screenshot to be captured for "ALL" steps or only "FAILED" STEPS
 ScreenshotCaptureFlag=FAILED

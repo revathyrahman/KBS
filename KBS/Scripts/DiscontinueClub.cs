@@ -18,10 +18,15 @@ namespace MyLCIAutomation
             ExcelReporter excelReporter = new ExcelReporter();
             List<List<String>> data = dataInputProvider.GetInputData("Login");
             List<List<string>> lciLoginData = dataInputProvider.GetInputData("LCILogin");
-            UtilityMethods utilityMethods = new UtilityMethods("DiscontinueClub", "ALL");
             string ClubName = null;
 
-            utilityMethods.InvokeApplication("Firefox", "http://mylcibeta.lionsclubs.org/");
+            string theDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            Dictionary<string, string> Properties = ReadProperty.GetProperties(theDirectory + "\\..\\..\\ConfigProperities.txt");
+
+            UtilityMethods utilityMethods = new UtilityMethods("DiscontinueClub", Properties["ScreenshotCaptureFlag"]);
+
+            utilityMethods.InvokeApplication(Properties["Browser"], Properties["ApplicationURL"]);
+
             try
             {
                 for (int i = 0; i < lciLoginData.Count; i++)
@@ -34,7 +39,7 @@ namespace MyLCIAutomation
                      Boolean addClubLinkstatus = utilityMethods.VerifyAddClubLinkExists("hlAddClub");
                                                         
                      //Click Add Club link
-                     utilityMethods.ClickById("hlAddClub");
+                     utilityMethods.ClickById(PageObjects.idAddClub);
 
                      ClubName = utilityMethods.AddClubFormEntry();
 
@@ -55,13 +60,10 @@ namespace MyLCIAutomation
 
                     utilityMethods.FindDesiredClub("Pending DG/CL Authorization");
 
-                    utilityMethods.ViewApplication("Club352");
-                    
-                     // utilityMethods.ViewApplication(ClubName);
-
-                     utilityMethods.DiscontinueClub("Club352");
-                     
-                     //  utilityMethods.DiscontinueClub(ClubName);
+                   
+                     utilityMethods.ViewApplication(ClubName);
+                                                              
+                     utilityMethods.DiscontinueClub(ClubName);
 
                      utilityMethods.VerifyButtonExists("Add Comments", "btnNewComment");
 
@@ -78,11 +80,11 @@ namespace MyLCIAutomation
 
                         utilityMethods.FindDesiredClub("All Discontinued");
 
-                        utilityMethods.ViewApplication("Club352");
+                        utilityMethods.ViewApplication(ClubName);
 
-                        utilityMethods.ContinueClub("Club352");
+                        utilityMethods.ContinueClub(ClubName);
 
-                        utilityMethods.VerifyTextDisplay("//div[@id='divNewClubApplication']/div[1]/div/div[2]", "pending District Governor authorization");
+                        utilityMethods.VerifyTextDisplay(msgClubConfirmation, "pending District Governor authorization");
                         
                         utilityMethods.LogoutMyLCI();
                       }

@@ -20,7 +20,7 @@ namespace MyLCIAutomation
     {
        private static IWorkbook workbook ;
        private static IRow row;
-       private static ISheet sheet;
+       private static ISheet workSheet;
        private string testCaseName;
        public ExcelReporter(string testCaseName)
        {
@@ -33,28 +33,28 @@ namespace MyLCIAutomation
         public void CreateReportHeader()
         {
             workbook = new XSSFWorkbook();
-            sheet = workbook.CreateSheet("Report");
-            row = sheet.CreateRow(0);    
+            workSheet = workbook.CreateSheet("Report");
+            row = workSheet.CreateRow(0);    
             row.CreateCell(0).SetCellValue("Step No");
             row.CreateCell(1).SetCellValue("Test Description");
             row.CreateCell(2).SetCellValue("Test Status");
         }
 
-        public void CreateReportHeader(string testcasename)
+        public void CreateReportHeader(string testCaseName)
         {
             workbook = new XSSFWorkbook();
-            sheet = workbook.CreateSheet("Report");
-            row = sheet.CreateRow(0);
+            workSheet = workbook.CreateSheet("Report");
+            row = workSheet.CreateRow(0);
             row.CreateCell(0).SetCellValue("Step No");
             row.CreateCell(1).SetCellValue("Test Description");
             row.CreateCell(2).SetCellValue("Test Status");
         }
         // Write to the Excel Report file
-        public void FlushWorkbook(String TestCaseName)
+        public void FlushWorkbook(String testCaseName)
         {
             try
             {
-                FileStream sw = File.Create(AppDomain.CurrentDomain.BaseDirectory + "\\..\\..\\report\\" + TestCaseName + ".xlsx");
+                FileStream sw = File.Create(AppDomain.CurrentDomain.BaseDirectory + "\\..\\..\\report\\" + testCaseName + ".xlsx");
                 workbook.Write(sw);
                 sw.Close();
             }
@@ -66,16 +66,16 @@ namespace MyLCIAutomation
         // Write Stepwise Results
         public void ReportStep(String Desc, String Status)
         {   
-           row = sheet.CreateRow(sheet.LastRowNum+1);
-           row.CreateCell(0).SetCellValue(sheet.LastRowNum);
+           row = workSheet.CreateRow(workSheet.LastRowNum+1);
+           row.CreateCell(0).SetCellValue(workSheet.LastRowNum);
            row.CreateCell(1).SetCellValue(Desc);
     	   row.CreateCell(2).SetCellValue(Status);
 		}
 
-        public void ReportStep(String testcasename,String Desc, String Status)
+        public void ReportStep(String testCaseName,String Desc, String Status)
         {
-            row = sheet.CreateRow(sheet.LastRowNum + 1);
-            row.CreateCell(0).SetCellValue(sheet.LastRowNum);
+            row = workSheet.CreateRow(workSheet.LastRowNum + 1);
+            row.CreateCell(0).SetCellValue(workSheet.LastRowNum);
             row.CreateCell(1).SetCellValue(Desc);
             row.CreateCell(2).SetCellValue(Status);
         }
