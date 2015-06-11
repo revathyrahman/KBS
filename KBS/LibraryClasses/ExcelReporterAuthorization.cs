@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,26 +18,29 @@ namespace MyLCIAutomation
 {
    public class ExcelReporterAuthorization
     {
-       private static IWorkbook workbookAuthorization;
-       private static IRow rowAuth;
-       private static ISheet sheetAuth;
-        public void CreateReportHeader()
+       private static IWorkbook workbook ;
+       private static IRow row;
+       private static ISheet sheet;
+       private string testCaseName;
+      
+       public void CreateReportHeader()
         {
-            workbookAuthorization = new XSSFWorkbook();
-            sheetAuth = workbookAuthorization.CreateSheet("Report");
-            rowAuth = sheetAuth.CreateRow(0);    
-            rowAuth.CreateCell(0).SetCellValue("Step No");
-            rowAuth.CreateCell(1).SetCellValue("Test Description");
-            rowAuth.CreateCell(2).SetCellValue("Test Status");
+            workbook = new XSSFWorkbook();
+            sheet = workbook.CreateSheet("Report");
+            row = sheet.CreateRow(0);    
+            row.CreateCell(0).SetCellValue("Step No");
+            row.CreateCell(1).SetCellValue("Test Description");
+            row.CreateCell(2).SetCellValue("Test Status");
         }
+
+        
         // Write to the Excel Report file
-   
-       public void FlushWorkbook(String TestCaseName)
+        public void FlushWorkbook(String TestCaseName)
         {
             try
             {
                 FileStream sw = File.Create(AppDomain.CurrentDomain.BaseDirectory + "\\..\\..\\report\\" + TestCaseName + ".xlsx");
-                workbookAuthorization.Write(sw);
+                workbook.Write(sw);
                 sw.Close();
             }
             catch (IOException ioe)
@@ -48,10 +51,12 @@ namespace MyLCIAutomation
         // Write Stepwise Results
         public void ReportStep(String Desc, String Status)
         {   
-           rowAuth = sheetAuth.CreateRow(sheetAuth.LastRowNum+1);
-           rowAuth.CreateCell(0).SetCellValue(sheetAuth.LastRowNum);
-           rowAuth.CreateCell(1).SetCellValue(Desc);
-    	   rowAuth.CreateCell(2).SetCellValue(Status);
+           row = sheet.CreateRow(sheet.LastRowNum+1);
+           row.CreateCell(0).SetCellValue(sheet.LastRowNum);
+           row.CreateCell(1).SetCellValue(Desc);
+    	   row.CreateCell(2).SetCellValue(Status);
 		}
+
+       
     }
 }

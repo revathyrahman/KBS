@@ -1,7 +1,11 @@
 //Browser type for Execution
 Browser=Firefox
+<<<<<<< HEAD
 
 //Application URL
+=======
+Report=FAILED
+>>>>>>> 120a87bd9485fad79c55569dd07a65a016af1143
 ApplicationURL=https://mylcibeta.lionsclubs.org/
 
 //Screenshot to be captured for "ALL" steps or only "FAILED" STEPS

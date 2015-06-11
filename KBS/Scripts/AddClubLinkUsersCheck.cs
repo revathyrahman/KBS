@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
@@ -16,15 +16,18 @@ namespace MyLCIAutomation
         public void AddClubLinkCheck()
         {
             DataInputProvider dataInputProvider = new DataInputProvider();
-            ExcelReporter authorizationReport = new ExcelReporter("Authorization");
+            ExcelReporter excelreport = new ExcelReporter();
             List<List<String>> data = dataInputProvider.GetInputData("Authorization");
+            ExcelReporterAuthorization authorizationreport = new ExcelReporterAuthorization();
 
             string theDirectory = AppDomain.CurrentDomain.BaseDirectory;
             Dictionary<string, string> Properties = ReadProperty.GetProperties(theDirectory + "\\..\\..\\ConfigProperities.txt");
 
-            UtilityMethods utilityMethods = new UtilityMethods("AddClubLinkUsersCheck",Properties["ScreenshotCaptureFlag"]);
+            UtilityMethods utilityMethods = new UtilityMethods("AddClubLinkUsersCheck", Properties["ScreenshotCaptureFlag"]);
             
+                        
             utilityMethods.InvokeApplication(Properties["Browser"], Properties["ApplicationURL"]);
+
 
             for (int i = 0; i < data.Count; i++)
             {
@@ -39,13 +42,13 @@ namespace MyLCIAutomation
 
                     if (status.Equals(true))
                     {
-                        authorizationReport.ReportStep("Authorization","User is Authorized User", "SUCCESS");
+                        authorizationreport.ReportStep("User is Authorized User", "SUCCESS");
                         //Click Add Club link
                         utilityMethods.ClickById("hlAddClub");
                     }
                     else
                     {
-                        authorizationReport.ReportStep("Authorization","User is not Authorized User", "SUCCESS");
+                        authorizationreport.ReportStep("User is not Authorized User", "SUCCESS");
                        
                     }
                                                                       
@@ -58,7 +61,7 @@ namespace MyLCIAutomation
                 }
             }
             // Close the browser and write the report into Excelsheet
-            authorizationReport.FlushWorkbook("Authorization-Run");
+            authorizationreport.FlushWorkbook("Authorization-Run");
             utilityMethods.CloseApplication("Authorization");
             
         }

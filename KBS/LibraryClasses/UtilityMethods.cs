@@ -23,7 +23,7 @@ namespace MyLCIAutomation
         private string testCaseName;
         public string screenShotFlag;
         ExcelReporter excelReporter = new ExcelReporter();
-        ExcelReporter excelReporterAuth = new ExcelReporter("Authorization");
+        ExcelReporterAuthorization excelReporterAuth = new ExcelReporterAuthorization();
         private int dataSet
         {
             get;
@@ -75,13 +75,13 @@ namespace MyLCIAutomation
                 if (browserDriver.FindElement(By.LinkText(PageObjects.lnkTextMyLCIHome)).Displayed)
                 {
                     excelReporter.ReportStep("Login is Successful for Userid: " + UserId, "Pass");
-                    excelReporterAuth.ReportStep("Authorization", "User id: " + UserId + " is Successful", "SUCCESS");
+                    excelReporterAuth.ReportStep("User id: " + UserId + " is Successful", "SUCCESS");
                     flag = true;
                 }
                 else
                 {
                     excelReporter.ReportStep("Login is not Successful for UserID: " + UserId, "Fail");
-                    excelReporterAuth.ReportStep("Authorization", "User id: " + UserId + " is UnSuccessful", "FAILURE");
+                    excelReporterAuth.ReportStep("User id: " + UserId + " is UnSuccessful", "FAILURE");
                     flag = false;
                    
                 }
@@ -106,21 +106,27 @@ namespace MyLCIAutomation
         ///</remarks>
         public Boolean VerifyAddClubLinkExists(String LinkText)
         {
-            Boolean flag = false;
+            Boolean flag = true;
             try
             {
+<<<<<<< HEAD
                 browserDriver.FindElement(By.Id(PageObjects.mnuLinkDistricts)).Click();
                 browserDriver.FindElement(By.Id(PageObjects.subMenuLinkClubs)).Click();
+=======
+                browserDriver.FindElement(By.Id("a_3_1_28")).Click();
+                Thread.Sleep(1000);
+                browserDriver.FindElement(By.Id("a_3_2_40")).Click();
+>>>>>>> 120a87bd9485fad79c55569dd07a65a016af1143
 
                 if (browserDriver.FindElement(By.LinkText(PageObjects.linkTextAddClub)).Enabled)
                 {
                     flag = true;
-                    excelReporter.ReportStep("Add Club Link exists", "Pass");
+                    excelReporterAuth.ReportStep("Add Club Link exists", "Pass");
                 }
                 else
                 {
                     flag = false;
-                    excelReporter.ReportStep("Add Club Link does not exist", "Pass");
+                    excelReporterAuth.ReportStep("Add Club Link does not exist", "Pass");
                 }
             }
             catch (NoSuchElementException e)
@@ -166,7 +172,8 @@ namespace MyLCIAutomation
        
       public IWebDriver InvokeApplication(String browser, String url)
       {
-          excelReporter.CreateReportHeader("Authorization");
+          excelReporter.CreateReportHeader();
+          excelReporterAuth.CreateReportHeader();
           
           try
           {
