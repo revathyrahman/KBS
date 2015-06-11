@@ -36,16 +36,16 @@ namespace MyLCIAutomation
                     utilityMethods.LoginMyLCI(data[i][0], data[i][1], data[i][2]);
 
                     //Click My Districts Selection
-                    utilityMethods.ClickById(PageObjects.mnuLinkDistricts);
+                    utilityMethods.ClickById(PageObjects.mnuLinkDistricts,"Districts Menu");
                     //Click Clubs link
-                    utilityMethods.ClickById(PageObjects.subMenuLinkClubs);
+                    utilityMethods.ClickById(PageObjects.subMenuLinkClubs," Clubs Sub menu");
 
                    //Verify Cancel request of the New Club 
 
                     //Click Add Club link
-                    utilityMethods.ClickById(PageObjects.linkTextAddClub);
+                    utilityMethods.ClickById(PageObjects.linkTextAddClub,"Add Club");
                     //Click  on Cancel button
-                    utilityMethods.ClickById(PageObjects.cancelbtn);
+                    utilityMethods.ClickById(PageObjects.cancelbtn,"Cancel");
                     //Verify Districts Club Page is displayed
                     utilityMethods.VerifyTextDisplay(PageObjects.labelcaption, "District Clubs");
 
@@ -53,21 +53,21 @@ namespace MyLCIAutomation
                     // Verify Delete functionality with Clubname Exists after deletion
 
                    // Click Add Club link
-                   utilityMethods.ClickById(PageObjects.linkTextAddClub);
+                   utilityMethods.ClickById(PageObjects.linkTextAddClub,"Add Club");
                    // Passing the Club name to the text field
-                   utilityMethods.EnterValueById(PageObjects.clubName, "Club-Jeynew");
+                   utilityMethods.EnterValueById(PageObjects.clubName, "Club-Jeynew","Club Name");
                    // Click Save button
-                   utilityMethods.ClickById(PageObjects.savebtn);
+                   utilityMethods.ClickById(PageObjects.savebtn,"Save");
                    // Verify visibility of  buttons
                    utilityMethods.VerifyButtonExists("Save", PageObjects.savebtn);
                    utilityMethods.VerifyButtonExists("Delete", PageObjects.deletebtn);
                    utilityMethods.VerifyButtonExists("Cancel", PageObjects.cancelbtn);
                    // Click Delete button
-                   utilityMethods.ClickById(PageObjects.deletebtn);
+                   utilityMethods.ClickById(PageObjects.deletebtn,"Delete");
                   // Validate the Club name to be deleted is displayed
                    utilityMethods.VerifyTextDisplay(".//*[@id='form1x']/div[4]/div[1]/div[5]/div[1]/div[1]/div/div[6]/div[2]/div/div", "Club-Jeynew");
                   //Click Save button
-                   utilityMethods.ClickById(PageObjects.savebtn);
+                   utilityMethods.ClickById(PageObjects.savebtn,"Save");
                    //Verify Districts Club Page is displayed
                    utilityMethods.VerifyTextDisplay(PageObjects.labelcaption, "District Clubs");
                    //Navigating to the Club status
@@ -79,11 +79,11 @@ namespace MyLCIAutomation
 
                     //New Club creation and deletion
                     //Click Add Club link
-                    utilityMethods.ClickById(PageObjects.linkTextAddClub);
+                    utilityMethods.ClickById(PageObjects.linkTextAddClub,"Add Clubb");
                     // Passing the Club name to the text field
-                    utilityMethods.EnterValueById(PageObjects.clubName, "club-Jeynew");
+                    utilityMethods.EnterValueById(PageObjects.clubName, "club-Jeynew","Club Name");
                     //Click Save button
-                    utilityMethods.ClickById(PageObjects.savebtn);
+                    utilityMethods.ClickById(PageObjects.savebtn,"Save");
                     //Verify visibility  of button
                     utilityMethods.VerifyButtonExists("Save", PageObjects.savebtn);
                     utilityMethods.VerifyButtonExists("Delete", PageObjects.deletebtn);
@@ -91,9 +91,9 @@ namespace MyLCIAutomation
 
                     //Once again to delete the existing club
                     //Click Delete button
-                    utilityMethods.ClickById(PageObjects.deletebtn);
+                    utilityMethods.ClickById(PageObjects.deletebtn,"Delete");
                     //Click Save button
-                    utilityMethods.ClickById(PageObjects.savebtn);
+                    utilityMethods.ClickById(PageObjects.savebtn,"Save");
                     //Verify Districts Page is displayed
                     utilityMethods.VerifyTextDisplay(PageObjects.labelcaption, "District Clubs");
                     //Navigating to the Club status

@@ -134,7 +134,12 @@ namespace MyLCIAutomation
             }
             return flag;
       }
-       
+       /// <summary>
+       /// This method is for invoking the application
+       /// </summary>
+       /// <remarks>
+       /// Takes  two arguments browser and url returns browser driver based on the browser parameterized
+       /// </remarks>
       public IWebDriver InvokeApplication(String browser, String url)
       {
           excelReporter.CreateReportHeader();
@@ -167,6 +172,15 @@ namespace MyLCIAutomation
              }
              return browserDriver;
         }
+
+
+        /// <summary>
+        /// This method is verify the Language listed in the dropdownlist of Add club form
+        /// </summary>
+        ///<remarks>
+        /// Takes no arguments if languages count is 12 returns true  and  false if language count is not 12
+        /// </remarks>
+         
       public void VerifyLanguageListAddClub()
       {
           IWebElement ele = browserDriver.FindElement(By.Id("ddlClubLanguage"));
@@ -194,17 +208,23 @@ namespace MyLCIAutomation
           }
 
       }
-        public void EnterValueById(String id, String value)
+        /// <summary>
+        /// This method is to send values to the text field
+        /// </summary>
+        /// <remarks>
+        /// Takes three arguments id , value and fielddesc  returns true on passing value to the text field and false if it doesn't
+        /// </remarks>
+        public void EnterValueById(String id, String value,string fielddesc)
         {
             Boolean flag = true;
             try
             {
                 browserDriver.FindElement(By.Id(id)).SendKeys(value);
-                excelReporter.ReportStep("Element with id :" + id + " is found and value :" + value + " entered successfully..", "SUCCESS");
+                excelReporter.ReportStep("Element with id :" + id +  "of" +fielddesc+ " is found and value :" + value + " entered successfully..", "SUCCESS");
             }
             catch (NoSuchElementException exc)
             {
-                excelReporter.ReportStep("Element with id :" + id + "could not be found..", "FAILURE");
+                excelReporter.ReportStep("Element with id :" + id + "of" + fielddesc + " could not be found..", "FAILURE");
                 flag = false;
             }
             catch (WebDriverException e)
@@ -217,6 +237,12 @@ namespace MyLCIAutomation
                 TakeSnapshot(this.screenShotFlag,flag);
             }
         }
+        /// <summary>
+        /// This method is to send values to the text field
+        /// </summary>
+        /// <remarks>
+        /// Takes two arguments name and value returns true on passing value to the text field and false if it doesn't 
+        /// </remarks>
         public void EnterValueByName(String name, String value)
         {
             Boolean flag = true;
@@ -242,8 +268,13 @@ namespace MyLCIAutomation
                 TakeSnapshot(this.screenShotFlag, flag);
             }
         }
-
-        public void SelectDropdownValueByIndex(String id, int index)
+        /// <summary>
+        /// This method is to select the value by index in the dropdown list
+        /// </summary>
+        /// <remarks>
+        /// Takes three arguments id, index,fielddesc returns true on selection of value in dropdown list and returns false  if it doesn't
+        /// </remarks>
+        public void SelectDropdownValueByIndex(String id, int index,string fielddesc)
         {
             Boolean flag = true;
             try
@@ -252,12 +283,12 @@ namespace MyLCIAutomation
                 SelectElement dropDownElement = new SelectElement(ele);
                 dropDownElement.SelectByIndex(index);
                 flag = true;
-                excelReporter.ReportStep("Element with id :" + id + " is found and index :" + index + " selected successfully..", "SUCCESS");
+                excelReporter.ReportStep("Element with id :" + id + "of" + fielddesc + " is found and index :" + index + " selected successfully..", "SUCCESS");
             }
             catch (NoSuchElementException exception)
             {
                 flag = false;
-                excelReporter.ReportStep("Element with id :" + id + "could not be found..", "FAILURE");
+                excelReporter.ReportStep("Element with id :" + id + "of" + fielddesc + " could not be found..", "FAILURE");
             }
             catch (WebDriverException e)
             {
@@ -269,8 +300,13 @@ namespace MyLCIAutomation
                 TakeSnapshot(this.screenShotFlag, flag);
             }
         }
-
-        public void SelectDropdownValueByVisibleText(String id, String VisibleText)
+        /// <summary>
+        /// This method is to select the value by text in the dropdown list
+        /// </summary>
+        /// <remarks>
+        /// Takes two arguments id ,visibletext and fielddesc returns true on selection of value in dropdown list and returns false  if it doesn't
+        /// </remarks>
+        public void SelectDropdownValueByVisibleText(String id, String VisibleText,string fielddesc)
         {
             Boolean flag = false;
             try
@@ -280,25 +316,29 @@ namespace MyLCIAutomation
                 SelectElement dropDownElement = new SelectElement(ele);
                 dropDownElement.SelectByText(VisibleText);
                 flag = true;
-                excelReporter.ReportStep("Element with id :" + id + " is found and Visible Text :" + VisibleText + " selected successfully..", "SUCCESS");
+                excelReporter.ReportStep("Element with id :" + id + "of" + fielddesc + " is found and Visible Text :" + VisibleText + " selected successfully..", "SUCCESS");
             }
             catch (NoSuchElementException exception)
             {
-                excelReporter.ReportStep("Element with id :" + id + "could not be found..", "FAILURE");
+                excelReporter.ReportStep("Element with id :" + id + "of" + fielddesc + " could not be found..", "FAILURE");
                 flag = false;
             }
             catch (WebDriverException e)
             {
                 excelReporter.ReportStep("Driver could not be found", "FAILURE");
                 flag = false;
-
             }
             finally
             {
                 TakeSnapshot(this.screenShotFlag, flag);
             }
         }
-
+        /// <summary>
+        /// This method takes snapshot in png format
+        /// </summary>
+        /// <remarks>
+        /// Takes two arguments screenshot flag and flag returns image
+        /// </remarks>
         public void TakeSnapshot(string screenshotflag, Boolean flag)
         {
             try
@@ -318,7 +358,12 @@ namespace MyLCIAutomation
                 excelReporter.ReportStep("Unable to copy the file", "FAILURE");
             }
         }
-
+        /// <summary>
+        /// This method is for closing the application
+        /// </summary>
+        /// <remarks>
+        /// Takes no arguments returns true on success
+        /// </remarks>
         public void CloseApplication()
         {
             try
@@ -333,7 +378,13 @@ namespace MyLCIAutomation
 
             excelReporter.FlushWorkbook(testCaseName + "-Run" + dataSet);
         }
-
+        /// <summary>
+        /// This method is for closing the application
+        /// </summary>
+        /// <remarks>
+        /// Takes one  arguments returns true on success
+        /// </remarks>
+       
         public void CloseApplication(string testcasename)
         {
             try
@@ -352,18 +403,23 @@ namespace MyLCIAutomation
 
 
    
-
-        public void ClickByCSS(String css)
+        /// <summary>
+        /// This method is to verify element is clicked using CSS
+        /// </summary>
+        /// <remarks>
+        /// This takes two argument CSS and fielddesc and returns true on element is clicked and returns false if it doesn't
+        /// </remarks>
+        public void ClickByCSS(String css,string fielddesc)
         {
             Boolean flag = true;
             try
             {
                 browserDriver.FindElement(By.CssSelector(css)).Click();
-                excelReporter.ReportStep("Element with css :" + css + " is found and clicked successfully..", "SUCCESS");
+                excelReporter.ReportStep("Element with css :" + css + "of" + fielddesc + " is found and clicked successfully..", "SUCCESS");
             }
             catch (NoSuchElementException e)
             {
-                excelReporter.ReportStep("Element with css :" + css + "could not be found..", "FAILURE");
+                excelReporter.ReportStep("Element with css :" + css + "of" + fielddesc + " could not be found..", "FAILURE");
             }
             catch (WebDriverException exe)
             {
@@ -374,7 +430,13 @@ namespace MyLCIAutomation
                 TakeSnapshot(this.screenShotFlag, flag);
             }
         }
-        public Boolean VerifyElementExists(String XPath)
+        /// <summary>
+        /// This method is to verify  the element is present
+        /// </summary>
+        /// <remarks>
+        /// Takes two argument Xpath and fielddesc and returns true on element present and false if it doesn't
+        /// </remarks>
+        public Boolean VerifyElementExists(String XPath,string fielddesc)
         {
             Boolean flag = false;
             try
@@ -387,13 +449,18 @@ namespace MyLCIAutomation
             }
             catch (NoSuchElementException e)
             {
-                excelReporter.ReportStep("Element with XPath :" + XPath + "could not be found..", "FAILURE");
+                excelReporter.ReportStep("Element with XPath :" + XPath + "of" + fielddesc + " could not be found..", "FAILURE");
             }
 
             return flag;
         }
 
-       
+       /// <summary>
+       /// This method is to click on the text
+       /// </summary>
+       /// <remarks>
+       /// Takes one argument text and returns true on element is clicked and false if it doesn't
+       /// </remarks>
         public void LinkClickByText(String text)
         {
             Boolean flag=true;
@@ -418,19 +485,25 @@ namespace MyLCIAutomation
             }
         }
 
-       
+
+        /// <summary>
+        /// This method is to click based on the Xpath
+        /// </summary>
+        /// <remarks>
+        /// Takes two argument Xpath and fielddesc and returns true on element is clicked and false if it doesn't
+        /// </remarks>
         
-        public void ClickByXPath(String XPath)
+        public void ClickByXPath(String XPath,string fielddesc)
         {
             Boolean flag = true;
             try
             {
                 browserDriver.FindElement(By.XPath(XPath)).Click();
-                excelReporter.ReportStep("Element with XPath :" + XPath + " is found and clicked successfully..", "SUCCESS");
+                excelReporter.ReportStep("Element with XPath :" + XPath + "of" + fielddesc + " is found and clicked successfully..", "SUCCESS");
             }
             catch (NoSuchElementException e)
             {
-                excelReporter.ReportStep("Element with XPath :" + XPath + "could not be found..", "FAILURE");
+                excelReporter.ReportStep("Element with XPath :" + XPath + "of" + fielddesc + " could not be found..", "FAILURE");
                 flag = false;
             }
             catch (WebDriverException exe)
@@ -444,18 +517,24 @@ namespace MyLCIAutomation
             }
         }
 
-
-        public void ClickById(String Id)
+        /// <summary>
+        /// This method is to click based on  Id
+        /// </summary>
+        /// <remarks>
+        /// Takes two argument text and fielddesc and returns true on element is clicked and false if it doesn't
+        /// </remarks>
+      
+        public void ClickById(String Id,string fielddesc)
         {
             Boolean flag = true;
             try
             {
                 browserDriver.FindElement(By.Id(Id)).Click();
-                excelReporter.ReportStep("Element with ID :" + Id + " is found and clicked successfully..", "SUCCESS");
+                excelReporter.ReportStep("Element with ID :" + Id + " of" + fielddesc + " is found and clicked successfully..", "SUCCESS");
             }
             catch (NoSuchElementException e)
             {
-                excelReporter.ReportStep("Element with ID :" + Id + "could not be found..", "FAILURE");
+                excelReporter.ReportStep("Element with ID :" + Id + " of" + fielddesc + " could not be found..", "FAILURE");
                 flag = false;
             }
             catch (WebDriverException exe)
@@ -468,7 +547,12 @@ namespace MyLCIAutomation
                 TakeSnapshot(this.screenShotFlag, flag);
             }
         }
-      
+      /// <summary>
+      /// This method creates a new Club form and enters value to the fields and save
+      /// </summary>
+      ///<remarks>
+      ///Takes no arguments returns true on club form is saved and false if it doesn't
+      /// </remarks>
         public string AddClubFormEntry()
         {
             //Create a random Number to append to ClubName for unique
@@ -481,64 +565,64 @@ namespace MyLCIAutomation
             {
                 
                 //Enter ClubName - Unique
-                EnterValueById("txtClubName", ClubName);
+                EnterValueById("txtClubName", ClubName,"Club Name");
 
                 //Select Club Type
-                SelectDropdownValueByVisibleText("ddlClubType", "Lions Club");
+                SelectDropdownValueByVisibleText("ddlClubType", "Lions Club","Club Type");
 
                 //Enter Club City 
-                EnterValueById("txtCity", "Automation TestCity");
+                EnterValueById("txtCity", "Automation TestCity","City");
 
 
                 //Select from Club Language
-                SelectDropdownValueByVisibleText("ddlClubLanguage", "English");
+                SelectDropdownValueByVisibleText("ddlClubLanguage", "English","Club Language");
 
                 //Click for a sponsoring club
-                ClickById("btnSelectSponsoringClub");
+                ClickById("btnSelectSponsoringClub","Sponsoring Club");
                 browserDriver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(5));
-                ClickByXPath("//div[@class='DistrictClubResults']/div/div/div[1]");
+                ClickByXPath("//div[@class='DistrictClubResults']/div/div/div[1]","District Club results");
                 browserDriver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(3));
 
                // Select from Club Language
-                SelectDropdownValueByVisibleText("ddlClubLanguage", "English");
+                SelectDropdownValueByVisibleText("ddlClubLanguage", "English","Club Language");
                 VerifyLanguageListAddClub();
                 
                 //Click for a sponsoring club
-                ClickById("btnSelectSponsoringClub");
+                ClickById("btnSelectSponsoringClub","Sponsoring Club");
                 browserDriver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(5));
-                ClickByXPath("//div[@class='DistrictClubResults']/div/div/div[1]");
+                ClickByXPath("//div[@class='DistrictClubResults']/div/div/div[1]","District Club results");
                 browserDriver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(3));
 
                                
                 //Enter New Club President creation details
-                ClickByXPath("//*[@id='pnlNewClubPresidentHeader']/div/b");
-                EnterValueById("txtPresidentFirstName", "PresidentFirstname");
-                EnterValueById("txtPresidentLastName", "PresidentLastname");
-                EnterValueById("txtPresidentYearOfBirth", "1980");
-                SelectDropdownValueByVisibleText("ddlPresidentGender", "Male");
-                EnterValueById("txtPresidentEmailAddress", "president@test.com");
+                ClickByXPath("//*[@id='pnlNewClubPresidentHeader']/div/b","President Header");
+                EnterValueById("txtPresidentFirstName", "PresidentFirstname","President FirstName");
+                EnterValueById("txtPresidentLastName", "PresidentLastname","President Lastname");
+                EnterValueById("txtPresidentYearOfBirth", "1980","Year of Birth");
+                SelectDropdownValueByVisibleText("ddlPresidentGender", "Male","Gender");
+                EnterValueById("txtPresidentEmailAddress", "president@test.com","Email Address");
 
                 //Enter New Club Secretary Creation details
-                ClickByXPath("//*[@id='pnlNewClubSecretaryHeader']/p/b");
-                EnterValueById("txtSecretaryFirstName", "SecretaryFirstName");
-                EnterValueById("txtSecretaryLastName", "SecretaryLastName");
-                EnterValueById("txtSecretaryYearOfBirth", "1980");
-                SelectDropdownValueByVisibleText("ddlSecretaryGender", "Female");
-                EnterValueById("txtSecretaryEmailAddress", "testsecretary@test.com");
+                ClickByXPath("//*[@id='pnlNewClubSecretaryHeader']/p/b","Secretary Header");
+                EnterValueById("txtSecretaryFirstName", "SecretaryFirstName","Secretary FirstName");
+                EnterValueById("txtSecretaryLastName", "SecretaryLastName","Secretary LastName");
+                EnterValueById("txtSecretaryYearOfBirth", "1980","Year of Birth");
+                SelectDropdownValueByVisibleText("ddlSecretaryGender", "Female","Gender");
+                EnterValueById("txtSecretaryEmailAddress", "testsecretary@test.com","Email Address");
 
                 //Enter Charter Member details
-                EnterValueById(PageObjects.newMemberscount, "2");
-                EnterValueById(PageObjects.transferMemberscount, "0");
-                EnterValueById("txtStudentCount", "0");
-                EnterValueById("txtLeoLionCount", "0");
+                EnterValueById(PageObjects.newMemberscount, "2"," New Members count");
+                EnterValueById(PageObjects.transferMemberscount, "0","Transfer Members count");
+                EnterValueById("txtStudentCount", "0"," Students count");
+                EnterValueById("txtLeoLionCount", "0","Leo Lions Count");
 
                 //Check New Club Criteria checkbox
-                ClickById("cbReadNewClubCriteria");
+                ClickById("cbReadNewClubCriteria","Club Criteria");
                 //Enter Comment
-                EnterValueById("txtNewClubAppComment", "test comment");
+                EnterValueById("txtNewClubAppComment", "test comment","Comments");
 
                 //Click on Save
-                ClickById("btnSave");
+                ClickById("btnSave","Save");
                 browserDriver.Manage().Timeouts().SetPageLoadTimeout(TimeSpan.FromSeconds(2));
 
             }
@@ -552,7 +636,12 @@ namespace MyLCIAutomation
             }
             return ClubName;
         }
-
+        /// <summary>
+        /// This method is for logout of the application
+        /// </summary>
+        /// <remarks>
+        /// Takes no argument and returns true on success and false if it doesn't
+        /// </remarks>
         public void LogoutMyLCI()
         {
             Boolean flag=true;
@@ -572,7 +661,12 @@ namespace MyLCIAutomation
             }
         }
 
-      
+      /// <summary>
+      /// This method is to verify the task is available in the tasks list and clicks on the task 
+      /// </summary>
+      /// <remarks>
+      /// Takes one argument and  returns true on task found and clicked and false if it doesn't
+      /// </remarks>
         public void VerifyMyTask(String taskname)
         {
             Boolean flag=true;
@@ -611,14 +705,18 @@ namespace MyLCIAutomation
                 TakeSnapshot(this.screenShotFlag,flag);
             }
         }
-
+        /// <summary>
+        /// This method is to discontinue the club and on success navigate to application
+        /// </summary>
+        /// Takes one argument ClubName returns true on discontinue club is successful and false if it doesn't
+        /// </remarks>
         public void DiscontinueClub(string ClubName)
         {
             try
             {
-                ClickById("cbStatusAction_Discontinue");
-                EnterValueById("txtDiscontinueNote", "Test Comment");
-                ClickById("btnSave");
+                ClickById("cbStatusAction_Discontinue","Discontinue");
+                EnterValueById("txtDiscontinueNote", "Test Comment","Comments");
+                ClickById("btnSave","Save");
                 string ConfirmationMessage = browserDriver.FindElement(By.XPath("//div[@class='confirmationMessages']/table/tbody/tr/td")).Text;
 
                 if (ConfirmationMessage.Contains("Discontinued"))
@@ -636,6 +734,12 @@ namespace MyLCIAutomation
                 e.StackTrace.ToString();
             }
         }
+        /// <summary>
+        /// This method is to click on the Club application and view the application
+        /// </summary>
+       ///<remarks>
+       ///Takes one argument Clubname searches for the club name in the list and on found the application is clicked on success and returns false if it doesnot exist
+       /// </remarks>
 
         public void ViewApplication(String clubname)
         {
@@ -684,15 +788,20 @@ namespace MyLCIAutomation
                 TakeSnapshot(this.screenShotFlag,flag);
             }
         }
-
+        /// <summary>
+        /// This method is to remove from discontinuing the club and on success navigate to application
+        /// </summary>
+        /// Takes one argument ClubName returns true on removing from discontinued club is successful and false if it doesn't
+        /// </remarks>
+       
         public void ContinueClub(string ClubName)
         {
             Boolean flag = true;
             try
             {
-                ClickById("cbStatusAction_Continue");
-                EnterValueById("txtDiscontinueNote", "Test Comment");
-                ClickById("btnSave");
+                ClickById("cbStatusAction_Continue","Continue");
+                EnterValueById("txtDiscontinueNote", "Test Comment","Comments");
+                ClickById("btnSave","Save");
                 string ConfirmationMessage = browserDriver.FindElement(By.XPath("//div[@class='confirmationMessages']/table/tbody/tr/td")).Text;
 
                 if (ConfirmationMessage.Contains("removed from Discontinued"))
@@ -715,14 +824,19 @@ namespace MyLCIAutomation
                 TakeSnapshot(this.screenShotFlag, flag);
             }
         }
+        /// <summary>
+        /// This method is to  verfiy the club is moved to next status on submit
+        ///<remarks>
+        ///Takes one argument CurrentStatus returns true on submit the application to next status and false if it doesn't
+        /// </remarks>
         public void MoveClubtoNextStatus(String CurrentStatus)
         {
             Boolean flag = true;
             try
             {
-                ClickById("cbReadNewClubCriteria");
-                ClickById("cbStatusAction_Submit");
-                ClickById("btnSave");
+                ClickById("cbReadNewClubCriteria","Club Criteria");
+                ClickById("cbStatusAction_Submit","Submit");
+                ClickById("btnSave","Save");
                 string confirmationMessage = browserDriver.FindElement(By.XPath("//div[@class='confirmationMessages']/table/tbody/tr/td")).Text;
                 if (confirmationMessage.Contains("District Governor authorization"))
 
@@ -746,14 +860,19 @@ namespace MyLCIAutomation
             }
         }
                 
-
+        /// <summary>
+        /// Thsi method to view the status of the clubs listed and click on the desired club
+        /// </summary>
+        /// <remarks>
+        /// Takes one argument Filtername returns true on click of the desired status of the club and false if it doesn't
+        /// </remarks>
         public void FindDesiredClub(String Filtername)
         {
             Boolean flag=true;
             try
             {
                 
-                ClickById("lblSearchOptionTitle");
+                ClickById("lblSearchOptionTitle","Find Clubs");
                  IList<IWebElement> findlist = browserDriver.FindElements(By.XPath("//*[@id='pnlQuickViews']/li/a"));
                 
                 int val = 0;
@@ -789,7 +908,12 @@ namespace MyLCIAutomation
                 
             }
 
-
+        /// <summary>
+        /// /This method to verify the text field is editable
+        /// </summary>
+        ///<remarks>
+        ///Takes two arguments Fielddesc and id and returns true if field is editable and false if it doesn't
+        /// </remarks>
         public void VerifyFieldEdit(string Fielddesc, string id)
         {
             Boolean flag = false;
@@ -824,7 +948,12 @@ namespace MyLCIAutomation
 
 
         }
-
+        /// <summary>
+        /// This method is to verify the dropdownlist is editable
+        /// </summary>
+        /// <remarks>
+        /// Takes two arguments Fielddesc and id returns true if the dropdown list is editable and false if it doen't
+        /// </remarks>
         public void VerifyDropdownEdit(string Fielddesc, string id)
         {
             Boolean flag = false;
@@ -864,7 +993,12 @@ namespace MyLCIAutomation
 
 
         }
-
+        /// <summary>
+        /// This method is to verify button is enabled
+        /// </summary>
+        /// <remarks>
+        /// Takes two arguments Fileddesc and id returns true on button is enabled and false if it doesn't
+        /// </remarks>
         public void VerifyButtonExists(string Fielddesc, string id)
         {
             Boolean flag = false;
@@ -902,7 +1036,12 @@ namespace MyLCIAutomation
 
 
         }
-
+        /// <summary>
+        /// This method is to verify the fields are editable in New club officers section
+        /// </summary>
+        /// <remarks>
+        /// Takes no arguments and returns true for the fields which are  editable and false if it doesn't
+        /// </remarks>
         public void NewClubOfficersChk()
         {
             Boolean flag = true;
@@ -910,7 +1049,7 @@ namespace MyLCIAutomation
             {
                 // Verify President fieldlevel check
 
-                ClickByXPath(".//*[@id='pnlNewClubPresidentHeader']/div/b");
+                ClickByXPath(".//*[@id='pnlNewClubPresidentHeader']/div/b","President Header");
                 VerifyFieldEdit("First Name", PageObjects.presidentFirstname);
                 VerifyFieldEdit("Last Name", PageObjects.presidentLastname);
                 VerifyFieldEdit("Year Of Birth", PageObjects.presidentYOB);
@@ -920,7 +1059,7 @@ namespace MyLCIAutomation
 
                 // Verify Secretary Fieldlevel check
 
-                ClickByXPath(".//*[@id='pnlNewClubSecretaryHeader']/p/b");
+                ClickByXPath(".//*[@id='pnlNewClubSecretaryHeader']/p/b","Secretary Header");
                 VerifyFieldEdit("First Name", PageObjects.secretaryFirstname);
                 VerifyFieldEdit("Last Name", PageObjects.secretaryLastname);
                 VerifyFieldEdit("Year Of Birth", PageObjects.secretaryYOB);
@@ -947,6 +1086,12 @@ namespace MyLCIAutomation
 
         }
 
+        /// <summary>
+        /// This method is to verify for the fields editable in Estimate Charter of Members section while selection of Lions club in the club type
+        /// </summary>
+        /// <remarks>
+        /// Takes no arguments and returns true for the fields which are  editable and false if it doesn't
+        /// </remarks>
         public void ECMforLionsClub()
         {
             Boolean flag = true;
@@ -976,7 +1121,13 @@ namespace MyLCIAutomation
 
 
         }
-
+        /// <summary>
+        /// This method is to verify for the fields editable in Estimate Charter of Members section while selection of University/Campus club in the club type
+        /// </summary>
+        /// <remarks>
+        /// Takes no arguments and returns true for the fields which are  editable and false if it doesn't
+        /// </remarks>
+       
         public void ECMForUniversityClub()
         {
             Boolean flag = true;
@@ -1005,6 +1156,13 @@ namespace MyLCIAutomation
             }
 
         }
+
+        /// <summary>
+        /// This method is to verify for the fields editable in Estimate Charter of Members section while selection of Leo Lions club in the club type
+        /// </summary>
+        /// <remarks>
+        /// Takes no arguments and returns true for the fields which are  editable and false if it doesn't
+        /// </remarks>
         public void ECMForLeoLionsClub()
         {
             Boolean flag = true;
@@ -1035,7 +1193,12 @@ namespace MyLCIAutomation
 
 
         }
-
+        /// <summary>
+        /// This method is to verify of the checkbox is visible
+        /// </summary>
+        /// <remarks>
+        /// Takes two arguments label and id returns true on checkbox is present and false if it doesnot exists
+        /// </remarks>
         public void VerifyCheckboxExists(String label, string id)
         {
             Boolean flag = true;
@@ -1064,6 +1227,10 @@ namespace MyLCIAutomation
                 TakeSnapshot(this.screenShotFlag, flag);
             }
         }
+        /// <summary>
+        /// This method is to verify the text is displayed
+        /// </summary>
+        /// Takes two arguments Xpath and text returns true on text is displayed correct and false if it doesn't
         public void VerifyTextDisplay(String Xpath, string text)
         {
             Boolean flag = true;
@@ -1095,7 +1262,12 @@ namespace MyLCIAutomation
 
 
         }
-
+        /// <summary>
+        /// This method is to verify the club application is deleted is not
+        /// </summary>
+        /// <remarks>
+        /// Takes one argument clubname checks for the clubname in the list on the clubname is not present returns true the club name is deleted and false if it doesn't
+       /// </remarks>
         public void VerifyDeleteApplication(String clubname)
         {
             Boolean flag = true;
@@ -1141,6 +1313,12 @@ namespace MyLCIAutomation
         }
 
 
+        /// <summary>
+        /// This method is verify button is invisible
+        /// </summary>
+        ///<remarks>
+        ///Takes four arguments Fieldname1,id1,Fieldname2,id2 returns true on button is invisible and false if button exists
+        /// </remarks>
         public void VerifyInvisibleButton(string Fieldname1, string id1, string Fieldname2, string id2)
         {
             Boolean flag = false;
@@ -1177,7 +1355,10 @@ namespace MyLCIAutomation
                 TakeSnapshot(this.screenShotFlag, flag);
             }
         }
-
+        /// <summary>
+        /// This method is to verify the message is displayed
+        /// </summary>
+        ///Takes three arguments Fielddesc,Xpath,Value returns true on message is displayed and false if it doesn't
         public void VerifyMessage(String Fielddesc,String Xpath,String Value)
         {
              Boolean flag = false;
@@ -1212,7 +1393,12 @@ namespace MyLCIAutomation
                 TakeSnapshot(this.screenShotFlag, flag);
             }
         }
-
+        /// <summary>
+        /// This method is to verify the Message is displayed for the club when the count  is more than 10 in the same district
+        /// </summary>
+        /// <remarks>
+        /// Takes no arguments and returns true if the message displayed and false if it doesn't
+        /// </remarks>
         public void VerifyMessageclubcount()
         {
            Boolean flag = false;
@@ -1226,7 +1412,7 @@ namespace MyLCIAutomation
                    if (Countclublist > 10)
                    {
                        flag = true;
-                       ClickById(PageObjects.linkTextAddClub);
+                       ClickById(PageObjects.linkTextAddClub,"Add Club");
                        VerifyMessage("Clubcount", ".//*[@id='lblDistrictNewClubRequestCountWarning']", "New Club Request represents 10 or more new clubs for your district");
                        
                    }

@@ -28,15 +28,15 @@ namespace MyLCIAutomation
                     //Call the login method and to verify the home page is displayed
                     utilityMethods.LoginMyLCI(data[i][0], data[i][1], data[i][2]);
                     //Click My Districts Selection
-                    utilityMethods.ClickById(PageObjects.csmnuLinkDistricts);
+                    utilityMethods.ClickById(PageObjects.csmnuLinkDistricts,"District Menu");
                     //Click Clubs link
-                    utilityMethods.ClickById(PageObjects.cssubMenuLinkClubs);
+                    utilityMethods.ClickById(PageObjects.cssubMenuLinkClubs,"Clubs Sub menu");
                     //Click Add Club link
-                    utilityMethods.ClickById(PageObjects.linkTextAddClub);
+                    utilityMethods.ClickById(PageObjects.linkTextAddClub,"Add Club");
                     // Passing the Club name to the text field
-                    utilityMethods.EnterValueById(PageObjects.clubName, "Alphabet-Club");
+                    utilityMethods.EnterValueById(PageObjects.clubName, "Alphabet-Club","Club Name");
                     // Click Save button
-                    utilityMethods.ClickById(PageObjects.savebtn);
+                    utilityMethods.ClickById(PageObjects.savebtn,"Save");
                     //Logout from the Application
                     utilityMethods.LogoutMyLCI();
                 }
@@ -45,9 +45,9 @@ namespace MyLCIAutomation
                     //Call the login method and to verify the home page is displayed
                     utilityMethods.LoginMyLCI(data[i][0], data[i][1], data[i][2]);
                     //Click My Districts Selection
-                    utilityMethods.ClickById(PageObjects.mnuLinkDistricts);
+                    utilityMethods.ClickById(PageObjects.mnuLinkDistricts,"District Menu");
                     //Click Clubs link
-                    utilityMethods.ClickById(PageObjects.subMenuLinkClubs);
+                    utilityMethods.ClickById(PageObjects.subMenuLinkClubs,"Clubs Sub menu");
                     //Navigating to the Club status
                     utilityMethods.FindDesiredClub("All Pending");
                     //Navigating to the Desired Application
