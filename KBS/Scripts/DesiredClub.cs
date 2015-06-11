@@ -24,7 +24,7 @@ namespace MyLCIAutomation
                 {
 
                     
-                   utilityMethods.InvokeApplication("Firefox", "https://mylcibeta.lionsclubs.org/");
+                 //  utilityMethods.InvokeApplication("Firefox", "https://mylcibeta.lionsclubs.org/");
 
 
                     utilityMethods.LoginMyLCI(data[i][0], data[i][1], data[i][2]);

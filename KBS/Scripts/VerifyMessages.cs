@@ -8,12 +8,10 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium.Firefox;
 
-
-
 namespace MyLCIAutomation.Scripts
 {
     [TestClass]
-    public class Messagechk
+    public class VerifyMessages
     {
         IWebDriver browserDriver;
         [TestMethod]
@@ -24,7 +22,7 @@ namespace MyLCIAutomation.Scripts
             List<List<String>> data = dataInputProvider.GetInputData("Login");
 
             utilityMethods = new UtilityMethods("Messages chk", "FAILED");
-            utilityMethods.InvokeApplication("Firefox", "https://mylcibeta.lionsclubs.org/");
+           // utilityMethods.InvokeApplication("Firefox", "https://mylcibeta.lionsclubs.org/");
 
             for (int i = 0; i < data.Count; i++)
             {

@@ -33,7 +33,7 @@ namespace MyLCIAutomation
             row.CreateCell(2).SetCellValue("Test Status");
         }
 
-<<<<<<< HEAD
+
         public void CreateReportHeader(string testCaseName)
         {
             workbook = new XSSFWorkbook();
@@ -43,9 +43,8 @@ namespace MyLCIAutomation
             row.CreateCell(1).SetCellValue("Test Description");
             row.CreateCell(2).SetCellValue("Test Status");
         }
-=======
+
        
->>>>>>> 120a87bd9485fad79c55569dd07a65a016af1143
         // Write to the Excel Report file
         public void FlushWorkbook(String testCaseName)
         {
@@ -69,7 +68,7 @@ namespace MyLCIAutomation
     	   row.CreateCell(2).SetCellValue(Status);
 		}
 
-<<<<<<< HEAD
+
         public void ReportStep(String testCaseName,String Desc, String Status)
         {
             row = workSheet.CreateRow(workSheet.LastRowNum + 1);
@@ -77,8 +76,6 @@ namespace MyLCIAutomation
             row.CreateCell(1).SetCellValue(Desc);
             row.CreateCell(2).SetCellValue(Status);
         }
-=======
-        
->>>>>>> 120a87bd9485fad79c55569dd07a65a016af1143
+
     }
 }

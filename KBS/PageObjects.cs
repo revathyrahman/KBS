@@ -14,18 +14,23 @@ namespace MyLCIAutomation
         public const string mnuLinkDistricts = "a_3_1_28";
         public const string subMenuLinkClubs = "a_3_2_40";
         public const string lblSearchOption = "lblSearchOptionTitle";
-        public const string ulLanguageOptions ="option"
+        public const string ulLanguageOptions ="option";
         public const string csmnuLinkDistricts = "a_3_1_30";
         public const string cssubMenuLinkClubs = "a_3_2_35";
         public const string linkTextAddClub = "Add Club";
         public const string idAddClub = "hlAddClub";
-        public const string xpathListSponsoringClubs = "//div[@class='DistrictClubResults']/div/div/div[1]"
-        public const string xpathClubPresident ="//*[@id='pnlNewClubPresidentHeader']/div/b";
-        public const string xpathClubSecretary = "//*[@id='pnlNewClubSecretaryHeader']/p/b";
+        public const string xpathDdlOptions = ".//option";
+        public const string xpathListSponsoringClubs = "//div[@class='DistrictClubResults']/div/div/div[1]";
+        public const string xpathClubPresidentPanel ="//*[@id='pnlNewClubPresidentHeader']/div/b";
+        public const string xpathClubSecretaryPanel = "//*[@id='pnlNewClubSecretaryHeader']/p/b";
+        public const string xpathClubConfirmationMsg = "//div[@class='confirmationMessages']/table/tbody/tr/td";
+        public const string xpathClubList = "//div[@class='gridHeader']/div/div/div[1]";
+        public const string xpathViewAppList = "//a[.='View Application']";
+        public const string xpathClubListNextPage = ".//*[@id='myGrid']/div[2]/div[3]/a[2]/img";
         public const string btnSponsoringClub = "btnSelectSponsoringClub";
-        public const string txtclubName = "txtClubName";
+        public const string idClubName = "txtClubName";
         public const string ddlClubType = "ddlClubType";
-        public const string txtCity = "txtCity";
+        public const string idClubCity = "txtCity";
         public const string ddlclubLang = "ddlClubLanguage";
         public const string sponsoringClub = "btnSelectSponsoringClub";
         public const string idPresidentFirstname = "txtPresidentFirstName";
@@ -52,7 +57,7 @@ namespace MyLCIAutomation
         public const string idBtnSave = "btnSave";
         public const string idBtnCancel= "btnCancel";
         public const string idBtnDelete = "btnDelete";
-        public const string idSubmitSelection = "cbStatusAction_Submit";
+        public const string idBtnSubmitSelection = "cbStatusAction_Submit";
         public const string xpathErrorLabel = ".//*[@id='lblerr']";
         public const string xpathSchoolName = ".//*[@id='txtSchoolName']";
         public const string xpathClubHelp = ".//*[@id='lblClubNamingHelp']";
@@ -61,8 +66,9 @@ namespace MyLCIAutomation
         public const string idAddModalComments = "txtModalComments";
         public const string btnModalSave = "btnModalCommentsSave";
         public const string xpathLeolionWarning = ".//*[@id='lblLeoLionWarning']";
+        public const string xpathTenPlusClubWarning = ".//*[@id='lblDistrictNewClubRequestCountWarning']";
         public const string xpathLabelCaption = ".//*[@id='lblCaption']";
-        public const string xpathMsgClubConfirmation = "//div[@id='divNewClubApplication']/div[1]/div/div[2]"
+        public const string xpathMsgClubConfirmation = "//div[@id='divNewClubApplication']/div[1]/div/div[2]";
         public const string linkTextMyLCIHome = "Home";
         public const string idNewClubCriteria = "cbReadNewClubCriteria";
         public const string linkTextLogout = "Logout";
@@ -70,7 +76,9 @@ namespace MyLCIAutomation
         public const string idDiscontinueClubchkbox = "cbStatusAction_Discontinue";
         public const string idDiscontinueNote = "txtDiscontinueNote";
         public const string linkTextGotoApplication = "Go to Application";
-        public const string 
+        public const string idContinueClub = "cbStatusAction_Continue";
+        public const string xpathFindClubQuickViewList = "//*[@id='pnlQuickViews']/li/a";
+        public const string xpathClubText = ".//*[@id='form1x']/div[4]/div[1]/div[5]/div[1]/div[1]/div/div[6]/div[2]/div/div";
 
     }
 }
