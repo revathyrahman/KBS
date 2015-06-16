@@ -5,7 +5,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 
-namespace MyLCIAutomation
+namespace LCI.QualityTools.BrowserTests.MyLCI
 {
     [TestClass]
     public class AddClubLinkUsersCheck
@@ -18,7 +18,7 @@ namespace MyLCIAutomation
             bool browserStatus;
             DataInputProvider dataInputProvider = new DataInputProvider();
             ExcelReporter excelreport = new ExcelReporter();
-            List<List<String>> data = dataInputProvider.GetInputData("Authorization");
+            List<List<String>> data = dataInputProvider.GetInputData("AddclubLinkAuthorization");
             ExcelReporterAuthorization authorizationReport = new ExcelReporterAuthorization();
 
             string theDirectory = AppDomain.CurrentDomain.BaseDirectory;
@@ -49,7 +49,7 @@ namespace MyLCIAutomation
                         {
                             authorizationReport.ReportStep("User is Authorized User", "SUCCESS");
                             //Click Add Club link
-                            utilityMethods.ClickById(PageObjects.idAddClub);
+                            utilityMethods.ClickById(PageObjects.idAddClub, "Add Club");
                             authorizationReport.ReportStep("Add club link exists", "PASS");
                         }
                         //Validation for an unauthorized User the "Add Club" not visible
@@ -69,6 +69,8 @@ namespace MyLCIAutomation
                 }
                 // Close the browser and write the report into Excelsheet
                 authorizationReport.FlushWorkbook("Authorization-Run");
+
+                //Close the application and browser
                 utilityMethods.CloseApplication("Authorization");
 
             }

@@ -12,7 +12,7 @@ using NPOI.POIFS.FileSystem;
 using NPOI.XSSF.UserModel;
 using NPOI.SS.Util;
 
-namespace MyLCIAutomation
+namespace LCI.QualityTools.BrowserTests.MyLCI
 {
     class ReadProperty
     {
