@@ -1,0 +1,17 @@
+F:\KBS_Git_re\KBS\KBS\bin\Debug\KBS.dll.config
+F:\KBS_Git_re\KBS\KBS\bin\Debug\KBS.dll
+F:\KBS_Git_re\KBS\KBS\bin\Debug\KBS.pdb
+F:\KBS_Git_re\KBS\KBS\bin\Debug\nunit.framework.dll
+F:\KBS_Git_re\KBS\KBS\bin\Debug\WebDriver.dll
+F:\KBS_Git_re\KBS\KBS\bin\Debug\NPOI.xml
+F:\KBS_Git_re\KBS\KBS\bin\Debug\NPOI.OOXML.xml
+F:\KBS_Git_re\KBS\KBS\bin\Debug\NPOI.OpenXml4Net.xml
+F:\KBS_Git_re\KBS\KBS\bin\Debug\nunit.framework.xml
+F:\KBS_Git_re\KBS\KBS\bin\Debug\ThoughtWorks.Selenium.Core.pdb
+F:\KBS_Git_re\KBS\KBS\bin\Debug\ThoughtWorks.Selenium.Core.xml
+F:\KBS_Git_re\KBS\KBS\bin\Debug\WebDriver.xml
+F:\KBS_Git_re\KBS\KBS\bin\Debug\WebDriver.Support.pdb
+F:\KBS_Git_re\KBS\KBS\bin\Debug\WebDriver.Support.xml
+F:\KBS_Git_re\KBS\KBS\obj\Debug\MyLCISprint1-5Automation.csprojResolveAssemblyReference.cache
+F:\KBS_Git_re\KBS\KBS\obj\Debug\KBS.dll
+F:\KBS_Git_re\KBS\KBS\obj\Debug\KBS.pdb
